@@ -204,10 +204,6 @@ class GeeDataCatalog:
 
         # Register signal to rebuild xml from EE layers on project load
         self.iface.projectRead.connect(self.update_ee_image_layers)
-        # QgsProject.instance().loadingLayer.connect(self.update_ee_image_layers)
-
-        # add action menu
-        # QgsProject.instance().layerWasAdded.connect(self.onLayerWasAdded)
 
 
     def unload(self):
@@ -249,8 +245,6 @@ class GeeDataCatalog:
         download_ee_image_layer(self.iface, name, imageid, bands, scale, proj, extent)
 
     def update_ee_image_layers(self):
-        # layer = QgsProject.instance().mapLayers()[layer_id]
-        # layer = QgsProject.instance().mapLayersByName(layer_name)[0]
         layers = QgsProject.instance().mapLayers().values()
         for eelayer in filter(lambda layer: layer.customProperty('ee-image'), layers):
             imageid = eelayer.customProperty('ee-image-id')
@@ -259,14 +253,6 @@ class GeeDataCatalog:
             wkt = eelayer.customProperty('ee-image-wkt')
             update_ee_image_layer(imageid, bands, vfn)
             eelayer.setExtent(QgsRectangle.fromWkt(wkt))
-        #     # eelayer.setCustomProperty('ee-image-ln', layer_name)
-        # if layer and layer.customProperty('ee-image'):
-        #     imageid = layer.customProperty('ee-image-id')
-        #     bands = layer.customProperty('ee-image-bands')
-        #     vfn = layer.customProperty('ee-image-vfn')
-        #     wkt = layer.customProperty('ee-image-wkt')
-        #     update_ee_image_layer(imageid, bands, vfn)
-        #     layer.setExtent(QgsRectangle.fromWkt(wkt))
 
     def update_dlg_fields(self, new_collection):
         """Update list of band combinations and availability from selected collection"""
@@ -280,13 +266,15 @@ class GeeDataCatalog:
         self.dlg.startdate.setMinimumDate(QDate(year, month, day))
         self.dlg.enddate.setMinimumDate(QDate(year, month, day))
         if GEE_DATASETS[new_collection]['availability'][1] is None:
-            self.dlg.startdate.setMaximumDate(QDate.currentDate().addDays(1))
+            self.dlg.startdate.setMaximumDate(QDate.currentDate())
             self.dlg.enddate.setMaximumDate(QDate.currentDate().addDays(1))
+            self.dlg.startdate.setDate(QDate.currentDate().addDays(-3)) # to fill default date
         else:
             maxdate = GEE_DATASETS[new_collection]['availability'][1].split('-')
             year, month, day = int(maxdate[0]), int(maxdate[1]), int(maxdate[2])
             self.dlg.startdate.setMaximumDate(QDate(year, month, day))
-            self.dlg.enddate.setMaximumDate(QDate(year, month, day))
+            self.dlg.enddate.setMaximumDate(QDate(year, month, day).addDays(1))
+            self.dlg.startdate.setDate(QDate(year, month, day).addDays(-3)) # to fill default date
 
     def update_dlg_enddate(self, new_date):
         self.dlg.enddate.setDate(new_date.addDays(4))
@@ -305,12 +293,16 @@ class GeeDataCatalog:
             self.first_start = False
             self.dlg = GeeDataCatalogDialog()
 
-            # code here to fill dialog with default values
-            self.dlg.collection.currentTextChanged.connect(self.update_dlg_fields)
-            self.dlg.collection.addItems(GEE_DATASETS.keys())
+            # date check
             self.dlg.startdate.dateChanged.connect(self.update_dlg_enddate)
             self.dlg.enddate.dateChanged.connect(self.update_dlg_startdate)
-            self.dlg.startdate.setDate(QDate.currentDate().addDays(-3))
+
+            # fill dialog with datasets
+            self.dlg.collection.currentTextChanged.connect(self.update_dlg_fields)
+            self.dlg.collection.addItems(GEE_DATASETS.keys())
+
+            # self.dlg.startdate.setDate(QDate.currentDate().addDays(-3))
+            # already setting in UI file
             # self.dlg.startdate.setCalendarPopup(True)
             # self.dlg.enddate.setCalendarPopup(True)
 
@@ -320,9 +312,7 @@ class GeeDataCatalog:
         result = self.dlg.exec_()
         # See if OK was pressed
         if result:
-            # Do something useful here - delete the line containing pass and
-            # substitute with your code.
-            # pass
+            # search ee images
             startdate = self.dlg.startdate.date().toString('yyyy-MM-dd')
             enddate = self.dlg.enddate.date().toString('yyyy-MM-dd')
             collection = self.dlg.collection.currentText()
