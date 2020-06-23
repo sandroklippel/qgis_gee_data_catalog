@@ -2,3 +2,5 @@ __pycache__
 *.py[cod]
 zip_build
 help/build/
+*.sh
+.vscode

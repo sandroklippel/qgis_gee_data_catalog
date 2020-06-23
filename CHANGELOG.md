@@ -19,6 +19,42 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Security
 
+## [0.2.0] - 2020-06-23
+
+### Added
+
+- Handle exception error when internet connection fails on ee.Initialize (OSError).
+- Dict format description on datasets.py.
+- Band combination Shortwave infrared 3 (B12-B8A-B2) in Sentinel2 datasets.
+- Scene Classification Map band for Sentinel 2 SR dataset.
+- Global extent datasets: ALOS DEM, PALSAR FNF, Global Forest Canopy Height.
+- ASTER radiance and ALOS/AVNIR-2 datasets.
+- MapBiomas datasets (Annual Land Use Land Cover Maps of Brazil).
+- Loading qml for singleband/palleted pseudo color datasets (qml dir).
+- TOA and raw datasets for Landsat 8 and 5.
+- HSV Pan-sharpened images for TOA Landsat 8 and 5 datasets. 
+- Landsat 7 and 4 datasets (SR, TOA and raw).
+- MSS for Landsat 4 and 5.
+- Contrast enhancement to full ee.image layer before loaded.
+- Set layer abstract with info about image date.
+- Sentinel as tag and ee_plugin as dependency in metadata.txt.
+
+### Changed
+
+- Fields in GEE_DATASETS (datasets.py).
+- Can add single layers datasets too.
+- Split utils.py into iface_utils.py and misc_utils.py
+
+### Deprecated
+
+### Removed
+
+- Layers rebuilding on project read, since it does not work with the qgis bad layers handler mechanism.
+
+### Fixed
+
+### Security
+
 ## [0.1.0] - 2020-05-31
 
 ### Added

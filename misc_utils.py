@@ -1,43 +1,22 @@
-""" Utilities functions
+""" Misc utilities functions
 """
 
 from tempfile import gettempdir
 from uuid import uuid4
 
-import ee
 from osgeo import gdal, ogr
-from qgis.core import QgsRectangle
 
+gdal.UseExceptions()
 
-def get_canvas_proj(iface):
-    return iface.mapCanvas().mapSettings().destinationCrs().authid()
-
-def get_canvas_extent(iface):
-    extent = iface.mapCanvas().extent()
-    xmin = extent.xMinimum()
-    ymin = extent.yMinimum()
-    xmax = extent.xMaximum()
-    ymax = extent.yMaximum()
-    return [xmin, ymin, xmax, ymax]
-
-def get_ee_image_tms(image):
-    try:
-        map_id = ee.data.getMapId({'image': image, 'format': 'png'})
-        tms = map_id['tile_fetcher'].url_format
-    except ee.ee_exception.EEException:
-        raise RuntimeError("\n\nInvalid ee.Image id")
-    return tms
-
-def get_ee_image_bb(image, proj='EPSG:3857', maxerror=0.001):
-    bb_as_geojson = ee.Element(image).geometry().bounds(maxerror, ee.Projection(proj)).getInfo()
-    ogr_geom = ogr.CreateGeometryFromJson(str(bb_as_geojson))
+def geojson_to_wkt(geojson):
+    ogr_geom = ogr.CreateGeometryFromJson(str(geojson))
     wkt_geom = ogr_geom.ExportToIsoWkt()
-    return QgsRectangle.fromWkt(wkt_geom)
+    return wkt_geom
 
 def tms_to_gdalurl(tms):
     return tms.format(x=r'${x}', y=r'${y}', z=r'${z}')
 
-def get_gdal_xml(url):
+def get_gdal_xml(url, nbands=4):
     cachedir = gettempdir() + '/gdalwmscache'
     xml = f"""<GDAL_WMS>
     <Service name="TMS">
@@ -58,7 +37,7 @@ def get_gdal_xml(url):
     <Projection>EPSG:3857</Projection>
     <BlockSizeX>256</BlockSizeX>
     <BlockSizeY>256</BlockSizeY>
-    <BandsCount>4</BandsCount>
+    <BandsCount>{nbands}</BandsCount>
     <ZeroBlockHttpCodes>204,303,400,404,500,501</ZeroBlockHttpCodes>
     <ZeroBlockOnServerException>true</ZeroBlockOnServerException>
     <Cache>
@@ -68,8 +47,7 @@ def get_gdal_xml(url):
 """
     return xml
 
-def write_vsimem_xml(xml, oldvfn=None):
-    gdal.UseExceptions()
-    vfn = '/vsimem/ee_image_' + uuid4().hex + '.xml' if oldvfn is None else oldvfn
+def write_vsimem_xml(xml):
+    vfn = '/vsimem/ee_image_' + uuid4().hex + '.xml'
     gdal.FileFromMemBuffer(vfn, xml)
     return vfn

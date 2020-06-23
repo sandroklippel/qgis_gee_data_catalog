@@ -23,24 +23,27 @@ except ImportError:
     If you don’t have one, sign-up here: https://earthengine.google.com/signup/.
     """)
     raise ImportError
+except OSError as err:
+    print('Fail to establish connection with the server')
+    raise OSError
 except ee.ee_exception.EEException:
     ee.oauth.authenticate()
     ee.Initialize()
 
 import os.path
 
-from qgis.core import QgsMapLayerType, QgsProject, QgsRectangle
+from qgis.core import QgsMapLayerType, QgsProject #, QgsRectangle
 from qgis.PyQt.QtCore import QCoreApplication, QDate, QSettings, QTranslator
 from qgis.PyQt.QtGui import QIcon
 from qgis.PyQt.QtWidgets import QAction
 
-from .datasets import GEE_DATASETS
+from .datasets import GEE_DATASETS, GLOBAL_EXTENT
 from .ee_interface import (add_ee_image_layer, download_ee_image_layer,
-                           search_ee_collection, update_ee_image_layer)
+                           search_ee_collection) #, update_ee_image_layer)
 
 from .qgis_gee_data_catalog_dialog import GeeDataCatalogDialog
 from .resources import *
-from .utils import get_canvas_extent, get_canvas_proj
+from .iface_utils import get_canvas_extent, get_canvas_proj
 
 
 class GeeDataCatalog:
@@ -178,22 +181,33 @@ class GeeDataCatalog:
             callback=self.run,
             parent=self.iface.mainWindow())
 
+        # update layers action in toolbar
+        # self.add_action(
+        #     icon_path,
+        #     text=self.tr(u'Rebuild GEE Layers'),
+        #     callback=self.update_ee_image_layers,
+        #     add_to_menu=False,
+        #     add_to_toolbar=True,
+        #     status_tip='Status tip',
+        #     whats_this='Whats tip',
+        #     parent=self.iface.mainWindow())
+
         # will be set False in run()
         self.first_start = True
 
         # define action for download ee layers to google drive
 
-        self.layerActionDownloadFull = QAction("Download to Google Drive (full)", self.iface.mainWindow())
+        self.layerActionDownloadFull = QAction("Full image extent", self.iface.mainWindow())
         self.layerActionDownloadFull.setObjectName("geeLayerFullDownload")
         self.layerActionDownloadFull.triggered.connect(self.gee_layer_full_download)
 
-        self.layerActionDownloadCanvas = QAction("Download to Google Drive (canvas extent)", self.iface.mainWindow())
+        self.layerActionDownloadCanvas = QAction("Canvas extent", self.iface.mainWindow())
         self.layerActionDownloadCanvas.setObjectName("geeLayerCanvasDownload")
         self.layerActionDownloadCanvas.triggered.connect(self.gee_layer_canvas_download)
 
         # add custom actions for all raster layers - further will be required to set up an action for each layer
-        self.iface.addCustomActionForLayerType(self.layerActionDownloadFull, "", QgsMapLayerType.RasterLayer, False)
-        self.iface.addCustomActionForLayerType(self.layerActionDownloadCanvas, "", QgsMapLayerType.RasterLayer, False)
+        self.iface.addCustomActionForLayerType(self.layerActionDownloadFull, "Download to Google Drive", QgsMapLayerType.RasterLayer, False)
+        self.iface.addCustomActionForLayerType(self.layerActionDownloadCanvas, "Download to Google Drive", QgsMapLayerType.RasterLayer, False)
 
         # add custom actions for already load layers
         for l in list(QgsProject.instance().mapLayers().values()):
@@ -203,13 +217,13 @@ class GeeDataCatalog:
         QgsProject.instance().layerWasAdded.connect(self.on_layer_was_added)
 
         # Register signal to rebuild xml from EE layers on project load
-        self.iface.projectRead.connect(self.update_ee_image_layers)
+        # self.iface.projectRead.connect(self.update_ee_image_layers)
 
 
     def unload(self):
         """Removes the plugin menu item and icon from QGIS GUI."""
 
-        self.iface.projectRead.disconnect(self.update_ee_image_layers)
+        # self.iface.projectRead.disconnect(self.update_ee_image_layers)
         self.iface.removeCustomActionForLayerType(self.layerActionDownloadFull)
         self.iface.removeCustomActionForLayerType(self.layerActionDownloadCanvas)
         QgsProject.instance().layerWasAdded.disconnect(self.on_layer_was_added)
@@ -222,8 +236,11 @@ class GeeDataCatalog:
 
     def on_layer_was_added(self, map_layer):
         if map_layer.customProperty('ee-image'):
-            self.iface.addCustomActionForLayer(self.layerActionDownloadFull, map_layer)
-            self.iface.addCustomActionForLayer(self.layerActionDownloadCanvas, map_layer)
+            if map_layer.customProperty('ee-image-wkt') == GLOBAL_EXTENT:
+                self.iface.addCustomActionForLayer(self.layerActionDownloadCanvas, map_layer)
+            else:
+                self.iface.addCustomActionForLayer(self.layerActionDownloadFull, map_layer)
+                self.iface.addCustomActionForLayer(self.layerActionDownloadCanvas, map_layer)
 
     def gee_layer_full_download(self):
         eelayer = self.iface.activeLayer()
@@ -244,15 +261,20 @@ class GeeDataCatalog:
         proj = get_canvas_proj(self.iface)
         download_ee_image_layer(self.iface, name, imageid, bands, scale, proj, extent)
 
-    def update_ee_image_layers(self):
-        layers = QgsProject.instance().mapLayers().values()
-        for eelayer in filter(lambda layer: layer.customProperty('ee-image'), layers):
-            imageid = eelayer.customProperty('ee-image-id')
-            bands = eelayer.customProperty('ee-image-bands')
-            vfn = eelayer.customProperty('ee-image-vfn')
-            wkt = eelayer.customProperty('ee-image-wkt')
-            update_ee_image_layer(imageid, bands, vfn)
-            eelayer.setExtent(QgsRectangle.fromWkt(wkt))
+    # def update_ee_image_layers(self):
+    #     layers = QgsProject.instance().mapLayers().values()
+    #     for eelayer in filter(lambda layer: layer.customProperty('ee-image'), layers):
+    #         imageid = eelayer.customProperty('ee-image-id')
+    #         bands = eelayer.customProperty('ee-image-bands')
+    #         vfn = eelayer.customProperty('ee-image-vfn')
+    #         wkt = eelayer.customProperty('ee-image-wkt')
+    #         update_ee_image_layer(imageid, bands, vfn)
+    #         eelayer.setValid(True)
+    #         eelayer.setExtent(QgsRectangle.fromWkt(wkt))
+    #         eelayer.dataProvider().reloadData()
+    #         eelayer.triggerRepaint()
+    #         eelayer.reload()
+    #     self.iface.mapCanvas().refresh()
 
     def update_dlg_fields(self, new_collection):
         """Update list of band combinations and availability from selected collection"""
@@ -260,21 +282,31 @@ class GeeDataCatalog:
         self.dlg.bands.clear()        #This will remove all previous items
         self.dlg.bands.addItems(GEE_DATASETS[new_collection]['bandcombinations'].keys())
         self.dlg.infotext.setPlainText(GEE_DATASETS[new_collection]['description'])
-        # date availability
-        mindate = GEE_DATASETS[new_collection]['availability'][0].split('-')
-        year, month, day = int(mindate[0]), int(mindate[1]), int(mindate[2])
-        self.dlg.startdate.setMinimumDate(QDate(year, month, day))
-        self.dlg.enddate.setMinimumDate(QDate(year, month, day))
-        if GEE_DATASETS[new_collection]['availability'][1] is None:
-            self.dlg.startdate.setMaximumDate(QDate.currentDate())
-            self.dlg.enddate.setMaximumDate(QDate.currentDate().addDays(1))
-            self.dlg.startdate.setDate(QDate.currentDate().addDays(-3)) # to fill default date
+        if 'cloudfield' in GEE_DATASETS[new_collection]:
+            self.dlg.cloudcover.setEnabled(True)
         else:
-            maxdate = GEE_DATASETS[new_collection]['availability'][1].split('-')
-            year, month, day = int(maxdate[0]), int(maxdate[1]), int(maxdate[2])
-            self.dlg.startdate.setMaximumDate(QDate(year, month, day))
-            self.dlg.enddate.setMaximumDate(QDate(year, month, day).addDays(1))
-            self.dlg.startdate.setDate(QDate(year, month, day).addDays(-3)) # to fill default date
+            self.dlg.cloudcover.setEnabled(False)
+        # date availability
+        if 'availability' in GEE_DATASETS[new_collection]:
+            self.dlg.startdate.setEnabled(True)
+            self.dlg.enddate.setEnabled(True)
+            mindate = GEE_DATASETS[new_collection]['availability'][0].split('-')
+            year, month, day = int(mindate[0]), int(mindate[1]), int(mindate[2])
+            self.dlg.startdate.setMinimumDate(QDate(year, month, day))
+            self.dlg.enddate.setMinimumDate(QDate(year, month, day))
+            if GEE_DATASETS[new_collection]['availability'][1] is None:
+                self.dlg.startdate.setMaximumDate(QDate.currentDate())
+                self.dlg.enddate.setMaximumDate(QDate.currentDate().addDays(1))
+                self.dlg.startdate.setDate(QDate.currentDate().addDays(-3)) # to fill default date
+            else:
+                maxdate = GEE_DATASETS[new_collection]['availability'][1].split('-')
+                year, month, day = int(maxdate[0]), int(maxdate[1]), int(maxdate[2])
+                self.dlg.startdate.setMaximumDate(QDate(year, month, day))
+                self.dlg.enddate.setMaximumDate(QDate(year, month, day).addDays(1))
+                self.dlg.startdate.setDate(QDate(year, month, day).addDays(-3)) # to fill default date
+        else:
+            self.dlg.startdate.setEnabled(False)
+            self.dlg.enddate.setEnabled(False)
 
     def update_dlg_enddate(self, new_date):
         self.dlg.enddate.setDate(new_date.addDays(4))
@@ -312,35 +344,56 @@ class GeeDataCatalog:
         result = self.dlg.exec_()
         # See if OK was pressed
         if result:
+
             # search ee images
-            startdate = self.dlg.startdate.date().toString('yyyy-MM-dd')
-            enddate = self.dlg.enddate.date().toString('yyyy-MM-dd')
             collection = self.dlg.collection.currentText()
-            bands = GEE_DATASETS[collection]['bandcombinations'][self.dlg.bands.currentText()][0]
-            suffix = GEE_DATASETS[collection]['bandcombinations'][self.dlg.bands.currentText()][1]
-            scale = GEE_DATASETS[collection]['bestresolution']
-            cloudcover = int(self.dlg.cloudcover.cleanText())
+            startdate = self.dlg.startdate.date().toString('yyyy-MM-dd') if 'availability' in GEE_DATASETS[collection] else None
+            enddate = self.dlg.enddate.date().toString('yyyy-MM-dd') if 'availability' in GEE_DATASETS[collection] else None
+            cloudcover = int(self.dlg.cloudcover.cleanText()) if 'cloudfield' in GEE_DATASETS[collection] else None
             limit = int(self.dlg.limit.cleanText())
             addlayer = self.dlg.addlayer.isChecked()
 
-            images_list = search_ee_collection(collection=collection,
-                                               extent=get_canvas_extent(self.iface),
-                                               proj=get_canvas_proj(self.iface),
-                                               startdate=startdate,
-                                               enddate=enddate,
-                                               cloudfield=GEE_DATASETS[collection]['cloudfield'],
-                                               cloudcover=cloudcover,
-                                               originalid=GEE_DATASETS[collection]['originalid'],
-                                               limit=limit)
+            vis_params = GEE_DATASETS[collection]['bandcombinations'][self.dlg.bands.currentText()]
+            bands = vis_params['bands']
+            scale = vis_params['scale']
+            suffix = vis_params.get('suffix', '')
+            b_min = vis_params.get('min', None)
+            b_max = vis_params.get('max', None)
+            palette = vis_params.get('palette', None)
+            qml = os.path.join(self.plugin_dir, 'qml', vis_params['qml'] + '.qml') if 'qml' in vis_params else None
+
+            # need to test if it is a valid epsg proj
+            # if someone else, set to 4326
+            # QgsProject.instance().setCrs(QgsCoordinateReferenceSystem(4326)) <- qgis.core
+
+            if 'namefield' in GEE_DATASETS[collection]:
+                images_list = search_ee_collection(collection=GEE_DATASETS[collection].get('id', collection),
+                                                   extent=get_canvas_extent(self.iface),
+                                                   proj=get_canvas_proj(self.iface),
+                                                   startdate=startdate,
+                                                   enddate=enddate,
+                                                   cloudfield=GEE_DATASETS[collection].get('cloudfield', None),
+                                                   cloudcover=cloudcover,
+                                                   namefield=GEE_DATASETS[collection]['namefield'],
+                                                   bands=bands,
+                                                   limit=limit)
+            else:
+                images_list = [[GEE_DATASETS[collection].get('id', collection), collection, None]]
 
             if images_list and addlayer:
-                for imageid, name in images_list:
+                for imageid, name, date in images_list:
                     add_ee_image_layer(imageid=imageid,
                                        name=name + suffix,
+                                       date=date,
                                        bands=bands,
-                                       scale=scale)
+                                       scale=scale,
+                                       b_min=b_min,
+                                       b_max=b_max,
+                                       palette=palette,
+                                       qml=qml,
+                                       extent=GEE_DATASETS[collection].get('extent', None))
             elif not images_list:
-                self.iface.messageBar().pushMessage('search did not return any image')
+                self.iface.messageBar().pushMessage('Search did not return any image')
             else:
                 images_number = len(images_list)
                 images_text = 'images' if images_number > 1 else 'image'
