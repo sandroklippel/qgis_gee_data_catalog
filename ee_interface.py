@@ -2,7 +2,6 @@
 """
 
 import ee
-from osgeo import ogr
 from qgis.core import QgsProject, QgsRasterLayer, QgsRectangle
 
 from .misc_utils import (geojson_to_wkt, get_gdal_xml, tms_to_gdalurl,
