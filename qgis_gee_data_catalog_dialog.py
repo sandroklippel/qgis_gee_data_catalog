@@ -22,17 +22,19 @@
  ***************************************************************************/
 """
 
-import os
+# import os
 
-from qgis.PyQt import uic
+# from qgis.PyQt import uic
 from qgis.PyQt import QtWidgets
 
 # This loads your .ui file so that PyQt can populate your plugin with the elements from Qt Designer
-FORM_CLASS, _ = uic.loadUiType(os.path.join(
-    os.path.dirname(__file__), 'qgis_gee_data_catalog_dialog_base.ui'))
+# FORM_CLASS, _ = uic.loadUiType(os.path.join(
+#     os.path.dirname(__file__), 'qgis_gee_data_catalog_dialog_base.ui'))
+
+from .qgis_gee_data_catalog_dialog_base import Ui_GeeDataCatalogDialogBase
 
 
-class GeeDataCatalogDialog(QtWidgets.QDialog, FORM_CLASS):
+class GeeDataCatalogDialog(QtWidgets.QDialog, Ui_GeeDataCatalogDialogBase):
     def __init__(self, parent=None):
         """Constructor."""
         super(GeeDataCatalogDialog, self).__init__(parent)

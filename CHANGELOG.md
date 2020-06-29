@@ -19,6 +19,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Security
 
+## [0.2.1] - 2020-06-29
+
+### Fixed
+
+- UI bug, closing issue #1.
+
+### Changed
+
+- Removed some plugin-builder stuff. 
+- Using compiled Python code rather than load the user interface description file. 
+
 ## [0.2.0] - 2020-06-23
 
 ### Added
@@ -45,15 +56,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Can add single layers datasets too.
 - Split utils.py into iface_utils.py and misc_utils.py
 
-### Deprecated
-
 ### Removed
 
 - Layers rebuilding on project read, since it does not work with the qgis bad layers handler mechanism.
-
-### Fixed
-
-### Security
 
 ## [0.1.0] - 2020-05-31
 

@@ -324,6 +324,7 @@ class GeeDataCatalog:
         if self.first_start:
             self.first_start = False
             self.dlg = GeeDataCatalogDialog()
+            self.dlg.finished.connect(self.result)
 
             # date check
             self.dlg.startdate.dateChanged.connect(self.update_dlg_enddate)
@@ -339,9 +340,12 @@ class GeeDataCatalog:
             # self.dlg.enddate.setCalendarPopup(True)
 
         # show the dialog
-        self.dlg.show()
+        # self.dlg.show()
         # Run the dialog event loop
-        result = self.dlg.exec_()
+        # result = self.dlg.exec_()
+        self.dlg.open()
+        
+    def result(self, result):
         # See if OK was pressed
         if result:
 

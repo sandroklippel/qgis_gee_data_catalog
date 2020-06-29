@@ -20,7 +20,11 @@ repository=https://github.com/sandroklippel/qgis_gee_data_catalog
 
 hasProcessingProvider=no
 # Uncomment the following line and add your changelog:
-changelog=[0.2.0] - 2020-06-23
+changelog=[0.2.1] - 2020-06-29
+  - UI bug fixed, closing issue #1.
+  - Removed some plugin-builder stuff. 
+  - Using compiled Python code rather than load the user interface description file. 
+  [0.2.0] - 2020-06-23
   - Band combination Shortwave infrared 3 (B12-B8A-B2) in Sentinel2 datasets.
   - Scene Classification Map band for Sentinel 2 SR dataset.
   - Global extent datasets: ALOS DEM, PALSAR FNF and Global Forest Canopy Height.
