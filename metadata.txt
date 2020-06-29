@@ -6,7 +6,7 @@
 name=Google Earth Engine Data Catalog
 qgisMinimumVersion=3.10
 description=QGIS Plugin to explore Google Earth Engine Data Catalog
-version=0.2.0
+version=0.2.1
 author=Sandro Klippel
 email=sandroklippel@gmail.com
 
