@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- ALOS/PALSAR/FNF dataset availability until 2018-01-01.
+
 ### Deprecated
 
 ### Removed

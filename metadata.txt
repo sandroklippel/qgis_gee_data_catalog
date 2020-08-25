@@ -5,12 +5,15 @@
 [general]
 name=Google Earth Engine Data Catalog
 qgisMinimumVersion=3.10
-description=QGIS Plugin to explore Google Earth Engine Data Catalog
-version=0.2.1
+description=Search, view and download satellite imagery and geospatial datasets from Google Earth Engine.
+version=0.3.0
 author=Sandro Klippel
 email=sandroklippel@gmail.com
 
-about=QGIS Plugin to explore Google Earth Engine Data Catalog by search on Image Collections and add imagery as layers to QGIS. In addtion, allows users to download those layers to Google Drive. QGIS Earth Engine plugin (https://plugins.qgis.org/plugins/ee_plugin/) or the EE Python API (earthengine-api>=0.1.215) must be installed and it is required a Google Earth Engine account. If you don’t have one, sign-up here: https://earthengine.google.com/signup/.
+about=Search, view and download satellite imagery and geospatial datasets from Google Earth Engine.
+  EE Python API (earthengine-api>=0.1.215) must be installed and it is required a Google Earth Engine account.
+  See the plug-in home page for detailed installation instructions.
+#  If you don’t have one, sign-up here: https://earthengine.google.com/signup/.
 
 tracker=https://github.com/sandroklippel/qgis_gee_data_catalog/issues
 repository=https://github.com/sandroklippel/qgis_gee_data_catalog
@@ -20,7 +23,9 @@ repository=https://github.com/sandroklippel/qgis_gee_data_catalog
 
 hasProcessingProvider=no
 # Uncomment the following line and add your changelog:
-changelog=[0.2.1] - 2020-06-29
+changelog=[0.3.0] - 2020-07-19
+  - Changed icon
+  [0.2.1] - 2020-06-29
   - UI bug fixed, closing issue #1.
   - Removed some plugin-builder stuff. 
   - Using compiled Python code rather than load the user interface description file. 
@@ -59,7 +64,7 @@ deprecated=False
 # Since QGIS 3.8, a comma separated list of plugins to be installed
 # (or upgraded) can be specified.
 # Check the documentation for more information.
-# plugin_dependencies=ee_plugin
+# plugin_dependencies=
 
 Category of the plugin: Raster, Vector, Database or Web
 # category=

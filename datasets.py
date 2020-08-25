@@ -45,6 +45,218 @@ GLOBAL_EXTENT = '''POLYGON((-20037508.34278924390673637 -20037508.34278925508260
                             -20037508.34278924390673637 20037508.34278924390673637, 
                             -20037508.34278924390673637 -20037508.34278925508260727))'''
 
+LC08_SR = {'Natural color (B4-B3-B2)':{
+                'bands':['B4', 'B3', 'B2'],
+                'scale':30,
+                'suffix':'_r4g3b2'},
+            'False color (B4-B5-B3)':{
+                'bands':['B4', 'B5', 'B3'],
+                'scale':30,
+                'suffix':'_r4g5b3'},
+            'Color infrared (B5-B4-B3)':{
+                'bands':['B5', 'B4', 'B3'],
+                'scale':30,
+                'suffix':'_r5g4b3'},
+            'Shortwave infrared (B7-B5-B4)':{
+                'bands':['B7', 'B5', 'B4'],
+                'scale':30,
+                'suffix':'_r7g5b4'},
+            'Agriculture (B6-B5-B2)':{
+                'bands':['B6', 'B5', 'B2'],
+                'scale':30,
+                'suffix':'_r6g5b2'},
+            'Geology (B7-B6-B2)':{
+                'bands':['B7', 'B6', 'B2'],
+                'scale':30,
+                'suffix':'_r7g6b2'},
+            'Bathymetric (B4-B3-B1)':{
+                'bands':['B4', 'B3', 'B1'],
+                'scale':30,
+                'suffix':'_r4g3b1'},
+            'False color urban (B7-B6-B4)':{
+                'bands':['B7', 'B6', 'B4'],
+                'scale':30,
+                'suffix':'_r7g6b4'},
+            'Atmospheric penetration / Soil (B7-B6-B5)':{
+                'bands':['B7', 'B6', 'B5'],
+                'scale':30,
+                'suffix':'_r7g6b5'},
+            'Healthy vegetation (B5-B6-B2)':{
+                'bands':['B5', 'B6', 'B2'],
+                'scale':30,
+                'suffix':'_r5g6b2'},
+            'Vegetation analysis 1 (B5-B6-B4)':{
+                'bands':['B5', 'B6', 'B4'],
+                'scale':30,
+                'suffix':'_r5g6b4'},
+            'Vegetation analysis 2 (B6-B5-B4)':{
+                'bands':['B6', 'B5', 'B4'],
+                'scale':30,
+                'suffix':'_r6g5b4'},
+            'Forestry / Recent harvest areas (B7-B5-B3)':{
+                'bands':['B7', 'B5', 'B3'],
+                'scale':30,
+                'suffix':'_r7g5b3'}}
+
+LC08 = {'Natural color (B4-B3-B2)':{
+            'bands':['B4', 'B3', 'B2'],
+            'scale':30,
+            'suffix':'_r4g3b2'},
+        'Panchromatic (B8)':{
+            'bands':['B8'],
+            'scale':15,
+            'suffix':'_pan'},
+        'False color (B4-B5-B3)':{
+            'bands':['B4', 'B5', 'B3'],
+            'scale':30,
+            'suffix':'_r4g5b3'},
+        'Color infrared (B5-B4-B3)':{
+            'bands':['B5', 'B4', 'B3'],
+            'scale':30,
+            'suffix':'_r5g4b3'},
+        'Shortwave infrared (B7-B5-B4)':{
+            'bands':['B7', 'B5', 'B4'],
+            'scale':30,
+            'suffix':'_r7g5b4'},
+        'Agriculture (B6-B5-B2)':{
+            'bands':['B6', 'B5', 'B2'],
+            'scale':30,
+            'suffix':'_r6g5b2'},
+        'Geology (B7-B6-B2)':{
+            'bands':['B7', 'B6', 'B2'],
+            'scale':30,
+            'suffix':'_r7g6b2'},
+        'Bathymetric (B4-B3-B1)':{
+            'bands':['B4', 'B3', 'B1'],
+            'scale':30,
+            'suffix':'_r4g3b1'},
+        'False color urban (B7-B6-B4)':{
+            'bands':['B7', 'B6', 'B4'],
+            'scale':30,
+            'suffix':'_r7g6b4'},
+        'Atmospheric penetration / Soil (B7-B6-B5)':{
+            'bands':['B7', 'B6', 'B5'],
+            'scale':30,
+            'suffix':'_r7g6b5'},
+        'Healthy vegetation (B5-B6-B2)':{
+            'bands':['B5', 'B6', 'B2'],
+            'scale':30,
+            'suffix':'_r5g6b2'},
+        'Vegetation analysis 1 (B5-B6-B4)':{
+            'bands':['B5', 'B6', 'B4'],
+            'scale':30,
+            'suffix':'_r5g6b4'},
+        'Vegetation analysis 2 (B6-B5-B4)':{
+            'bands':['B6', 'B5', 'B4'],
+            'scale':30,
+            'suffix':'_r6g5b4'},
+        'Forestry / Recent harvest areas (B7-B5-B3)':{
+            'bands':['B7', 'B5', 'B3'],
+            'scale':30,
+            'suffix':'_r7g5b3'}}
+
+LE07_SR = {'Natural color (B3-B2-B1)':{
+                'bands':['B3', 'B2', 'B1'],
+                'scale':30,
+                'suffix':'_r3g2b1'},
+            'False color (B3-B4-B2)':{
+                'bands':['B3', 'B4', 'B2'],
+                'scale':30,
+                'suffix':'_r3g4b2'},
+            'Color infrared (B4-B3-B2)':{
+                'bands':['B4', 'B3', 'B2'],
+                'scale':30,
+                'suffix':'_r4g3b2'},
+            'Shortwave infrared (B7-B4-B3)':{
+                'bands':['B7', 'B4', 'B3'],
+                'scale':30,
+                'suffix':'_r7g4b3'},
+            'Agriculture (B5-B4-B1)':{
+                'bands':['B5', 'B4', 'B1'],
+                'scale':30,
+                'suffix':'_r5g4b1'},
+            'Geology (B7-B5-B1)':{
+                'bands':['B7', 'B5', 'B1'],
+                'scale':30,
+                'suffix':'_r7g5b1'},
+            'False color urban (B7-B5-B3)':{
+                'bands':['B7', 'B5', 'B3'],
+                'scale':30,
+                'suffix':'_r7g5b3'},
+            'Atmospheric penetration / Soil (B7-B5-B4)':{
+                'bands':['B7', 'B5', 'B4'],
+                'scale':30,
+                'suffix':'_r7g5b4'},
+            'Healthy vegetation (B4-B5-B1)':{
+                'bands':['B4', 'B5', 'B1'],
+                'scale':30,
+                'suffix':'_r4g5b1'},
+            'Vegetation analysis 1 (B4-B5-B3)':{
+                'bands':['B4', 'B5', 'B3'],
+                'scale':30,
+                'suffix':'_r4g5b3'},
+            'Vegetation analysis 2 (B5-B4-B3)':{
+                'bands':['B5', 'B4', 'B3'],
+                'scale':30,
+                'suffix':'_r5g4b3'},
+            'Forestry / Recent harvest areas (B7-B4-B2)':{
+                'bands':['B7', 'B4', 'B2'],
+                'scale':30,
+                'suffix':'_r7g4b2'}}
+
+LE07 = {'Natural color (B3-B2-B1)':{
+            'bands':['B3', 'B2', 'B1'],
+            'scale':30,
+            'suffix':'_r3g2b1'},
+        'Panchromatic (B8)':{
+            'bands':['B8'],
+            'scale':15,
+            'suffix':'_pan'},
+        'False color (B3-B4-B2)':{
+            'bands':['B3', 'B4', 'B2'],
+            'scale':30,
+            'suffix':'_r3g4b2'},
+        'Color infrared (B4-B3-B2)':{
+            'bands':['B4', 'B3', 'B2'],
+            'scale':30,
+            'suffix':'_r4g3b2'},
+        'Shortwave infrared (B7-B4-B3)':{
+            'bands':['B7', 'B4', 'B3'],
+            'scale':30,
+            'suffix':'_r7g4b3'},
+        'Agriculture (B5-B4-B1)':{
+            'bands':['B5', 'B4', 'B1'],
+            'scale':30,
+            'suffix':'_r5g4b1'},
+        'Geology (B7-B5-B1)':{
+            'bands':['B7', 'B5', 'B1'],
+            'scale':30,
+            'suffix':'_r7g5b1'},
+        'False color urban (B7-B5-B3)':{
+            'bands':['B7', 'B5', 'B3'],
+            'scale':30,
+            'suffix':'_r7g5b3'},
+        'Atmospheric penetration / Soil (B7-B5-B4)':{
+            'bands':['B7', 'B5', 'B4'],
+            'scale':30,
+            'suffix':'_r7g5b4'},
+        'Healthy vegetation (B4-B5-B1)':{
+            'bands':['B4', 'B5', 'B1'],
+            'scale':30,
+            'suffix':'_r4g5b1'},
+        'Vegetation analysis 1 (B4-B5-B3)':{
+            'bands':['B4', 'B5', 'B3'],
+            'scale':30,
+            'suffix':'_r4g5b3'},
+        'Vegetation analysis 2 (B5-B4-B3)':{
+            'bands':['B5', 'B4', 'B3'],
+            'scale':30,
+            'suffix':'_r5g4b3'},
+        'Forestry / Recent harvest areas (B7-B4-B2)':{
+            'bands':['B7', 'B4', 'B2'],
+            'scale':30,
+            'suffix':'_r7g4b2'}}
+
 GEE_DATASETS = {
     'COPERNICUS/S2_SR': {
         'description': '''Sentinel-2 MSI
@@ -202,58 +414,7 @@ Level-1C orthorectified top-of-atmosphere reflectance.''',
     'LANDSAT/LC08/C01/T1_SR': {
         'description': '''Landsat 8 OLI
 Atmospherically corrected surface reflectance - Tier 1.''',
-        'bandcombinations':{'Natural color (B4-B3-B2)':{
-                                'bands':['B4', 'B3', 'B2'],
-                                'scale':30,
-                                'suffix':'_r4g3b2'},
-                            'False color (B4-B5-B3)':{
-                                'bands':['B4', 'B5', 'B3'],
-                                'scale':30,
-                                'suffix':'_r4g5b3'},
-                            'Color infrared (B5-B4-B3)':{
-                                'bands':['B5', 'B4', 'B3'],
-                                'scale':30,
-                                'suffix':'_r5g4b3'},
-                            'Shortwave infrared (B7-B5-B4)':{
-                                'bands':['B7', 'B5', 'B4'],
-                                'scale':30,
-                                'suffix':'_r7g5b4'},
-                            'Agriculture (B6-B5-B2)':{
-                                'bands':['B6', 'B5', 'B2'],
-                                'scale':30,
-                                'suffix':'_r6g5b2'},
-                            'Geology (B7-B6-B2)':{
-                                'bands':['B7', 'B6', 'B2'],
-                                'scale':30,
-                                'suffix':'_r7g6b2'},
-                            'Bathymetric (B4-B3-B1)':{
-                                'bands':['B4', 'B3', 'B1'],
-                                'scale':30,
-                                'suffix':'_r4g3b1'},
-                            'False color urban (B7-B6-B4)':{
-                                'bands':['B7', 'B6', 'B4'],
-                                'scale':30,
-                                'suffix':'_r7g6b4'},
-                            'Atmospheric penetration / Soil (B7-B6-B5)':{
-                                'bands':['B7', 'B6', 'B5'],
-                                'scale':30,
-                                'suffix':'_r7g6b5'},
-                            'Healthy vegetation (B5-B6-B2)':{
-                                'bands':['B5', 'B6', 'B2'],
-                                'scale':30,
-                                'suffix':'_r5g6b2'},
-                            'Vegetation analysis 1 (B5-B6-B4)':{
-                                'bands':['B5', 'B6', 'B4'],
-                                'scale':30,
-                                'suffix':'_r5g6b4'},
-                            'Vegetation analysis 2 (B6-B5-B4)':{
-                                'bands':['B6', 'B5', 'B4'],
-                                'scale':30,
-                                'suffix':'_r6g5b4'},
-                            'Forestry / Recent harvest areas (B7-B5-B3)':{
-                                'bands':['B7', 'B5', 'B3'],
-                                'scale':30,
-                                'suffix':'_r7g5b3'}},
+        'bandcombinations': LC08_SR,
         'namefield': 'LANDSAT_ID',
         'availability': ['2013-04-01', None],
         'cloudfield': 'CLOUD_COVER'
@@ -261,58 +422,7 @@ Atmospherically corrected surface reflectance - Tier 1.''',
     'LANDSAT/LC08/C01/T2_SR': {
         'description': '''Landsat 8 OLI
 Atmospherically corrected surface reflectance - Tier 2.''',
-        'bandcombinations':{'Natural color (B4-B3-B2)':{
-                                'bands':['B4', 'B3', 'B2'],
-                                'scale':30,
-                                'suffix':'_r4g3b2'},
-                            'False color (B4-B5-B3)':{
-                                'bands':['B4', 'B5', 'B3'],
-                                'scale':30,
-                                'suffix':'_r4g5b3'},
-                            'Color infrared (B5-B4-B3)':{
-                                'bands':['B5', 'B4', 'B3'],
-                                'scale':30,
-                                'suffix':'_r5g4b3'},
-                            'Shortwave infrared (B7-B5-B4)':{
-                                'bands':['B7', 'B5', 'B4'],
-                                'scale':30,
-                                'suffix':'_r7g5b4'},
-                            'Agriculture (B6-B5-B2)':{
-                                'bands':['B6', 'B5', 'B2'],
-                                'scale':30,
-                                'suffix':'_r6g5b2'},
-                            'Geology (B7-B6-B2)':{
-                                'bands':['B7', 'B6', 'B2'],
-                                'scale':30,
-                                'suffix':'_r7g6b2'},
-                            'Bathymetric (B4-B3-B1)':{
-                                'bands':['B4', 'B3', 'B1'],
-                                'scale':30,
-                                'suffix':'_r4g3b1'},
-                            'False color urban (B7-B6-B4)':{
-                                'bands':['B7', 'B6', 'B4'],
-                                'scale':30,
-                                'suffix':'_r7g6b4'},
-                            'Atmospheric penetration / Soil (B7-B6-B5)':{
-                                'bands':['B7', 'B6', 'B5'],
-                                'scale':30,
-                                'suffix':'_r7g6b5'},
-                            'Healthy vegetation (B5-B6-B2)':{
-                                'bands':['B5', 'B6', 'B2'],
-                                'scale':30,
-                                'suffix':'_r5g6b2'},
-                            'Vegetation analysis 1 (B5-B6-B4)':{
-                                'bands':['B5', 'B6', 'B4'],
-                                'scale':30,
-                                'suffix':'_r5g6b4'},
-                            'Vegetation analysis 2 (B6-B5-B4)':{
-                                'bands':['B6', 'B5', 'B4'],
-                                'scale':30,
-                                'suffix':'_r6g5b4'},
-                            'Forestry / Recent harvest areas (B7-B5-B3)':{
-                                'bands':['B7', 'B5', 'B3'],
-                                'scale':30,
-                                'suffix':'_r7g5b3'}},
+        'bandcombinations': LC08_SR,
         'namefield': 'LANDSAT_ID',
         'availability': ['2013-04-01', None],
         'cloudfield': 'CLOUD_COVER'
@@ -320,62 +430,7 @@ Atmospherically corrected surface reflectance - Tier 2.''',
     'LANDSAT/LC08/C01/T1_TOA':{
         'description': '''Landsat 8 OLI
 Collection 1 Tier 1 calibrated top-of-atmosphere (TOA) reflectance.''',
-        'bandcombinations':{'Natural color (B4-B3-B2)':{
-                                'bands':['B4', 'B3', 'B2'],
-                                'scale':30,
-                                'suffix':'_r4g3b2'},
-                            'Pan-Sharpened Natural color (B4-B3-B2-B8)':{
-                                'bands':['B4', 'B3', 'B2', 'B8'],
-                                'scale':15,
-                                'suffix':'_r4g3b2+pan'},
-                            'False color (B4-B5-B3)':{
-                                'bands':['B4', 'B5', 'B3'],
-                                'scale':30,
-                                'suffix':'_r4g5b3'},
-                            'Color infrared (B5-B4-B3)':{
-                                'bands':['B5', 'B4', 'B3'],
-                                'scale':30,
-                                'suffix':'_r5g4b3'},
-                            'Shortwave infrared (B7-B5-B4)':{
-                                'bands':['B7', 'B5', 'B4'],
-                                'scale':30,
-                                'suffix':'_r7g5b4'},
-                            'Agriculture (B6-B5-B2)':{
-                                'bands':['B6', 'B5', 'B2'],
-                                'scale':30,
-                                'suffix':'_r6g5b2'},
-                            'Geology (B7-B6-B2)':{
-                                'bands':['B7', 'B6', 'B2'],
-                                'scale':30,
-                                'suffix':'_r7g6b2'},
-                            'Bathymetric (B4-B3-B1)':{
-                                'bands':['B4', 'B3', 'B1'],
-                                'scale':30,
-                                'suffix':'_r4g3b1'},
-                            'False color urban (B7-B6-B4)':{
-                                'bands':['B7', 'B6', 'B4'],
-                                'scale':30,
-                                'suffix':'_r7g6b4'},
-                            'Atmospheric penetration / Soil (B7-B6-B5)':{
-                                'bands':['B7', 'B6', 'B5'],
-                                'scale':30,
-                                'suffix':'_r7g6b5'},
-                            'Healthy vegetation (B5-B6-B2)':{
-                                'bands':['B5', 'B6', 'B2'],
-                                'scale':30,
-                                'suffix':'_r5g6b2'},
-                            'Vegetation analysis 1 (B5-B6-B4)':{
-                                'bands':['B5', 'B6', 'B4'],
-                                'scale':30,
-                                'suffix':'_r5g6b4'},
-                            'Vegetation analysis 2 (B6-B5-B4)':{
-                                'bands':['B6', 'B5', 'B4'],
-                                'scale':30,
-                                'suffix':'_r6g5b4'},
-                            'Forestry / Recent harvest areas (B7-B5-B3)':{
-                                'bands':['B7', 'B5', 'B3'],
-                                'scale':30,
-                                'suffix':'_r7g5b3'}},
+        'bandcombinations': LC08,
         'namefield': 'LANDSAT_PRODUCT_ID',
         'availability': ['2013-04-01', None],
         'cloudfield': 'CLOUD_COVER'
@@ -383,62 +438,7 @@ Collection 1 Tier 1 calibrated top-of-atmosphere (TOA) reflectance.''',
     'LANDSAT/LC08/C01/T1_RT_TOA':{
         'description': '''Landsat 8 OLI
 Collection 1 Tier 1 and Real-Time data calibrated top-of-atmosphere (TOA) reflectance.''',
-        'bandcombinations':{'Natural color (B4-B3-B2)':{
-                                'bands':['B4', 'B3', 'B2'],
-                                'scale':30,
-                                'suffix':'_r4g3b2'},
-                            'Pan-Sharpened Natural color (B4-B3-B2-B8)':{
-                                'bands':['B4', 'B3', 'B2', 'B8'],
-                                'scale':15,
-                                'suffix':'_r4g3b2+pan'},
-                            'False color (B4-B5-B3)':{
-                                'bands':['B4', 'B5', 'B3'],
-                                'scale':30,
-                                'suffix':'_r4g5b3'},
-                            'Color infrared (B5-B4-B3)':{
-                                'bands':['B5', 'B4', 'B3'],
-                                'scale':30,
-                                'suffix':'_r5g4b3'},
-                            'Shortwave infrared (B7-B5-B4)':{
-                                'bands':['B7', 'B5', 'B4'],
-                                'scale':30,
-                                'suffix':'_r7g5b4'},
-                            'Agriculture (B6-B5-B2)':{
-                                'bands':['B6', 'B5', 'B2'],
-                                'scale':30,
-                                'suffix':'_r6g5b2'},
-                            'Geology (B7-B6-B2)':{
-                                'bands':['B7', 'B6', 'B2'],
-                                'scale':30,
-                                'suffix':'_r7g6b2'},
-                            'Bathymetric (B4-B3-B1)':{
-                                'bands':['B4', 'B3', 'B1'],
-                                'scale':30,
-                                'suffix':'_r4g3b1'},
-                            'False color urban (B7-B6-B4)':{
-                                'bands':['B7', 'B6', 'B4'],
-                                'scale':30,
-                                'suffix':'_r7g6b4'},
-                            'Atmospheric penetration / Soil (B7-B6-B5)':{
-                                'bands':['B7', 'B6', 'B5'],
-                                'scale':30,
-                                'suffix':'_r7g6b5'},
-                            'Healthy vegetation (B5-B6-B2)':{
-                                'bands':['B5', 'B6', 'B2'],
-                                'scale':30,
-                                'suffix':'_r5g6b2'},
-                            'Vegetation analysis 1 (B5-B6-B4)':{
-                                'bands':['B5', 'B6', 'B4'],
-                                'scale':30,
-                                'suffix':'_r5g6b4'},
-                            'Vegetation analysis 2 (B6-B5-B4)':{
-                                'bands':['B6', 'B5', 'B4'],
-                                'scale':30,
-                                'suffix':'_r6g5b4'},
-                            'Forestry / Recent harvest areas (B7-B5-B3)':{
-                                'bands':['B7', 'B5', 'B3'],
-                                'scale':30,
-                                'suffix':'_r7g5b3'}},
+        'bandcombinations': LC08,
         'namefield': 'LANDSAT_PRODUCT_ID',
         'availability': ['2013-04-01', None],
         'cloudfield': 'CLOUD_COVER'
@@ -446,62 +446,7 @@ Collection 1 Tier 1 and Real-Time data calibrated top-of-atmosphere (TOA) reflec
     'LANDSAT/LC08/C01/T2_TOA':{
         'description': '''Landsat 8 OLI
 Collection 1 Tier 2 calibrated top-of-atmosphere (TOA) reflectance.''',
-        'bandcombinations':{'Natural color (B4-B3-B2)':{
-                                'bands':['B4', 'B3', 'B2'],
-                                'scale':30,
-                                'suffix':'_r4g3b2'},
-                            'Pan-Sharpened Natural color (B4-B3-B2-B8)':{
-                                'bands':['B4', 'B3', 'B2', 'B8'],
-                                'scale':15,
-                                'suffix':'_r4g3b2+pan'},
-                            'False color (B4-B5-B3)':{
-                                'bands':['B4', 'B5', 'B3'],
-                                'scale':30,
-                                'suffix':'_r4g5b3'},
-                            'Color infrared (B5-B4-B3)':{
-                                'bands':['B5', 'B4', 'B3'],
-                                'scale':30,
-                                'suffix':'_r5g4b3'},
-                            'Shortwave infrared (B7-B5-B4)':{
-                                'bands':['B7', 'B5', 'B4'],
-                                'scale':30,
-                                'suffix':'_r7g5b4'},
-                            'Agriculture (B6-B5-B2)':{
-                                'bands':['B6', 'B5', 'B2'],
-                                'scale':30,
-                                'suffix':'_r6g5b2'},
-                            'Geology (B7-B6-B2)':{
-                                'bands':['B7', 'B6', 'B2'],
-                                'scale':30,
-                                'suffix':'_r7g6b2'},
-                            'Bathymetric (B4-B3-B1)':{
-                                'bands':['B4', 'B3', 'B1'],
-                                'scale':30,
-                                'suffix':'_r4g3b1'},
-                            'False color urban (B7-B6-B4)':{
-                                'bands':['B7', 'B6', 'B4'],
-                                'scale':30,
-                                'suffix':'_r7g6b4'},
-                            'Atmospheric penetration / Soil (B7-B6-B5)':{
-                                'bands':['B7', 'B6', 'B5'],
-                                'scale':30,
-                                'suffix':'_r7g6b5'},
-                            'Healthy vegetation (B5-B6-B2)':{
-                                'bands':['B5', 'B6', 'B2'],
-                                'scale':30,
-                                'suffix':'_r5g6b2'},
-                            'Vegetation analysis 1 (B5-B6-B4)':{
-                                'bands':['B5', 'B6', 'B4'],
-                                'scale':30,
-                                'suffix':'_r5g6b4'},
-                            'Vegetation analysis 2 (B6-B5-B4)':{
-                                'bands':['B6', 'B5', 'B4'],
-                                'scale':30,
-                                'suffix':'_r6g5b4'},
-                            'Forestry / Recent harvest areas (B7-B5-B3)':{
-                                'bands':['B7', 'B5', 'B3'],
-                                'scale':30,
-                                'suffix':'_r7g5b3'}},
+        'bandcombinations': LC08,
         'namefield': 'LANDSAT_PRODUCT_ID',
         'availability': ['2013-04-01', None],
         'cloudfield': 'CLOUD_COVER'
@@ -509,58 +454,7 @@ Collection 1 Tier 2 calibrated top-of-atmosphere (TOA) reflectance.''',
     'LANDSAT/LC08/C01/T1':{
         'description': '''Landsat 8 OLI
 Collection 1 Tier 1 DN values, representing scaled, calibrated at-sensor radiance (Raw Scenes).''',
-        'bandcombinations':{'Natural color (B4-B3-B2)':{
-                                'bands':['B4', 'B3', 'B2'],
-                                'scale':30,
-                                'suffix':'_r4g3b2'},
-                            'False color (B4-B5-B3)':{
-                                'bands':['B4', 'B5', 'B3'],
-                                'scale':30,
-                                'suffix':'_r4g5b3'},
-                            'Color infrared (B5-B4-B3)':{
-                                'bands':['B5', 'B4', 'B3'],
-                                'scale':30,
-                                'suffix':'_r5g4b3'},
-                            'Shortwave infrared (B7-B5-B4)':{
-                                'bands':['B7', 'B5', 'B4'],
-                                'scale':30,
-                                'suffix':'_r7g5b4'},
-                            'Agriculture (B6-B5-B2)':{
-                                'bands':['B6', 'B5', 'B2'],
-                                'scale':30,
-                                'suffix':'_r6g5b2'},
-                            'Geology (B7-B6-B2)':{
-                                'bands':['B7', 'B6', 'B2'],
-                                'scale':30,
-                                'suffix':'_r7g6b2'},
-                            'Bathymetric (B4-B3-B1)':{
-                                'bands':['B4', 'B3', 'B1'],
-                                'scale':30,
-                                'suffix':'_r4g3b1'},
-                            'False color urban (B7-B6-B4)':{
-                                'bands':['B7', 'B6', 'B4'],
-                                'scale':30,
-                                'suffix':'_r7g6b4'},
-                            'Atmospheric penetration / Soil (B7-B6-B5)':{
-                                'bands':['B7', 'B6', 'B5'],
-                                'scale':30,
-                                'suffix':'_r7g6b5'},
-                            'Healthy vegetation (B5-B6-B2)':{
-                                'bands':['B5', 'B6', 'B2'],
-                                'scale':30,
-                                'suffix':'_r5g6b2'},
-                            'Vegetation analysis 1 (B5-B6-B4)':{
-                                'bands':['B5', 'B6', 'B4'],
-                                'scale':30,
-                                'suffix':'_r5g6b4'},
-                            'Vegetation analysis 2 (B6-B5-B4)':{
-                                'bands':['B6', 'B5', 'B4'],
-                                'scale':30,
-                                'suffix':'_r6g5b4'},
-                            'Forestry / Recent harvest areas (B7-B5-B3)':{
-                                'bands':['B7', 'B5', 'B3'],
-                                'scale':30,
-                                'suffix':'_r7g5b3'}},
+        'bandcombinations': LC08,
         'namefield': 'LANDSAT_PRODUCT_ID',
         'availability': ['2013-04-01', None],
         'cloudfield': 'CLOUD_COVER'
@@ -568,58 +462,7 @@ Collection 1 Tier 1 DN values, representing scaled, calibrated at-sensor radianc
     'LANDSAT/LC08/C01/T1_RT':{
         'description': '''Landsat 8 OLI
 Collection 1 Tier 1 and Real-Time data DN values, representing scaled, calibrated at-sensor radiance (Raw Scenes).''',
-        'bandcombinations':{'Natural color (B4-B3-B2)':{
-                                'bands':['B4', 'B3', 'B2'],
-                                'scale':30,
-                                'suffix':'_r4g3b2'},
-                            'False color (B4-B5-B3)':{
-                                'bands':['B4', 'B5', 'B3'],
-                                'scale':30,
-                                'suffix':'_r4g5b3'},
-                            'Color infrared (B5-B4-B3)':{
-                                'bands':['B5', 'B4', 'B3'],
-                                'scale':30,
-                                'suffix':'_r5g4b3'},
-                            'Shortwave infrared (B7-B5-B4)':{
-                                'bands':['B7', 'B5', 'B4'],
-                                'scale':30,
-                                'suffix':'_r7g5b4'},
-                            'Agriculture (B6-B5-B2)':{
-                                'bands':['B6', 'B5', 'B2'],
-                                'scale':30,
-                                'suffix':'_r6g5b2'},
-                            'Geology (B7-B6-B2)':{
-                                'bands':['B7', 'B6', 'B2'],
-                                'scale':30,
-                                'suffix':'_r7g6b2'},
-                            'Bathymetric (B4-B3-B1)':{
-                                'bands':['B4', 'B3', 'B1'],
-                                'scale':30,
-                                'suffix':'_r4g3b1'},
-                            'False color urban (B7-B6-B4)':{
-                                'bands':['B7', 'B6', 'B4'],
-                                'scale':30,
-                                'suffix':'_r7g6b4'},
-                            'Atmospheric penetration / Soil (B7-B6-B5)':{
-                                'bands':['B7', 'B6', 'B5'],
-                                'scale':30,
-                                'suffix':'_r7g6b5'},
-                            'Healthy vegetation (B5-B6-B2)':{
-                                'bands':['B5', 'B6', 'B2'],
-                                'scale':30,
-                                'suffix':'_r5g6b2'},
-                            'Vegetation analysis 1 (B5-B6-B4)':{
-                                'bands':['B5', 'B6', 'B4'],
-                                'scale':30,
-                                'suffix':'_r5g6b4'},
-                            'Vegetation analysis 2 (B6-B5-B4)':{
-                                'bands':['B6', 'B5', 'B4'],
-                                'scale':30,
-                                'suffix':'_r6g5b4'},
-                            'Forestry / Recent harvest areas (B7-B5-B3)':{
-                                'bands':['B7', 'B5', 'B3'],
-                                'scale':30,
-                                'suffix':'_r7g5b3'}},
+        'bandcombinations': LC08,
         'namefield': 'LANDSAT_PRODUCT_ID',
         'availability': ['2013-04-01', None],
         'cloudfield': 'CLOUD_COVER'
@@ -627,58 +470,7 @@ Collection 1 Tier 1 and Real-Time data DN values, representing scaled, calibrate
     'LANDSAT/LC08/C01/T2':{
         'description': '''Landsat 8 OLI
 Collection 1 Tier 2 DN values, representing scaled, calibrated at-sensor radiance (Raw Scenes).''',
-        'bandcombinations':{'Natural color (B4-B3-B2)':{
-                                'bands':['B4', 'B3', 'B2'],
-                                'scale':30,
-                                'suffix':'_r4g3b2'},
-                            'False color (B4-B5-B3)':{
-                                'bands':['B4', 'B5', 'B3'],
-                                'scale':30,
-                                'suffix':'_r4g5b3'},
-                            'Color infrared (B5-B4-B3)':{
-                                'bands':['B5', 'B4', 'B3'],
-                                'scale':30,
-                                'suffix':'_r5g4b3'},
-                            'Shortwave infrared (B7-B5-B4)':{
-                                'bands':['B7', 'B5', 'B4'],
-                                'scale':30,
-                                'suffix':'_r7g5b4'},
-                            'Agriculture (B6-B5-B2)':{
-                                'bands':['B6', 'B5', 'B2'],
-                                'scale':30,
-                                'suffix':'_r6g5b2'},
-                            'Geology (B7-B6-B2)':{
-                                'bands':['B7', 'B6', 'B2'],
-                                'scale':30,
-                                'suffix':'_r7g6b2'},
-                            'Bathymetric (B4-B3-B1)':{
-                                'bands':['B4', 'B3', 'B1'],
-                                'scale':30,
-                                'suffix':'_r4g3b1'},
-                            'False color urban (B7-B6-B4)':{
-                                'bands':['B7', 'B6', 'B4'],
-                                'scale':30,
-                                'suffix':'_r7g6b4'},
-                            'Atmospheric penetration / Soil (B7-B6-B5)':{
-                                'bands':['B7', 'B6', 'B5'],
-                                'scale':30,
-                                'suffix':'_r7g6b5'},
-                            'Healthy vegetation (B5-B6-B2)':{
-                                'bands':['B5', 'B6', 'B2'],
-                                'scale':30,
-                                'suffix':'_r5g6b2'},
-                            'Vegetation analysis 1 (B5-B6-B4)':{
-                                'bands':['B5', 'B6', 'B4'],
-                                'scale':30,
-                                'suffix':'_r5g6b4'},
-                            'Vegetation analysis 2 (B6-B5-B4)':{
-                                'bands':['B6', 'B5', 'B4'],
-                                'scale':30,
-                                'suffix':'_r6g5b4'},
-                            'Forestry / Recent harvest areas (B7-B5-B3)':{
-                                'bands':['B7', 'B5', 'B3'],
-                                'scale':30,
-                                'suffix':'_r7g5b3'}},
+        'bandcombinations': LC08,
         'namefield': 'LANDSAT_PRODUCT_ID',
         'availability': ['2013-04-01', None],
         'cloudfield': 'CLOUD_COVER'
@@ -686,54 +478,7 @@ Collection 1 Tier 2 DN values, representing scaled, calibrated at-sensor radianc
     'LANDSAT/LE07/C01/T1_SR': {
         'description': '''Landsat 7 ETM+
 Atmospherically corrected surface reflectance - Tier 1.''',
-        'bandcombinations':{'Natural color (B3-B2-B1)':{
-                                'bands':['B3', 'B2', 'B1'],
-                                'scale':30,
-                                'suffix':'_r3g2b1'},
-                            'False color (B3-B4-B2)':{
-                                'bands':['B3', 'B4', 'B2'],
-                                'scale':30,
-                                'suffix':'_r3g4b2'},
-                            'Color infrared (B4-B3-B2)':{
-                                'bands':['B4', 'B3', 'B2'],
-                                'scale':30,
-                                'suffix':'_r4g3b2'},
-                            'Shortwave infrared (B7-B4-B3)':{
-                                'bands':['B7', 'B4', 'B3'],
-                                'scale':30,
-                                'suffix':'_r7g4b3'},
-                            'Agriculture (B5-B4-B1)':{
-                                'bands':['B5', 'B4', 'B1'],
-                                'scale':30,
-                                'suffix':'_r5g4b1'},
-                            'Geology (B7-B5-B1)':{
-                                'bands':['B7', 'B5', 'B1'],
-                                'scale':30,
-                                'suffix':'_r7g5b1'},
-                            'False color urban (B7-B5-B3)':{
-                                'bands':['B7', 'B5', 'B3'],
-                                'scale':30,
-                                'suffix':'_r7g5b3'},
-                            'Atmospheric penetration / Soil (B7-B5-B4)':{
-                                'bands':['B7', 'B5', 'B4'],
-                                'scale':30,
-                                'suffix':'_r7g5b4'},
-                            'Healthy vegetation (B4-B5-B1)':{
-                                'bands':['B4', 'B5', 'B1'],
-                                'scale':30,
-                                'suffix':'_r4g5b1'},
-                            'Vegetation analysis 1 (B4-B5-B3)':{
-                                'bands':['B4', 'B5', 'B3'],
-                                'scale':30,
-                                'suffix':'_r4g5b3'},
-                            'Vegetation analysis 2 (B5-B4-B3)':{
-                                'bands':['B5', 'B4', 'B3'],
-                                'scale':30,
-                                'suffix':'_r5g4b3'},
-                            'Forestry / Recent harvest areas (B7-B4-B2)':{
-                                'bands':['B7', 'B4', 'B2'],
-                                'scale':30,
-                                'suffix':'_r7g4b2'}},
+        'bandcombinations': LE07_SR,
         'namefield': 'LANDSAT_ID',
         'availability': ['1999-01-01', None],
         'cloudfield': 'CLOUD_COVER'
@@ -741,54 +486,7 @@ Atmospherically corrected surface reflectance - Tier 1.''',
     'LANDSAT/LE07/C01/T2_SR': {
         'description': '''Landsat 7 ETM+
 Atmospherically corrected surface reflectance - Tier 2.''',
-        'bandcombinations':{'Natural color (B3-B2-B1)':{
-                                'bands':['B3', 'B2', 'B1'],
-                                'scale':30,
-                                'suffix':'_r3g2b1'},
-                            'False color (B3-B4-B2)':{
-                                'bands':['B3', 'B4', 'B2'],
-                                'scale':30,
-                                'suffix':'_r3g4b2'},
-                            'Color infrared (B4-B3-B2)':{
-                                'bands':['B4', 'B3', 'B2'],
-                                'scale':30,
-                                'suffix':'_r4g3b2'},
-                            'Shortwave infrared (B7-B4-B3)':{
-                                'bands':['B7', 'B4', 'B3'],
-                                'scale':30,
-                                'suffix':'_r7g4b3'},
-                            'Agriculture (B5-B4-B1)':{
-                                'bands':['B5', 'B4', 'B1'],
-                                'scale':30,
-                                'suffix':'_r5g4b1'},
-                            'Geology (B7-B5-B1)':{
-                                'bands':['B7', 'B5', 'B1'],
-                                'scale':30,
-                                'suffix':'_r7g5b1'},
-                            'False color urban (B7-B5-B3)':{
-                                'bands':['B7', 'B5', 'B3'],
-                                'scale':30,
-                                'suffix':'_r7g5b3'},
-                            'Atmospheric penetration / Soil (B7-B5-B4)':{
-                                'bands':['B7', 'B5', 'B4'],
-                                'scale':30,
-                                'suffix':'_r7g5b4'},
-                            'Healthy vegetation (B4-B5-B1)':{
-                                'bands':['B4', 'B5', 'B1'],
-                                'scale':30,
-                                'suffix':'_r4g5b1'},
-                            'Vegetation analysis 1 (B4-B5-B3)':{
-                                'bands':['B4', 'B5', 'B3'],
-                                'scale':30,
-                                'suffix':'_r4g5b3'},
-                            'Vegetation analysis 2 (B5-B4-B3)':{
-                                'bands':['B5', 'B4', 'B3'],
-                                'scale':30,
-                                'suffix':'_r5g4b3'},
-                            'Forestry / Recent harvest areas (B7-B4-B2)':{
-                                'bands':['B7', 'B4', 'B2'],
-                                'scale':30,
-                                'suffix':'_r7g4b2'}},
+        'bandcombinations': LE07_SR,
         'namefield': 'LANDSAT_ID',
         'availability': ['1999-01-01', None],
         'cloudfield': 'CLOUD_COVER'
@@ -796,66 +494,7 @@ Atmospherically corrected surface reflectance - Tier 2.''',
     'LANDSAT/LE07/C01/T1_TOA': {
         'description': '''Landsat 7 ETM+
 Collection 1 Tier 1 calibrated top-of-atmosphere (TOA) reflectance.''',
-        'bandcombinations':{'Natural color (B3-B2-B1)':{
-                                'bands':['B3', 'B2', 'B1'],
-                                'scale':30,
-                                'suffix':'_r3g2b1'},
-                            'Pan-Sharpened Natural color (B3-B2-B1-B8)':{
-                                'bands':['B3', 'B2', 'B1', 'B8'],
-                                'scale':15,
-                                'suffix':'_r3g2b1+pan'},
-                            'False color (B3-B4-B2)':{
-                                'bands':['B3', 'B4', 'B2'],
-                                'scale':30,
-                                'suffix':'_r3g4b2'},
-                            'Pan-Sharpened False color (B3-B4-B2-B8)':{
-                                'bands':['B3', 'B4', 'B2', 'B8'],
-                                'scale':15,
-                                'suffix':'_r3g4b2+pan'},
-                            'Color infrared (B4-B3-B2)':{
-                                'bands':['B4', 'B3', 'B2'],
-                                'scale':30,
-                                'suffix':'_r4g3b2'},
-                            'Pan-Sharpened Color infrared (B4-B3-B2-B8)':{
-                                'bands':['B4', 'B3', 'B2', 'B8'],
-                                'scale':15,
-                                'suffix':'_r4g3b2+pan'},
-                            'Shortwave infrared (B7-B4-B3)':{
-                                'bands':['B7', 'B4', 'B3'],
-                                'scale':30,
-                                'suffix':'_r7g4b3'},
-                            'Agriculture (B5-B4-B1)':{
-                                'bands':['B5', 'B4', 'B1'],
-                                'scale':30,
-                                'suffix':'_r5g4b1'},
-                            'Geology (B7-B5-B1)':{
-                                'bands':['B7', 'B5', 'B1'],
-                                'scale':30,
-                                'suffix':'_r7g5b1'},
-                            'False color urban (B7-B5-B3)':{
-                                'bands':['B7', 'B5', 'B3'],
-                                'scale':30,
-                                'suffix':'_r7g5b3'},
-                            'Atmospheric penetration / Soil (B7-B5-B4)':{
-                                'bands':['B7', 'B5', 'B4'],
-                                'scale':30,
-                                'suffix':'_r7g5b4'},
-                            'Healthy vegetation (B4-B5-B1)':{
-                                'bands':['B4', 'B5', 'B1'],
-                                'scale':30,
-                                'suffix':'_r4g5b1'},
-                            'Vegetation analysis 1 (B4-B5-B3)':{
-                                'bands':['B4', 'B5', 'B3'],
-                                'scale':30,
-                                'suffix':'_r4g5b3'},
-                            'Vegetation analysis 2 (B5-B4-B3)':{
-                                'bands':['B5', 'B4', 'B3'],
-                                'scale':30,
-                                'suffix':'_r5g4b3'},
-                            'Forestry / Recent harvest areas (B7-B4-B2)':{
-                                'bands':['B7', 'B4', 'B2'],
-                                'scale':30,
-                                'suffix':'_r7g4b2'}},
+        'bandcombinations': LE07,
         'namefield': 'LANDSAT_PRODUCT_ID',
         'availability': ['1999-01-01', None],
         'cloudfield': 'CLOUD_COVER'
@@ -863,66 +502,7 @@ Collection 1 Tier 1 calibrated top-of-atmosphere (TOA) reflectance.''',
     'LANDSAT/LE07/C01/T1_RT_TOA': {
         'description': '''Landsat 7 ETM+
 Collection 1 Tier 1 and Real-Time data calibrated top-of-atmosphere (TOA) reflectance.''',
-        'bandcombinations':{'Natural color (B3-B2-B1)':{
-                                'bands':['B3', 'B2', 'B1'],
-                                'scale':30,
-                                'suffix':'_r3g2b1'},
-                            'Pan-Sharpened Natural color (B3-B2-B1-B8)':{
-                                'bands':['B3', 'B2', 'B1', 'B8'],
-                                'scale':15,
-                                'suffix':'_r3g2b1+pan'},
-                            'False color (B3-B4-B2)':{
-                                'bands':['B3', 'B4', 'B2'],
-                                'scale':30,
-                                'suffix':'_r3g4b2'},
-                            'Pan-Sharpened False color (B3-B4-B2-B8)':{
-                                'bands':['B3', 'B4', 'B2', 'B8'],
-                                'scale':15,
-                                'suffix':'_r3g4b2+pan'},
-                            'Color infrared (B4-B3-B2)':{
-                                'bands':['B4', 'B3', 'B2'],
-                                'scale':30,
-                                'suffix':'_r4g3b2'},
-                            'Pan-Sharpened Color infrared (B4-B3-B2-B8)':{
-                                'bands':['B4', 'B3', 'B2', 'B8'],
-                                'scale':15,
-                                'suffix':'_r4g3b2+pan'},
-                            'Shortwave infrared (B7-B4-B3)':{
-                                'bands':['B7', 'B4', 'B3'],
-                                'scale':30,
-                                'suffix':'_r7g4b3'},
-                            'Agriculture (B5-B4-B1)':{
-                                'bands':['B5', 'B4', 'B1'],
-                                'scale':30,
-                                'suffix':'_r5g4b1'},
-                            'Geology (B7-B5-B1)':{
-                                'bands':['B7', 'B5', 'B1'],
-                                'scale':30,
-                                'suffix':'_r7g5b1'},
-                            'False color urban (B7-B5-B3)':{
-                                'bands':['B7', 'B5', 'B3'],
-                                'scale':30,
-                                'suffix':'_r7g5b3'},
-                            'Atmospheric penetration / Soil (B7-B5-B4)':{
-                                'bands':['B7', 'B5', 'B4'],
-                                'scale':30,
-                                'suffix':'_r7g5b4'},
-                            'Healthy vegetation (B4-B5-B1)':{
-                                'bands':['B4', 'B5', 'B1'],
-                                'scale':30,
-                                'suffix':'_r4g5b1'},
-                            'Vegetation analysis 1 (B4-B5-B3)':{
-                                'bands':['B4', 'B5', 'B3'],
-                                'scale':30,
-                                'suffix':'_r4g5b3'},
-                            'Vegetation analysis 2 (B5-B4-B3)':{
-                                'bands':['B5', 'B4', 'B3'],
-                                'scale':30,
-                                'suffix':'_r5g4b3'},
-                            'Forestry / Recent harvest areas (B7-B4-B2)':{
-                                'bands':['B7', 'B4', 'B2'],
-                                'scale':30,
-                                'suffix':'_r7g4b2'}},
+        'bandcombinations': LE07,
         'namefield': 'LANDSAT_PRODUCT_ID',
         'availability': ['1999-01-01', None],
         'cloudfield': 'CLOUD_COVER'
@@ -930,66 +510,7 @@ Collection 1 Tier 1 and Real-Time data calibrated top-of-atmosphere (TOA) reflec
     'LANDSAT/LE07/C01/T2_TOA': {
         'description': '''Landsat 7 ETM+
 Collection 1 Tier 2 calibrated top-of-atmosphere (TOA) reflectance.''',
-        'bandcombinations':{'Natural color (B3-B2-B1)':{
-                                'bands':['B3', 'B2', 'B1'],
-                                'scale':30,
-                                'suffix':'_r3g2b1'},
-                            'Pan-Sharpened Natural color (B3-B2-B1-B8)':{
-                                'bands':['B3', 'B2', 'B1', 'B8'],
-                                'scale':15,
-                                'suffix':'_r3g2b1+pan'},
-                            'False color (B3-B4-B2)':{
-                                'bands':['B3', 'B4', 'B2'],
-                                'scale':30,
-                                'suffix':'_r3g4b2'},
-                            'Pan-Sharpened False color (B3-B4-B2-B8)':{
-                                'bands':['B3', 'B4', 'B2', 'B8'],
-                                'scale':15,
-                                'suffix':'_r3g4b2+pan'},
-                            'Color infrared (B4-B3-B2)':{
-                                'bands':['B4', 'B3', 'B2'],
-                                'scale':30,
-                                'suffix':'_r4g3b2'},
-                            'Pan-Sharpened Color infrared (B4-B3-B2-B8)':{
-                                'bands':['B4', 'B3', 'B2', 'B8'],
-                                'scale':15,
-                                'suffix':'_r4g3b2+pan'},
-                            'Shortwave infrared (B7-B4-B3)':{
-                                'bands':['B7', 'B4', 'B3'],
-                                'scale':30,
-                                'suffix':'_r7g4b3'},
-                            'Agriculture (B5-B4-B1)':{
-                                'bands':['B5', 'B4', 'B1'],
-                                'scale':30,
-                                'suffix':'_r5g4b1'},
-                            'Geology (B7-B5-B1)':{
-                                'bands':['B7', 'B5', 'B1'],
-                                'scale':30,
-                                'suffix':'_r7g5b1'},
-                            'False color urban (B7-B5-B3)':{
-                                'bands':['B7', 'B5', 'B3'],
-                                'scale':30,
-                                'suffix':'_r7g5b3'},
-                            'Atmospheric penetration / Soil (B7-B5-B4)':{
-                                'bands':['B7', 'B5', 'B4'],
-                                'scale':30,
-                                'suffix':'_r7g5b4'},
-                            'Healthy vegetation (B4-B5-B1)':{
-                                'bands':['B4', 'B5', 'B1'],
-                                'scale':30,
-                                'suffix':'_r4g5b1'},
-                            'Vegetation analysis 1 (B4-B5-B3)':{
-                                'bands':['B4', 'B5', 'B3'],
-                                'scale':30,
-                                'suffix':'_r4g5b3'},
-                            'Vegetation analysis 2 (B5-B4-B3)':{
-                                'bands':['B5', 'B4', 'B3'],
-                                'scale':30,
-                                'suffix':'_r5g4b3'},
-                            'Forestry / Recent harvest areas (B7-B4-B2)':{
-                                'bands':['B7', 'B4', 'B2'],
-                                'scale':30,
-                                'suffix':'_r7g4b2'}},
+        'bandcombinations': LE07,
         'namefield': 'LANDSAT_PRODUCT_ID',
         'availability': ['1999-01-01', None],
         'cloudfield': 'CLOUD_COVER'
@@ -997,78 +518,7 @@ Collection 1 Tier 2 calibrated top-of-atmosphere (TOA) reflectance.''',
     'LANDSAT/LE07/C01/T1': {
         'description': '''Landsat 7 ETM+
 Collection 1 Tier 1 DN values, representing scaled, calibrated at-sensor radiance (Raw Scenes).''',
-        'bandcombinations':{'Natural color (B3-B2-B1)':{
-                                'bands':['B3', 'B2', 'B1'],
-                                'scale':30,
-                                'max':255,
-                                'min':0,
-                                'suffix':'_r3g2b1'},
-                            'False color (B3-B4-B2)':{
-                                'bands':['B3', 'B4', 'B2'],
-                                'scale':30,
-                                'max':255,
-                                'min':0,
-                                'suffix':'_r3g4b2'},
-                            'Color infrared (B4-B3-B2)':{
-                                'bands':['B4', 'B3', 'B2'],
-                                'scale':30,
-                                'max':255,
-                                'min':0,
-                                'suffix':'_r4g3b2'},
-                            'Shortwave infrared (B7-B4-B3)':{
-                                'bands':['B7', 'B4', 'B3'],
-                                'scale':30,
-                                'max':255,
-                                'min':0,
-                                'suffix':'_r7g4b3'},
-                            'Agriculture (B5-B4-B1)':{
-                                'bands':['B5', 'B4', 'B1'],
-                                'scale':30,
-                                'max':255,
-                                'min':0,
-                                'suffix':'_r5g4b1'},
-                            'Geology (B7-B5-B1)':{
-                                'bands':['B7', 'B5', 'B1'],
-                                'scale':30,
-                                'max':255,
-                                'min':0,
-                                'suffix':'_r7g5b1'},
-                            'False color urban (B7-B5-B3)':{
-                                'bands':['B7', 'B5', 'B3'],
-                                'scale':30,
-                                'max':255,
-                                'min':0,
-                                'suffix':'_r7g5b3'},
-                            'Atmospheric penetration / Soil (B7-B5-B4)':{
-                                'bands':['B7', 'B5', 'B4'],
-                                'scale':30,
-                                'max':255,
-                                'min':0,
-                                'suffix':'_r7g5b4'},
-                            'Healthy vegetation (B4-B5-B1)':{
-                                'bands':['B4', 'B5', 'B1'],
-                                'scale':30,
-                                'max':255,
-                                'min':0,
-                                'suffix':'_r4g5b1'},
-                            'Vegetation analysis 1 (B4-B5-B3)':{
-                                'bands':['B4', 'B5', 'B3'],
-                                'scale':30,
-                                'max':255,
-                                'min':0,
-                                'suffix':'_r4g5b3'},
-                            'Vegetation analysis 2 (B5-B4-B3)':{
-                                'bands':['B5', 'B4', 'B3'],
-                                'scale':30,
-                                'max':255,
-                                'min':0,
-                                'suffix':'_r5g4b3'},
-                            'Forestry / Recent harvest areas (B7-B4-B2)':{
-                                'bands':['B7', 'B4', 'B2'],
-                                'scale':30,
-                                'max':255,
-                                'min':0,
-                                'suffix':'_r7g4b2'}},
+        'bandcombinations': LE07,
         'namefield': 'LANDSAT_PRODUCT_ID',
         'availability': ['1999-01-01', None],
         'cloudfield': 'CLOUD_COVER'
@@ -1076,78 +526,7 @@ Collection 1 Tier 1 DN values, representing scaled, calibrated at-sensor radianc
     'LANDSAT/LE07/C01/T1_RT': {
         'description': '''Landsat 7 ETM+
 Collection 1 Tier 1 and Real-Time data DN values, representing scaled, calibrated at-sensor radiance (Raw Scenes).''',
-        'bandcombinations':{'Natural color (B3-B2-B1)':{
-                                'bands':['B3', 'B2', 'B1'],
-                                'scale':30,
-                                'max':255,
-                                'min':0,
-                                'suffix':'_r3g2b1'},
-                            'False color (B3-B4-B2)':{
-                                'bands':['B3', 'B4', 'B2'],
-                                'scale':30,
-                                'max':255,
-                                'min':0,
-                                'suffix':'_r3g4b2'},
-                            'Color infrared (B4-B3-B2)':{
-                                'bands':['B4', 'B3', 'B2'],
-                                'scale':30,
-                                'max':255,
-                                'min':0,
-                                'suffix':'_r4g3b2'},
-                            'Shortwave infrared (B7-B4-B3)':{
-                                'bands':['B7', 'B4', 'B3'],
-                                'scale':30,
-                                'max':255,
-                                'min':0,
-                                'suffix':'_r7g4b3'},
-                            'Agriculture (B5-B4-B1)':{
-                                'bands':['B5', 'B4', 'B1'],
-                                'scale':30,
-                                'max':255,
-                                'min':0,
-                                'suffix':'_r5g4b1'},
-                            'Geology (B7-B5-B1)':{
-                                'bands':['B7', 'B5', 'B1'],
-                                'scale':30,
-                                'max':255,
-                                'min':0,
-                                'suffix':'_r7g5b1'},
-                            'False color urban (B7-B5-B3)':{
-                                'bands':['B7', 'B5', 'B3'],
-                                'scale':30,
-                                'max':255,
-                                'min':0,
-                                'suffix':'_r7g5b3'},
-                            'Atmospheric penetration / Soil (B7-B5-B4)':{
-                                'bands':['B7', 'B5', 'B4'],
-                                'scale':30,
-                                'max':255,
-                                'min':0,
-                                'suffix':'_r7g5b4'},
-                            'Healthy vegetation (B4-B5-B1)':{
-                                'bands':['B4', 'B5', 'B1'],
-                                'scale':30,
-                                'max':255,
-                                'min':0,
-                                'suffix':'_r4g5b1'},
-                            'Vegetation analysis 1 (B4-B5-B3)':{
-                                'bands':['B4', 'B5', 'B3'],
-                                'scale':30,
-                                'max':255,
-                                'min':0,
-                                'suffix':'_r4g5b3'},
-                            'Vegetation analysis 2 (B5-B4-B3)':{
-                                'bands':['B5', 'B4', 'B3'],
-                                'scale':30,
-                                'max':255,
-                                'min':0,
-                                'suffix':'_r5g4b3'},
-                            'Forestry / Recent harvest areas (B7-B4-B2)':{
-                                'bands':['B7', 'B4', 'B2'],
-                                'scale':30,
-                                'max':255,
-                                'min':0,
-                                'suffix':'_r7g4b2'}},
+        'bandcombinations': LE07,
         'namefield': 'LANDSAT_PRODUCT_ID',
         'availability': ['1999-01-01', None],
         'cloudfield': 'CLOUD_COVER'
@@ -1155,78 +534,7 @@ Collection 1 Tier 1 and Real-Time data DN values, representing scaled, calibrate
     'LANDSAT/LE07/C01/T2': {
         'description': '''Landsat 7 ETM+
 Collection 1 Tier 2 DN values, representing scaled, calibrated at-sensor radiance (Raw Scenes).''',
-        'bandcombinations':{'Natural color (B3-B2-B1)':{
-                                'bands':['B3', 'B2', 'B1'],
-                                'scale':30,
-                                'max':255,
-                                'min':0,
-                                'suffix':'_r3g2b1'},
-                            'False color (B3-B4-B2)':{
-                                'bands':['B3', 'B4', 'B2'],
-                                'scale':30,
-                                'max':255,
-                                'min':0,
-                                'suffix':'_r3g4b2'},
-                            'Color infrared (B4-B3-B2)':{
-                                'bands':['B4', 'B3', 'B2'],
-                                'scale':30,
-                                'max':255,
-                                'min':0,
-                                'suffix':'_r4g3b2'},
-                            'Shortwave infrared (B7-B4-B3)':{
-                                'bands':['B7', 'B4', 'B3'],
-                                'scale':30,
-                                'max':255,
-                                'min':0,
-                                'suffix':'_r7g4b3'},
-                            'Agriculture (B5-B4-B1)':{
-                                'bands':['B5', 'B4', 'B1'],
-                                'scale':30,
-                                'max':255,
-                                'min':0,
-                                'suffix':'_r5g4b1'},
-                            'Geology (B7-B5-B1)':{
-                                'bands':['B7', 'B5', 'B1'],
-                                'scale':30,
-                                'max':255,
-                                'min':0,
-                                'suffix':'_r7g5b1'},
-                            'False color urban (B7-B5-B3)':{
-                                'bands':['B7', 'B5', 'B3'],
-                                'scale':30,
-                                'max':255,
-                                'min':0,
-                                'suffix':'_r7g5b3'},
-                            'Atmospheric penetration / Soil (B7-B5-B4)':{
-                                'bands':['B7', 'B5', 'B4'],
-                                'scale':30,
-                                'max':255,
-                                'min':0,
-                                'suffix':'_r7g5b4'},
-                            'Healthy vegetation (B4-B5-B1)':{
-                                'bands':['B4', 'B5', 'B1'],
-                                'scale':30,
-                                'max':255,
-                                'min':0,
-                                'suffix':'_r4g5b1'},
-                            'Vegetation analysis 1 (B4-B5-B3)':{
-                                'bands':['B4', 'B5', 'B3'],
-                                'scale':30,
-                                'max':255,
-                                'min':0,
-                                'suffix':'_r4g5b3'},
-                            'Vegetation analysis 2 (B5-B4-B3)':{
-                                'bands':['B5', 'B4', 'B3'],
-                                'scale':30,
-                                'max':255,
-                                'min':0,
-                                'suffix':'_r5g4b3'},
-                            'Forestry / Recent harvest areas (B7-B4-B2)':{
-                                'bands':['B7', 'B4', 'B2'],
-                                'scale':30,
-                                'max':255,
-                                'min':0,
-                                'suffix':'_r7g4b2'}},
+        'bandcombinations': LE07,
         'namefield': 'LANDSAT_PRODUCT_ID',
         'availability': ['1999-01-01', None],
         'cloudfield': 'CLOUD_COVER'
@@ -2120,31 +1428,31 @@ DN values representing calibrated at-sensor radiance, ortho-rectified and terrai
         'availability': ['2000-03-04', None],
         'cloudfield': 'CLOUDCOVER'
     },
-    'JAXA/ALOS/AVNIR-2/ORI': {
-        'description': '''This dataset is contains orthorectified imagery from the 
-Advanced Visible and Near Infrared Radiometer type 2 (AVNIR-2) sensor on-board the 
-Advanced Land Observing Satellite (ALOS) "DAICHI".''',
-        'bandcombinations':{'Natural color (B3-B2-B1)':{
-                                'bands':['B3', 'B2', 'B1'],
-                                'scale':10,
-                                'max':255,
-                                'min':0,
-                                'suffix':'_r3g2b1'},
-                            'False color (B3-B4-B2)':{
-                                'bands':['B3', 'B4', 'B2'],
-                                'scale':10,
-                                'max':255,
-                                'min':0,
-                                'suffix':'_r3g4b2'},
-                            'Color infrared (B4-B3-B2)':{
-                                'bands':['B4', 'B3', 'B2'],
-                                'scale':10,
-                                'max':255,
-                                'min':0,
-                                'suffix':'_r4g3b2'}},
-        'namefield': 'system:id',
-        'availability': ['2006-04-26', '2011-04-18']
-    },
+#     'JAXA/ALOS/AVNIR-2/ORI': {
+#         'description': '''This dataset is contains orthorectified imagery from the 
+# Advanced Visible and Near Infrared Radiometer type 2 (AVNIR-2) sensor on-board the 
+# Advanced Land Observing Satellite (ALOS) "DAICHI".''',
+#         'bandcombinations':{'Natural color (B3-B2-B1)':{
+#                                 'bands':['B3', 'B2', 'B1'],
+#                                 'scale':10,
+#                                 'max':255,
+#                                 'min':0,
+#                                 'suffix':'_r3g2b1'},
+#                             'False color (B3-B4-B2)':{
+#                                 'bands':['B3', 'B4', 'B2'],
+#                                 'scale':10,
+#                                 'max':255,
+#                                 'min':0,
+#                                 'suffix':'_r3g4b2'},
+#                             'Color infrared (B4-B3-B2)':{
+#                                 'bands':['B4', 'B3', 'B2'],
+#                                 'scale':10,
+#                                 'max':255,
+#                                 'min':0,
+#                                 'suffix':'_r4g3b2'}},
+#         'namefield': 'system:id',
+#         'availability': ['2006-04-26', '2011-04-18']
+#     },
     'JAXA/ALOS/PALSAR/YEARLY/FNF': {
         'description': '''Global PALSAR-2/PALSAR Forest/Non-Forest Map
 The global forest/non-forest map (FNF) is generated by classifying the 
@@ -2157,7 +1465,7 @@ larger than 0.5 ha and forest cover over 10%.''',
                                 'scale':25,
                                 'qml':'palsar_fnf'}},
         'namefield': 'system:id',
-        'availability': ['2007-01-01', '2017-12-31'],
+        'availability': ['2015-01-01', '2017-01-02'],
         'extent': GLOBAL_EXTENT
     },
     'JAXA/ALOS/AW3D30/V2_2':{

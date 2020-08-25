@@ -1,8 +1,9 @@
 """ Misc utilities functions
 """
 
-from tempfile import gettempdir
+from tempfile import NamedTemporaryFile, gettempdir
 from uuid import uuid4
+from xml.dom import minidom
 
 from osgeo import gdal, ogr
 
@@ -51,3 +52,16 @@ def write_vsimem_xml(xml):
     vfn = '/vsimem/ee_image_' + uuid4().hex + '.xml'
     gdal.FileFromMemBuffer(vfn, xml)
     return vfn
+
+def write_tempfile_xml(xml):
+    with NamedTemporaryFile("w+t", prefix="gee_data_catalog_", suffix=".xml", delete=False) as f:
+        print(xml, file=f)
+        fn = f.name
+    return fn
+
+def replace_tms(xml_file, new_tms):
+    dom = minidom.parse(xml_file)
+    elem = dom.getElementsByTagName('ServerUrl')
+    elem[0].firstChild.nodeValue = new_tms
+    with open(xml_file, 'w') as outfile:
+        dom.documentElement.writexml(outfile)

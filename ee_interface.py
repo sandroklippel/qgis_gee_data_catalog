@@ -5,7 +5,7 @@ import ee
 from qgis.core import QgsProject, QgsRasterLayer, QgsRectangle
 
 from .misc_utils import (geojson_to_wkt, get_gdal_xml, tms_to_gdalurl,
-                         write_vsimem_xml)
+                         write_vsimem_xml, write_tempfile_xml)
 
 
 def get_ee_image_tms(image):
@@ -13,7 +13,7 @@ def get_ee_image_tms(image):
         map_id = ee.data.getMapId({'image': image, 'format': 'png'})
         tms = map_id['tile_fetcher'].url_format
     except ee.ee_exception.EEException:
-        raise RuntimeError("\n\nInvalid ee.Image id")
+        raise RuntimeError("\n\nInvalid ee.Image id") # socket.timeout: timed out
     return tms
 
 def get_ee_image_bb(image, proj='EPSG:3857', maxerror=0.001):
@@ -21,18 +21,20 @@ def get_ee_image_bb(image, proj='EPSG:3857', maxerror=0.001):
 
 def add_ee_image_layer(imageid, name, date, bands, scale, b_min=None, b_max=None, palette=None, qml=None, extent=None, shown=False):
     nbands = len(bands)
-    if nbands > 3:
-        rgb = ee.Image(imageid).select(bands[0:3])
-        pan = ee.Image(imageid).select(bands[3])
-        huesat = rgb.rgbToHsv().select('hue', 'saturation')
-        image = ee.Image.cat(huesat, pan).hsvToRgb().select([0, 1, 2], bands[0:3])
-        nbands = 3
-    else:
-        image = ee.Image(imageid)
+    # if nbands > 3:
+    #     rgb = ee.Image(imageid).select(bands[0:3])
+    #     pan = ee.Image(imageid).select(bands[3])
+    #     huesat = rgb.rgbToHsv().select('hue', 'saturation')
+    #     image = ee.Image.cat(huesat, pan).hsvToRgb().select([0, 1, 2], bands[0:3])
+    #     nbands = 3
+    # else:
+    image = ee.Image(imageid)
     if not any([b_min, b_max, palette, qml]):
-        image_stats = image.select(bands[0:3]).reduceRegion(ee.Reducer.minMax(), None, scale, None, None, False, 1.0E13).getInfo()
-        b_min = [image_stats[bands[0] + '_min'], image_stats[bands[1] + '_min'], image_stats[bands[2] + '_min']]
-        b_max = [image_stats[bands[0] + '_max'], image_stats[bands[1] + '_max'], image_stats[bands[2] + '_max']]
+        image_stats = image.select(bands[0:nbands]).reduceRegion(ee.Reducer.minMax(), None, scale, None, None, False, 1.0E13).getInfo()
+        b_min = [image_stats[bands[n] + '_min'] for n in range(nbands)]
+        b_max = [image_stats[bands[n] + '_max'] for n in range(nbands)]
+        # b_min = [image_stats[bands[0] + '_min'], image_stats[bands[1] + '_min'], image_stats[bands[2] + '_min']]
+        # b_max = [image_stats[bands[0] + '_max'], image_stats[bands[1] + '_max'], image_stats[bands[2] + '_max']]
     rgb = image.visualize(bands=bands[0:nbands], min=b_min, max=b_max, palette=palette)
     tms = get_ee_image_tms(rgb)
     if extent is None:
@@ -41,37 +43,43 @@ def add_ee_image_layer(imageid, name, date, bands, scale, b_min=None, b_max=None
     bb = QgsRectangle.fromWkt(extent)
     url = tms_to_gdalurl(tms)
     xml = get_gdal_xml(url, nbands=nbands+1)
-    vfn = write_vsimem_xml(xml)
-    layer = QgsRasterLayer(vfn, name)
+    # vfn = write_vsimem_xml(xml) # changed to named temporary file
+    fn = write_tempfile_xml(xml)
+    layer = QgsRasterLayer(fn, name)
     if layer.isValid():
         if qml is not None:
             layer.loadNamedStyle(qml)
         layer.setExtent(bb)
-        layer.setCustomProperty('ee-image', True)
+        layer.setCustomProperty('ee-image', 'MEM')
         layer.setCustomProperty('ee-image-id', imageid)
-        layer.setCustomProperty('ee-image-scale', scale)
+        layer.setCustomProperty('ee-image-date', date)
         layer.setCustomProperty('ee-image-bands', bands)
+        layer.setCustomProperty('ee-image-scale', scale)
+        layer.setCustomProperty('ee-image-b_min', b_min)
+        layer.setCustomProperty('ee-image-b_max', b_max)
+        layer.setCustomProperty('ee-image-palette', palette)
+        layer.setCustomProperty('ee-image-qml', qml)
         layer.setCustomProperty('ee-image-wkt', extent)
+        # else:
+        #     layer.setAbstract(f"ee.Image('{imageid}')")
+        # if len(bands) < 4:
+        #     try:
+        #         layer.setCustomProperty('ee-image-stats', image_stats)
+        #     except NameError:
+        #         pass
         if date is not None:
-            layer.setCustomProperty('ee-image-date', date)
             layer.setAbstract(f"ee.Image('{imageid}') \n\nDate: {date}")
         else:
             layer.setAbstract(f"ee.Image('{imageid}')")
-        if len(bands) < 4:
-            try:
-                layer.setCustomProperty('ee-image-stats', image_stats)
-            except NameError:
-                pass
         QgsProject.instance().addMapLayer(layer)
         if not shown:
             QgsProject.instance().layerTreeRoot().findLayer(layer.id()).setItemVisibilityChecked(shown)
 
-# def update_ee_image_layer(imageid, bands, vfn):
-#     image = ee.Image(imageid).visualize(bands)
-#     tms = get_ee_image_tms(image)
-#     url = tms_to_gdalurl(tms)
-#     xml = get_gdal_xml(url)
-#     write_vsimem_xml(xml, vfn)
+def update_ee_image_layer(imageid, bands, b_min, b_max, palette):
+    image = ee.Image(imageid)
+    rgb = image.visualize(bands=bands, min=b_min, max=b_max, palette=palette)
+    tms = get_ee_image_tms(rgb)
+    return tms_to_gdalurl(tms)
 
 # import re
 # regex = r"^EPSG:\d+"
@@ -124,7 +132,7 @@ def download_ee_image_layer(iface, name, imageid, bands, scale, proj, extent=Non
     task = ee.batch.Export.image.toDrive(image=image,
                                          description=name.replace('/', '_'),
                                          folder='qgis_gee_data_catalog',
-                                         scale=scale,
+                                         scale=int(scale), # coarse it to int
                                          crs=proj,
                                          maxPixels=1.0E13)
     task.start()

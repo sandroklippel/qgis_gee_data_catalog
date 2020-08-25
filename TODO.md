@@ -4,7 +4,10 @@
 - [x] Generalize to add single band and fusion (rgb + pan) images.
 - [x] Set layer abstract: info about date.
 - [x] Loading qml for singleband/palleted pseudo color datasets
+- [ ] Remove instructions to use ee_plugin as dependence and show how to install earthengine-api
+- [ ] Progress bar using thread
 - [ ] Change to dockable dialog window.
+- [ ] Add panel to task management
 - [ ] If does not add layers to canvas, show more info about them (show more button).
 - [ ] Load datasets from a json file instead from python dict.
 - [ ] Deactivate icons from raster toolbar (full contrast enhancement)
@@ -21,7 +24,6 @@
 - [ ] Add context menu options for contrast enhancement.
 - [ ] Add context menu option to add same image with different band combinations.
 - [ ] Add context menu option with earth.engine snippet code (to copy/paste).
-- [ ] Progress bar using thread
 - [ ] Docstring all functions and modules.
 - [ ] Add @pyqtSlot decorator in methods
 - [ ] Bypass bad handler layer mechanism of QGIS to restore layers on project read.
