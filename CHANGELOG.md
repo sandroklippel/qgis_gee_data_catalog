@@ -11,6 +11,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [0.3.0] - 2020-08-10
+
+### Added
+
+### Changed
+
+- Icon.
+- Save the XML definition file.
+- Update layers on project read.
+- Initialized ee library only once and after plugin loading.
 - ALOS/PALSAR/FNF dataset availability until 2018-01-01.
 
 ### Deprecated

@@ -170,7 +170,7 @@ class GeeDataCatalog:
         # change icon here !
         # icon_path = ':/images/themes/default/mActionAddGeoPackageLayer.svg'
         icon_path = ':/plugins/qgis_gee_data_catalog/icon.svg'
-        icon_gdrive = QIcon(':/images/themes/default/downloading_svg.svg')
+        # icon_gdrive = QIcon(':/images/themes/default/downloading_svg.svg')
         icon_save_xml = QIcon(':/images/themes/default/mActionFileSave.svg')
         self.add_action(
             icon_path,
@@ -315,17 +315,22 @@ class GeeDataCatalog:
             bb = QgsRectangle.fromWkt(extent)
             eelayer.setExtent(bb)
             xml_file = eelayer.dataProvider().dataSourceUri()
-            ds = gdal.Open(xml_file)
-            if ds.ReadAsArray(xsize=1, ysize=1) is None:
-                imageid = eelayer.customProperty('ee-image-id')
-                bands = eelayer.customProperty('ee-image-bands')
-                b_min = eelayer.customProperty('ee-image-b_min')
-                b_max = eelayer.customProperty('ee-image-b_max')
-                palette = eelayer.customProperty('ee-image-palette')
-                if self.ee_uninitialized:
-                    ee.Initialize()
-                new_tms = update_ee_image_layer(imageid, bands, b_min, b_max, palette)
-                replace_tms(xml_file, new_tms)
+            # ds = gdal.Open(xml_file)
+            # if ds.ReadAsArray(xsize=1, ysize=1) is None:
+            imageid = eelayer.customProperty('ee-image-id')
+            bands = eelayer.customProperty('ee-image-bands')
+            qml = eelayer.customProperty('ee-image-qml')
+            palette = eelayer.customProperty('ee-image-palette')
+            if not qml:
+                b_min = list(map(int, eelayer.customProperty('ee-image-b_min')))
+                b_max = list(map(int, eelayer.customProperty('ee-image-b_max')))
+            else:
+                b_min = None
+                b_max = None
+            if self.ee_uninitialized:
+                ee.Initialize()
+            new_tms = update_ee_image_layer(imageid, bands, b_min, b_max, palette)
+            replace_tms(xml_file, new_tms)
 
     def update_dlg_fields(self, new_collection):
         """Update list of band combinations and availability from selected collection"""

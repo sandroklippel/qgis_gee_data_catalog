@@ -11,7 +11,7 @@ author=Sandro Klippel
 email=sandroklippel@gmail.com
 
 about=Search, view and download satellite imagery and geospatial datasets from Google Earth Engine.
-  EE Python API (earthengine-api>=0.1.215) must be installed and it is required a Google Earth Engine account.
+  EE Python API (earthengine-api>=v0.1.232) must be installed and it is required a Google Earth Engine account.
   See the plug-in home page for detailed installation instructions.
 #  If you don’t have one, sign-up here: https://earthengine.google.com/signup/.
 
@@ -23,8 +23,10 @@ repository=https://github.com/sandroklippel/qgis_gee_data_catalog
 
 hasProcessingProvider=no
 # Uncomment the following line and add your changelog:
-changelog=[0.3.0] - 2020-07-19
-  - Changed icon
+changelog=[0.3.0] - 2020-08-10
+  - Changed icon.
+  - Save xml and update layers on project read.
+  - Initialized ee library only once and after plugin loading.
   [0.2.1] - 2020-06-29
   - UI bug fixed, closing issue #1.
   - Removed some plugin-builder stuff. 
@@ -54,7 +56,7 @@ tags=layers, landsat, sentinel, google, raster, remote sensing, tms, search, exp
 
 homepage=https://github.com/sandroklippel/qgis_gee_data_catalog/wiki
 category=Plugins
-icon=icon.png
+icon=icon.svg
 # experimental flag
 experimental=False
 

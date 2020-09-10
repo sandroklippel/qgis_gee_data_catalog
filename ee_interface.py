@@ -5,15 +5,15 @@ import ee
 from qgis.core import QgsProject, QgsRasterLayer, QgsRectangle
 
 from .misc_utils import (geojson_to_wkt, get_gdal_xml, tms_to_gdalurl,
-                         write_vsimem_xml, write_tempfile_xml)
+                         write_tempfile_xml)
 
 
 def get_ee_image_tms(image):
     try:
         map_id = ee.data.getMapId({'image': image, 'format': 'png'})
         tms = map_id['tile_fetcher'].url_format
-    except ee.ee_exception.EEException:
-        raise RuntimeError("\n\nInvalid ee.Image id") # socket.timeout: timed out
+    except ee.ee_exception.EEException as err:
+        raise RuntimeError(err) # socket.timeout: timed out
     return tms
 
 def get_ee_image_bb(image, proj='EPSG:3857', maxerror=0.001):
@@ -75,7 +75,7 @@ def add_ee_image_layer(imageid, name, date, bands, scale, b_min=None, b_max=None
         if not shown:
             QgsProject.instance().layerTreeRoot().findLayer(layer.id()).setItemVisibilityChecked(shown)
 
-def update_ee_image_layer(imageid, bands, b_min, b_max, palette):
+def update_ee_image_layer(imageid, bands, b_min=None, b_max=None, palette=None):
     image = ee.Image(imageid)
     rgb = image.visualize(bands=bands, min=b_min, max=b_max, palette=palette)
     tms = get_ee_image_tms(rgb)
