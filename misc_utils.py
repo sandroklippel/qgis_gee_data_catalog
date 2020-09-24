@@ -4,6 +4,8 @@
 from tempfile import NamedTemporaryFile, gettempdir
 from uuid import uuid4
 from xml.dom import minidom
+from os import sep
+from os.path import isdir
 
 from osgeo import gdal, ogr
 
@@ -53,10 +55,15 @@ def write_vsimem_xml(xml):
     gdal.FileFromMemBuffer(vfn, xml)
     return vfn
 
-def write_tempfile_xml(xml):
-    with NamedTemporaryFile("w+t", prefix="gee_data_catalog_", suffix=".xml", delete=False) as f:
-        print(xml, file=f)
-        fn = f.name
+def write_xmlfile(xml, filename, destination=None):
+    if isdir(destination):
+        with open( destination + sep + filename + ".xml" ) as f:
+            print(xml, file=f)
+            fn = f.name
+    else:
+        with NamedTemporaryFile("w+t", prefix="gee_data_catalog_", suffix=".xml", delete=False) as f:
+            print(xml, file=f)
+            fn = f.name
     return fn
 
 def replace_tms(xml_file, new_tms):

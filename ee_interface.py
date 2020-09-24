@@ -5,7 +5,7 @@ import ee
 from qgis.core import QgsProject, QgsRasterLayer, QgsRectangle
 
 from .misc_utils import (geojson_to_wkt, get_gdal_xml, tms_to_gdalurl,
-                         write_tempfile_xml)
+                         write_xmlfile)
 
 
 def get_ee_image_tms(image):
@@ -44,7 +44,7 @@ def add_ee_image_layer(imageid, name, date, bands, scale, b_min=None, b_max=None
     url = tms_to_gdalurl(tms)
     xml = get_gdal_xml(url, nbands=nbands+1)
     # vfn = write_vsimem_xml(xml) # changed to named temporary file
-    fn = write_tempfile_xml(xml)
+    fn = write_xmlfile(xml, name, destination=storage)
     layer = QgsRasterLayer(fn, name)
     if layer.isValid():
         if qml is not None:
