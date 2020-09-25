@@ -55,9 +55,9 @@ def write_vsimem_xml(xml):
     gdal.FileFromMemBuffer(vfn, xml)
     return vfn
 
-def write_xmlfile(xml, filename, destination=None):
-    if isdir(destination):
-        with open( destination + sep + filename + ".xml" ) as f:
+def write_xmlfile(xml, filename, dest=None):
+    if isdir(dest):
+        with open( dest + sep + filename + ".xml" ) as f:
             print(xml, file=f)
             fn = f.name
     else:

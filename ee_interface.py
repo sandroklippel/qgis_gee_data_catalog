@@ -19,7 +19,8 @@ def get_ee_image_tms(image):
 def get_ee_image_bb(image, proj='EPSG:3857', maxerror=0.001):
     return image.geometry().bounds(maxerror, ee.Projection(proj)).getInfo()
 
-def add_ee_image_layer(imageid, name, date, bands, scale, b_min=None, b_max=None, palette=None, qml=None, extent=None, shown=False):
+def add_ee_image_layer(imageid, name, date, bands, scale, b_min=None, b_max=None, palette=None, qml=None, extent=None,
+                       shown=False, destination=None):
     nbands = len(bands)
     # if nbands > 3:
     #     rgb = ee.Image(imageid).select(bands[0:3])
@@ -44,7 +45,7 @@ def add_ee_image_layer(imageid, name, date, bands, scale, b_min=None, b_max=None
     url = tms_to_gdalurl(tms)
     xml = get_gdal_xml(url, nbands=nbands+1)
     # vfn = write_vsimem_xml(xml) # changed to named temporary file
-    fn = write_xmlfile(xml, name, destination=storage)
+    fn = write_xmlfile(xml, name, dest=destination)
     layer = QgsRasterLayer(fn, name)
     if layer.isValid():
         if qml is not None:
