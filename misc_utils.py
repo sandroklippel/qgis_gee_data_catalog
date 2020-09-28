@@ -1,6 +1,8 @@
 """ Misc utilities functions
 """
-
+import re
+from os import sep
+from os.path import isdir
 from tempfile import NamedTemporaryFile, gettempdir
 from uuid import uuid4
 from xml.dom import minidom
@@ -53,11 +55,19 @@ def write_vsimem_xml(xml):
     gdal.FileFromMemBuffer(vfn, xml)
     return vfn
 
-def write_tempfile_xml(xml):
-    with NamedTemporaryFile("w+t", prefix="gee_data_catalog_", suffix=".xml", delete=False) as f:
-        print(xml, file=f)
-        fn = f.name
-    return fn
+def write_xmlfile(xml, name, dest=None):
+    if isdir(dest):
+        filename = re.sub(r"\W", "_", name, 0)
+        with open(file=dest + sep + filename + ".xml", mode="w+t") as f:
+            print(xml, file=f)
+            tmp = False
+            fn = f.name
+    else:
+        with NamedTemporaryFile("w+t", prefix="gee_data_catalog_", suffix=".xml", delete=False) as f:
+            print(xml, file=f)
+            tmp = True
+            fn = f.name
+    return tmp, fn
 
 def replace_tms(xml_file, new_tms):
     dom = minidom.parse(xml_file)

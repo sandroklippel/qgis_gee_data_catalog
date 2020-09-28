@@ -421,6 +421,7 @@ class GeeDataCatalog:
             startdate = self.dlg.startdate.date().toString('yyyy-MM-dd') if 'availability' in GEE_DATASETS[collection] else None
             enddate = self.dlg.enddate.date().toString('yyyy-MM-dd') if 'availability' in GEE_DATASETS[collection] else None
             cloudcover = int(self.dlg.cloudcover.cleanText()) if 'cloudfield' in GEE_DATASETS[collection] else None
+            destination_folder = str(self.dlg.destination_folder.text())
             limit = int(self.dlg.limit.cleanText())
             addlayer = self.dlg.addlayer.isChecked()
 
@@ -462,7 +463,8 @@ class GeeDataCatalog:
                                        b_max=b_max,
                                        palette=palette,
                                        qml=qml,
-                                       extent=GEE_DATASETS[collection].get('extent', None))
+                                       extent=GEE_DATASETS[collection].get('extent', None),
+                                       destination=destination_folder)
             elif not images_list:
                 self.iface.messageBar().pushMessage('Search did not return any image')
             else:
