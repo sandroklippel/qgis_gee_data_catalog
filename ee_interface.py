@@ -45,13 +45,16 @@ def add_ee_image_layer(imageid, name, date, bands, scale, b_min=None, b_max=None
     url = tms_to_gdalurl(tms)
     xml = get_gdal_xml(url, nbands=nbands+1)
     # vfn = write_vsimem_xml(xml) # changed to named temporary file
-    fn = write_xmlfile(xml, name, dest=destination)
+    tmp, fn = write_xmlfile(xml, name, dest=destination)
     layer = QgsRasterLayer(fn, name)
     if layer.isValid():
         if qml is not None:
             layer.loadNamedStyle(qml)
         layer.setExtent(bb)
-        layer.setCustomProperty('ee-image', 'MEM')
+        if tmp:
+            layer.setCustomProperty('ee-image', 'MEM')
+        else:
+            layer.setCustomProperty('ee-image', 'XML')
         layer.setCustomProperty('ee-image-id', imageid)
         layer.setCustomProperty('ee-image-date', date)
         layer.setCustomProperty('ee-image-bands', bands)
