@@ -2,10 +2,10 @@
 """
 import re
 from os import sep
-from os.path import isdir
+from os.path import isdir, isfile
 from tempfile import NamedTemporaryFile, gettempdir
 from uuid import uuid4
-from xml.dom import minidom
+# from xml.dom import minidom
 
 from osgeo import gdal, ogr
 
@@ -58,20 +58,25 @@ def write_vsimem_xml(xml):
 def write_xmlfile(xml, name, dest=None):
     if isdir(dest):
         filename = re.sub(r"\W", "_", name, 0)
-        with open(file=dest + sep + filename + ".xml", mode="w+t") as f:
+        with open(file=dest + sep + filename + ".xml", mode="wt") as f:
+            print(xml, file=f)
+            tmp = False
+            fn = f.name
+    elif isfile(dest):
+        with open(file=dest, mode="wt") as f:
             print(xml, file=f)
             tmp = False
             fn = f.name
     else:
-        with NamedTemporaryFile("w+t", prefix="gee_data_catalog_", suffix=".xml", delete=False) as f:
+        with NamedTemporaryFile("wt", prefix="gee_data_catalog_", suffix=".xml", delete=False) as f:
             print(xml, file=f)
             tmp = True
             fn = f.name
     return tmp, fn
 
-def replace_tms(xml_file, new_tms):
-    dom = minidom.parse(xml_file)
-    elem = dom.getElementsByTagName('ServerUrl')
-    elem[0].firstChild.nodeValue = new_tms
-    with open(xml_file, 'w') as outfile:
-        dom.documentElement.writexml(outfile)
+# def replace_tms(xml_file, new_tms):
+#     dom = minidom.parse(xml_file)
+#     elem = dom.getElementsByTagName('ServerUrl')
+#     elem[0].firstChild.nodeValue = new_tms
+#     with open(xml_file, 'w') as outfile:
+#         dom.documentElement.writexml(outfile)

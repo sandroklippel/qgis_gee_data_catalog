@@ -26,7 +26,7 @@ from .datasets import GEE_DATASETS, GLOBAL_EXTENT
 from .ee_interface import search_ee_collection, update_ee_image_layer
 from .ee_interface import add_ee_image_layer, download_ee_image_layer
 from .iface_utils import get_canvas_extent, get_canvas_proj
-from .misc_utils import replace_tms
+from .misc_utils import write_xmlfile
 from .qgis_gee_data_catalog_dialog import GeeDataCatalogDialog
 from .resources import *
 
@@ -329,8 +329,12 @@ class GeeDataCatalog:
                 b_max = None
             if self.ee_uninitialized:
                 ee.Initialize()
-            new_tms = update_ee_image_layer(imageid, bands, b_min, b_max, palette)
-            replace_tms(xml_file, new_tms)
+            new_xml = update_ee_image_layer(imageid, bands, b_min, b_max, palette)
+            write_xmlfile(new_xml, name=None, dest=xml_file)
+            eelayer.dataProvider().reloadData()
+            eelayer.triggerRepaint()
+            eelayer.reload()
+        self.iface.mapCanvas().refresh()
 
     def update_dlg_fields(self, new_collection):
         """Update list of band combinations and availability from selected collection"""
@@ -400,6 +404,10 @@ class GeeDataCatalog:
         # self.dlg.show()
         # Run the dialog event loop
         # result = self.dlg.exec_()
+
+        # update destination and default folder for output directory
+        self.dlg.destination_folder.setText( "Temporary Output" )
+        self.dlg.default_folder = QgsProject.instance().absolutePath() or os.getcwd()
         self.dlg.open()
         
     def result(self, result):

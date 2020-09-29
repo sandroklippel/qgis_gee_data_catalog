@@ -89,6 +89,7 @@ class Ui_GeeDataCatalogDialogBase(object):
         self.gridLayout.addWidget(self.destination_label, 4, 0, 1, 1)
         self.destination_folder = QtWidgets.QLineEdit(self._translate("GeeDataCatalogDialogBase","Temporary Output"),
                                                       GeeDataCatalogDialogBase)
+        self.default_folder = None
         self.gridLayout.addWidget(self.destination_folder, 4, 1, 1, 1)
         self.browse_button = QtWidgets.QPushButton('...',GeeDataCatalogDialogBase)
         self.browse_button.clicked.connect(self.destiation_browse,)
@@ -126,8 +127,8 @@ class Ui_GeeDataCatalogDialogBase(object):
         self.addlayer.setText(self._translate("GeeDataCatalogDialogBase", "Add layer(s) to canvas:"))
         self.destination_label.setText(self._translate("GeeDataCatalogDialogBase", "Output Folder"))
 
-    def destiation_browse(self,):
-        directory = str(QtWidgets.QFileDialog.getExistingDirectory(self, self._translate("GeeDataCatalogDialogBase","Select Directory")))
+    def destiation_browse(self):
+        directory = str(QtWidgets.QFileDialog.getExistingDirectory(self, self._translate("GeeDataCatalogDialogBase","Select Directory"), self.default_folder))
 
         if directory and isdir(directory):
             self.destination_folder.setText( directory )

@@ -83,7 +83,9 @@ def update_ee_image_layer(imageid, bands, b_min=None, b_max=None, palette=None):
     image = ee.Image(imageid)
     rgb = image.visualize(bands=bands, min=b_min, max=b_max, palette=palette)
     tms = get_ee_image_tms(rgb)
-    return tms_to_gdalurl(tms)
+    url = tms_to_gdalurl(tms)
+    xml = get_gdal_xml(url, nbands=len(bands)+1)
+    return xml
 
 # import re
 # regex = r"^EPSG:\d+"
