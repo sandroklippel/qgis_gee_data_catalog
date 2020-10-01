@@ -6,7 +6,7 @@
 name=Google Earth Engine Data Catalog
 qgisMinimumVersion=3.10
 description=Search, view and download satellite imagery and geospatial datasets from Google Earth Engine.
-version=0.3.0
+version=0.4.0
 author=Sandro Klippel
 email=sandroklippel@gmail.com
 
@@ -23,7 +23,12 @@ repository=https://github.com/sandroklippel/qgis_gee_data_catalog
 
 hasProcessingProvider=no
 # Uncomment the following line and add your changelog:
-changelog=[0.3.0] - 2020-08-10
+changelog=[0.4.0] - 2020-10-01
+  - Save the xml files in an output directory or in the temporary folder.
+  - Fixed the rewriting of xml files in project load.
+  - Option in context menu to renew XML file.
+  - Updated to Mapbiomas collection 5.0
+  [0.3.0] - 2020-08-10
   - Changed icon.
   - Save xml and update layers on project read.
   - Initialized ee library only once and after plugin loading.

@@ -9,12 +9,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
- - Save the xml files instead of losing them in the temporary folder on search (thanks to @roya0045).
- - If available load translated qml file
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [0.4.0] - 2020-10-01
+
+### Added
+
+ - On search, save the xml files in an output directory instead of the temporary folder  (thanks to @roya0045).
+ - Option in context menu to renew XML file.
+ - If available, load translated qml file
 
 ### Changed
 
- - Update to Mapbiomas collection 5.0.
+ - Updated to Mapbiomas collection 5.0.
 
 ### Deprecated
 

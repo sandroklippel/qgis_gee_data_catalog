@@ -1,33 +1,33 @@
 # TO DO List
 
 - [x] Contrast enhancement to full ee.image layer (using reducer and add parameters in visualize in EE).
-- [x] Generalize to add single band and fusion (rgb + pan) images.
 - [x] Set layer abstract: info about date.
-- [x] Loading qml for singleband/palleted pseudo color datasets
-- [ ] Remove instructions to use ee_plugin as dependence and show how to install earthengine-api
-- [ ] Progress bar using thread
+- [x] Loading qml for singleband/palleted pseudo color datasets.
+- [X] Remove instructions to use ee_plugin as dependence and show how to install earthengine-api. (**partially**)
+- [x] Create icon(s).
+- [x] Change description in metadata.txt.
+- [ ] If does not add layers to canvas, show more info about them or may be option to download them (show more button).
+- [ ] Progress bar using thread.
 - [ ] Change to dockable dialog window.
-- [ ] Add panel to task management
-- [ ] If does not add layers to canvas, show more info about them (show more button).
+- [ ] Add panel to task management.
 - [ ] Load datasets from a json file instead from python dict.
-- [ ] Deactivate icons from raster toolbar (full contrast enhancement)
+- [ ] Deactivate icons from raster toolbar (full contrast enhancement).
 - [ ] Change behavior/default values using QqsSettings: 
-    - [ ] max number of images (int)
-    - [ ] max cloud cover (int) 
-    - [ ] google drive directory (str)
-    - [ ] add layer to canvas (bool)
-    - [ ] search by canvas extent/center (str)
-    - [ ] epsg to download (canvas or fixed) (str)
-    - [ ] added layers active by default (bool)
-    - [ ] default interval days (int)
+    - [ ] max number of images (int).
+    - [ ] max cloud cover (int).
+    - [ ] google drive directory (str).
+    - [ ] add layer to canvas (bool).
+    - [ ] search by canvas extent/center (str).
+    - [ ] epsg to download (canvas or fixed) (str).
+    - [ ] added layers active by default (bool).
+    - [ ] default interval days (int).
 - [ ] Set default gamma correction (change it using QgsSettings too).
 - [ ] Add context menu options for contrast enhancement.
 - [ ] Add context menu option to add same image with different band combinations.
 - [ ] Add context menu option with earth.engine snippet code (to copy/paste).
 - [ ] Docstring all functions and modules.
-- [ ] Add @pyqtSlot decorator in methods
-- [ ] Bypass bad handler layer mechanism of QGIS to restore layers on project read.
+- [ ] Add @pyqtSlot decorator in methods.
 - [ ] Check for a valid EPSG code in search collection and Download to GDrive.
-- [ ] Create icon(s)
-- [ ] Change description in metadata.txt
-- [ ] pt-br translations
+- [ ] pt-br translations.
+- [x] ~~Generalize to add single band and fusion (rgb + pan) images.~~ (removed)
+- [ ] ~~Bypass bad handler layer mechanism of QGIS to restore layers on project read.~~ (overcome by write xml in temporary folder).
