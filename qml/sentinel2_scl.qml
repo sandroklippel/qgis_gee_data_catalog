@@ -5,19 +5,6 @@
     <Removable>1</Removable>
     <Searchable>1</Searchable>
   </flags>
-  <customproperties>
-    <property value="false" key="WMSBackgroundLayer"/>
-    <property value="false" key="WMSPublishDataSourceUrl"/>
-    <property value="true" key="ee-image"/>
-    <property value="SCL" key="ee-image-bands"/>
-    <property value="2020-05-17T13:39:22" key="ee-image-date"/>
-    <property value="COPERNICUS/S2_SR/20200517T133229_20200517T133224_T22JCT" key="ee-image-id"/>
-    <property value="20" key="ee-image-scale"/>
-    <property key="ee-image-vis"/>
-    <property value="POLYGON ((-5892496.72094031 -2925230.62415534,-5776340.26808475 -2925230.62415534,-5776340.26808475 -2802735.39087913,-5892496.72094031 -2802735.39087913,-5892496.72094031 -2925230.62415534))" key="ee-image-wkt"/>
-    <property value="0" key="embeddedWidgets/count"/>
-    <property value="Value" key="identify/format"/>
-  </customproperties>
   <pipe>
     <rasterrenderer alphaBand="2" classificationMax="11" type="singlebandpseudocolor" nodataColor="" band="1" opacity="1" classificationMin="1">
       <rasterTransparency/>

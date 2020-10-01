@@ -14,17 +14,17 @@
 import os
 import os.path
 import shutil
+from os.path import isfile
 
+from osgeo import gdal
 from qgis.core import QgsMapLayerType, QgsProject, QgsRasterLayer, QgsRectangle
 from qgis.PyQt.QtCore import QCoreApplication, QDate, QSettings, QTranslator
 from qgis.PyQt.QtGui import QIcon
 from qgis.PyQt.QtWidgets import QAction, QFileDialog, QMenu
 
-from osgeo import gdal
-
 from .datasets import GEE_DATASETS, GLOBAL_EXTENT
-from .ee_interface import search_ee_collection, update_ee_image_layer
-from .ee_interface import add_ee_image_layer, download_ee_image_layer
+from .ee_interface import (add_ee_image_layer, download_ee_image_layer,
+                           search_ee_collection, update_ee_image_layer)
 from .iface_utils import get_canvas_extent, get_canvas_proj
 from .misc_utils import write_xmlfile
 from .qgis_gee_data_catalog_dialog import GeeDataCatalogDialog
@@ -268,8 +268,12 @@ class GeeDataCatalog:
                 date = eelayer.customProperty('ee-image-date')
                 qml = eelayer.customProperty('ee-image-qml')
                 extent = eelayer.customProperty('ee-image-wkt')
+                # load qml must be first since this clean all custom properties
                 if qml is not None:
-                    newlayer.loadNamedStyle(qml) # load qml must be first since this clean all custom properties
+                    if isfile(qml + '_' + QSettings().value('locale/userLocale') + '.qml'):
+                        newlayer.loadNamedStyle(qml + '_' + QSettings().value('locale/userLocale') + '.qml')
+                    else:
+                        newlayer.loadNamedStyle(qml + '.qml')
                 newlayer.setCustomProperty('ee-image', 'XML')
                 newlayer.setCustomProperty('ee-image-id', imageid)
                 newlayer.setCustomProperty('ee-image-date', date)
@@ -440,7 +444,7 @@ class GeeDataCatalog:
             b_min = vis_params.get('min', None)
             b_max = vis_params.get('max', None)
             palette = vis_params.get('palette', None)
-            qml = os.path.join(self.plugin_dir, 'qml', vis_params['qml'] + '.qml') if 'qml' in vis_params else None
+            qml = os.path.join(self.plugin_dir, 'qml', vis_params['qml']) if 'qml' in vis_params else None
 
             # need to test if it is a valid epsg proj
             # if someone else, set to 4326

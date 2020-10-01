@@ -1,8 +1,11 @@
 """ Interface with GEE
 """
 
+from os.path import isfile
+
 import ee
 from qgis.core import QgsProject, QgsRasterLayer, QgsRectangle
+from qgis.PyQt.QtCore import QSettings
 
 from .misc_utils import (geojson_to_wkt, get_gdal_xml, tms_to_gdalurl,
                          write_xmlfile)
@@ -49,7 +52,10 @@ def add_ee_image_layer(imageid, name, date, bands, scale, b_min=None, b_max=None
     layer = QgsRasterLayer(fn, name)
     if layer.isValid():
         if qml is not None:
-            layer.loadNamedStyle(qml)
+            if isfile(qml + '_' + QSettings().value('locale/userLocale') + '.qml'):
+                layer.loadNamedStyle(qml + '_' + QSettings().value('locale/userLocale') + '.qml')
+            else:
+                layer.loadNamedStyle(qml + '.qml')
         layer.setExtent(bb)
         if tmp:
             layer.setCustomProperty('ee-image', 'MEM')
