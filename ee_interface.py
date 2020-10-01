@@ -85,7 +85,7 @@ def add_ee_image_layer(imageid, name, date, bands, scale, b_min=None, b_max=None
         if not shown:
             QgsProject.instance().layerTreeRoot().findLayer(layer.id()).setItemVisibilityChecked(shown)
 
-def update_ee_image_layer(imageid, bands, b_min=None, b_max=None, palette=None):
+def update_ee_image_xml(imageid, bands, b_min=None, b_max=None, palette=None):
     image = ee.Image(imageid)
     rgb = image.visualize(bands=bands, min=b_min, max=b_max, palette=palette)
     tms = get_ee_image_tms(rgb)

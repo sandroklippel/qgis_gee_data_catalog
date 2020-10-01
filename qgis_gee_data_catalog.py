@@ -24,7 +24,7 @@ from qgis.PyQt.QtWidgets import QAction, QFileDialog, QMenu
 
 from .datasets import GEE_DATASETS, GLOBAL_EXTENT
 from .ee_interface import (add_ee_image_layer, download_ee_image_layer,
-                           search_ee_collection, update_ee_image_layer)
+                           search_ee_collection, update_ee_image_xml)
 from .iface_utils import get_canvas_extent, get_canvas_proj
 from .misc_utils import write_xmlfile
 from .qgis_gee_data_catalog_dialog import GeeDataCatalogDialog
@@ -170,7 +170,7 @@ class GeeDataCatalog:
         # change icon here !
         # icon_path = ':/images/themes/default/mActionAddGeoPackageLayer.svg'
         icon_path = ':/plugins/qgis_gee_data_catalog/icon.svg'
-        # icon_gdrive = QIcon(':/images/themes/default/downloading_svg.svg')
+        icon_renew_xml = QIcon(':/images/themes/default/mActionRefresh.svg')
         icon_save_xml = QIcon(':/images/themes/default/mActionFileSave.svg')
         self.add_action(
             icon_path,
@@ -208,10 +208,17 @@ class GeeDataCatalog:
         self.layerActionMakeXmlFile.setObjectName("geeLayerMakeXml")
         self.layerActionMakeXmlFile.triggered.connect(self.gee_layer_make_xml)
 
+        # define action to Renew the XML file
+
+        self.layerActionRenewXmlFile = QAction(icon_renew_xml, "Renew the XML definition file", self.iface.mainWindow())
+        self.layerActionRenewXmlFile.setObjectName("geeLayerRenewXml")
+        self.layerActionRenewXmlFile.triggered.connect(self.gee_layer_renew_xml)
+
         download_gdrive = "Download GeoTiff to Google Drive"
 
         # add custom actions for all raster layers - further will be required to set up an action for each layer
         self.iface.addCustomActionForLayerType(self.layerActionMakeXmlFile, None, QgsMapLayerType.RasterLayer, False)
+        self.iface.addCustomActionForLayerType(self.layerActionRenewXmlFile, None, QgsMapLayerType.RasterLayer, False)
         self.iface.addCustomActionForLayerType(self.layerActionDownloadFull, download_gdrive, QgsMapLayerType.RasterLayer, False)
         self.iface.addCustomActionForLayerType(self.layerActionDownloadCanvas, download_gdrive, QgsMapLayerType.RasterLayer, False)
 
@@ -231,6 +238,7 @@ class GeeDataCatalog:
 
         # self.iface.projectRead.disconnect(self.update_ee_image_layers)
         self.iface.removeCustomActionForLayerType(self.layerActionMakeXmlFile)
+        self.iface.removeCustomActionForLayerType(self.layerActionRenewXmlFile)
         self.iface.removeCustomActionForLayerType(self.layerActionDownloadFull)
         self.iface.removeCustomActionForLayerType(self.layerActionDownloadCanvas)
         QgsProject.instance().layerWasAdded.disconnect(self.on_layer_was_added)
@@ -245,12 +253,19 @@ class GeeDataCatalog:
         if map_layer.customProperty('ee-image'):
             if map_layer.customProperty('ee-image') == 'MEM':
                 self.iface.addCustomActionForLayer(self.layerActionMakeXmlFile, map_layer)
+            else:
+                self.iface.addCustomActionForLayer(self.layerActionRenewXmlFile, map_layer)
             if map_layer.customProperty('ee-image-wkt') == GLOBAL_EXTENT:
                 self.iface.addCustomActionForLayer(self.layerActionDownloadCanvas, map_layer)
             else:
                 self.iface.addCustomActionForLayer(self.layerActionDownloadFull, map_layer)
                 self.iface.addCustomActionForLayer(self.layerActionDownloadCanvas, map_layer)
     
+    def gee_layer_renew_xml(self):
+        eelayer = self.iface.activeLayer()
+        self.update_ee_image_layer(eelayer)
+        self.iface.mapCanvas().refresh()
+
     def gee_layer_make_xml(self):
         eelayer = self.iface.activeLayer()
         dest_dir = QgsProject.instance().absolutePath() or os.getcwd()
@@ -312,32 +327,35 @@ class GeeDataCatalog:
         proj = get_canvas_proj(self.iface)
         download_ee_image_layer(self.iface, name, imageid, bands, scale, proj, extent)
 
+    def update_ee_image_layer(self, eelayer):
+        extent = eelayer.customProperty('ee-image-wkt')
+        bb = QgsRectangle.fromWkt(extent)
+        eelayer.setExtent(bb)
+        xml_file = eelayer.dataProvider().dataSourceUri()
+        # ds = gdal.Open(xml_file)
+        # if ds.ReadAsArray(xsize=1, ysize=1) is None:
+        imageid = eelayer.customProperty('ee-image-id')
+        bands = eelayer.customProperty('ee-image-bands')
+        qml = eelayer.customProperty('ee-image-qml')
+        palette = eelayer.customProperty('ee-image-palette')
+        if not qml:
+            b_min = list(map(int, eelayer.customProperty('ee-image-b_min')))
+            b_max = list(map(int, eelayer.customProperty('ee-image-b_max')))
+        else:
+            b_min = None
+            b_max = None
+        if self.ee_uninitialized:
+            ee.Initialize()
+        new_xml = update_ee_image_xml(imageid, bands, b_min, b_max, palette)
+        write_xmlfile(new_xml, name=None, dest=xml_file)
+        eelayer.dataProvider().reloadData()
+        eelayer.triggerRepaint()
+        eelayer.reload()
+
     def update_ee_image_layers(self):
         layers = QgsProject.instance().mapLayers().values()
         for eelayer in filter(lambda layer: layer.customProperty('ee-image') == 'XML', layers):
-            extent = eelayer.customProperty('ee-image-wkt')
-            bb = QgsRectangle.fromWkt(extent)
-            eelayer.setExtent(bb)
-            xml_file = eelayer.dataProvider().dataSourceUri()
-            # ds = gdal.Open(xml_file)
-            # if ds.ReadAsArray(xsize=1, ysize=1) is None:
-            imageid = eelayer.customProperty('ee-image-id')
-            bands = eelayer.customProperty('ee-image-bands')
-            qml = eelayer.customProperty('ee-image-qml')
-            palette = eelayer.customProperty('ee-image-palette')
-            if not qml:
-                b_min = list(map(int, eelayer.customProperty('ee-image-b_min')))
-                b_max = list(map(int, eelayer.customProperty('ee-image-b_max')))
-            else:
-                b_min = None
-                b_max = None
-            if self.ee_uninitialized:
-                ee.Initialize()
-            new_xml = update_ee_image_layer(imageid, bands, b_min, b_max, palette)
-            write_xmlfile(new_xml, name=None, dest=xml_file)
-            eelayer.dataProvider().reloadData()
-            eelayer.triggerRepaint()
-            eelayer.reload()
+            self.update_ee_image_layer(eelayer)
         self.iface.mapCanvas().refresh()
 
     def update_dlg_fields(self, new_collection):
