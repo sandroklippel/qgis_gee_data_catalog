@@ -236,11 +236,11 @@ class GeeDataCatalog:
     def unload(self):
         """Removes the plugin menu item and icon from QGIS GUI."""
 
-        # self.iface.projectRead.disconnect(self.update_ee_image_layers)
         self.iface.removeCustomActionForLayerType(self.layerActionMakeXmlFile)
         self.iface.removeCustomActionForLayerType(self.layerActionRenewXmlFile)
         self.iface.removeCustomActionForLayerType(self.layerActionDownloadFull)
         self.iface.removeCustomActionForLayerType(self.layerActionDownloadCanvas)
+        self.iface.projectRead.disconnect(self.update_ee_image_layers)
         QgsProject.instance().layerWasAdded.disconnect(self.on_layer_was_added)
 
         for action in self.actions:
@@ -428,7 +428,7 @@ class GeeDataCatalog:
         # result = self.dlg.exec_()
 
         # update destination and default folder for output directory
-        self.dlg.destination_folder.setText( "Temporary Output" )
+        # self.dlg.destination_folder.setText( "Temporary Output" )
         self.dlg.default_folder = QgsProject.instance().absolutePath() or os.getcwd()
         self.dlg.open()
         

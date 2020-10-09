@@ -61,7 +61,7 @@ tags=layers, landsat, sentinel, google, raster, remote sensing, tms, search, exp
 
 homepage=https://github.com/sandroklippel/qgis_gee_data_catalog/wiki
 category=Plugins
-icon=icon.svg
+icon=icon.png
 # experimental flag
 experimental=False
 

@@ -87,8 +87,9 @@ class Ui_GeeDataCatalogDialogBase(object):
         self.destination_label = QtWidgets.QLabel(GeeDataCatalogDialogBase)
         self.destination_label.setObjectName("destionation")
         self.gridLayout.addWidget(self.destination_label, 4, 0, 1, 1)
-        self.destination_folder = QtWidgets.QLineEdit(self._translate("GeeDataCatalogDialogBase","Temporary Output"),
-                                                      GeeDataCatalogDialogBase)
+        self.destination_folder = QtWidgets.QLineEdit(GeeDataCatalogDialogBase)
+        self.destination_folder.setClearButtonEnabled(True)
+        self.destination_folder.setPlaceholderText(self._translate("GeeDataCatalogDialogBase","Temporary Output"))
         self.default_folder = None
         self.gridLayout.addWidget(self.destination_folder, 4, 1, 1, 1)
         self.browse_button = QtWidgets.QPushButton('...',GeeDataCatalogDialogBase)
