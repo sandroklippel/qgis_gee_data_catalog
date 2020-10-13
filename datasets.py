@@ -1493,8 +1493,8 @@ See Simard et al. (2011) for details.''',
         'bandcombinations': {'Tree heights (m)':{
                                 'bands': ['1'],
                                 'scale': 926,
-                                'min': DN_MIN,
-                                'max': DN_MAX
+                                'min': 0,
+                                'max': 255
         }},
         'extent': GLOBAL_EXTENT
     },
