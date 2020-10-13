@@ -17,9 +17,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
- - No longer restart the output directory, closing issue #3 
-
 ### Security
+
+## [0.4.1] - 2020-10-13
+
+### Fixed
+
+ - No longer restart the output directory, closing issue #3.
+ - Single band dataset min/max conf.
+ - Signal disconnect on plugin unload.
 
 ## [0.4.0] - 2020-10-01
 
@@ -33,20 +39,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
  - Updated to Mapbiomas collection 5.0.
 
-### Deprecated
-
-### Removed
-
 ### Fixed
 
  - Palsar_fnf and sentinel2_scl qml files.
  - Rewrite xml files on project load.
 
-### Security
-
 ## [0.3.0] - 2020-08-10
-
-### Added
 
 ### Changed
 
@@ -55,14 +53,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update layers on project read.
 - Initialized ee library only once and after plugin loading.
 - ALOS/PALSAR/FNF dataset availability until 2018-01-01.
-
-### Deprecated
-
-### Removed
-
-### Fixed
-
-### Security
 
 ## [0.2.1] - 2020-06-29
 

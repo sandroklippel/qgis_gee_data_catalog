@@ -6,7 +6,7 @@
 name=Google Earth Engine Data Catalog
 qgisMinimumVersion=3.10
 description=Search, view and download satellite imagery and geospatial datasets from Google Earth Engine.
-version=0.4.0
+version=0.4.1
 author=Sandro Klippel
 email=sandroklippel@gmail.com
 
@@ -23,7 +23,11 @@ repository=https://github.com/sandroklippel/qgis_gee_data_catalog
 
 hasProcessingProvider=no
 # Uncomment the following line and add your changelog:
-changelog=[0.4.0] - 2020-10-01
+changelog=[0.4.1] - 2020-10-13
+  - No longer restart the output directory, closing issue #3.
+  - Single band dataset min/max conf.
+  - Signal disconnect on plugin unload.
+  [0.4.0] - 2020-10-01
   - Save the xml files in an output directory or in the temporary folder.
   - Fixed the rewriting of xml files in project load.
   - Option in context menu to renew XML file.
