@@ -249,7 +249,7 @@ class GeeDataCatalog:
                 action)
             self.iface.removeToolBarIcon(action)
 
-    def on_layer_was_added(self, map_layer):
+    def on_layer_was_added(self, map_layer): # change to add actions on add_layer (ee_interface) 
         if map_layer.customProperty('ee-image'):
             if map_layer.customProperty('ee-image') == 'MEM':
                 self.iface.addCustomActionForLayer(self.layerActionMakeXmlFile, map_layer)

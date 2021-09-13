@@ -3,4 +3,5 @@ __pycache__
 zip_build
 help/build/
 *.sh
+*.ipynb
 .vscode

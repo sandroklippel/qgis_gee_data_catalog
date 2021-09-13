@@ -6,7 +6,7 @@
 name=Google Earth Engine Data Catalog
 qgisMinimumVersion=3.10
 description=Search, view and download satellite imagery and geospatial datasets from Google Earth Engine.
-version=0.4.1
+version=0.4.2
 author=Sandro Klippel
 email=sandroklippel@gmail.com
 
@@ -23,7 +23,10 @@ repository=https://github.com/sandroklippel/qgis_gee_data_catalog
 
 hasProcessingProvider=no
 # Uncomment the following line and add your changelog:
-changelog=[0.4.1] - 2020-10-13
+changelog=[0.4.2] - 2021-09-12
+  - Planet & NICFI Basemaps for Tropical Forest Monitoring datasets.
+  - Hansen Global Forest Change v1.8 (2000-2020) dataset.
+  [0.4.1] - 2020-10-13
   - No longer restart the output directory, closing issue #3.
   - Single band dataset min/max conf.
   - Signal disconnect on plugin unload.

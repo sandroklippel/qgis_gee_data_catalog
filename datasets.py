@@ -1456,6 +1456,113 @@ DN values representing calibrated at-sensor radiance, ortho-rectified and terrai
 #         'namefield': 'system:id',
 #         'availability': ['2006-04-26', '2011-04-18']
 #     },
+#
+    'UMD/hansen/global_forest_change_2020_v1_8': {
+        'description': '''Hansen Global Forest Change v1.8 (2000-2020).
+Time-series analysis of Landsat images in characterizing global forest extent and change.
+Source: Hansen, Potapov, Moore, Hancher et al. High-resolution global maps of 21st-century forest cover change. Science 342.6160 (2013): 850-853''',
+        'bandcombinations': {'Tree canopy cover for year 2000 (%)':{
+                                'bands': ['treecover2000'],
+                                'scale': 926,
+                                'suffix':'_treecover2000',
+                                'qml':'treecover2000'
+                            },
+                            'Year of gross forest cover loss event':{
+                                                    'bands': ['lossyear'],
+                                                    'scale': 926,
+                                                    'suffix':'_lossyear',
+                                                    'qml':'lossyear'
+                            }},
+        'extent': GLOBAL_EXTENT
+    },
+#
+    'Planet & NICFI Basemaps - Tropical Africa': {
+        'id': 'projects/planet-nicfi/assets/basemaps/africa',
+        'description': '''PlanetScope Tropical Normalized Analytic Biannual and Monthly series Basemaps.
+You must agree to the NICFI terms at https://planet.com/nicfi. 
+If you are already a NICFI user and would like to access the Basemaps in GEE, 
+you can apply for access at https://www.planet.com/nicfi/?gee=show.''',
+        'bandcombinations': {'Natural color (R-G-B)':{
+                                'bands':['R', 'G', 'B'],
+                                'scale':4.77,
+                                'max': [5454, 5454, 5454],
+                                'min': [64, 64, 64],
+                                'suffix':'_rgb'},
+                            'False color (R-NIR-G)':{
+                                'bands':['R', 'N', 'G'],
+                                'scale':4.77,
+                                'max': [5454, 5454, 5454],
+                                'min': [64, 64, 64],
+                                'suffix':'_rng'},
+                            'Color infrared (NIR-R-G)':{
+                                'bands':['N', 'R', 'G'],
+                                'scale':4.77,
+                                'max': [5454, 5454, 5454],
+                                'min': [64, 64, 64],
+                                'suffix':'_nrg'}},
+        'namefield': 'system:index',
+        'availability': ['2015-12-01', None],
+        'extent': GLOBAL_EXTENT
+    },
+#
+    'Planet & NICFI Basemaps - Tropical Asia': {
+        'id': 'projects/planet-nicfi/assets/basemaps/asia',
+        'description': '''PlanetScope Tropical Normalized Analytic Biannual and Monthly series Basemaps.
+You must agree to the NICFI terms at https://planet.com/nicfi. 
+If you are already a NICFI user and would like to access the Basemaps in GEE, 
+you can apply for access at https://www.planet.com/nicfi/?gee=show.''',
+        'bandcombinations': {'Natural color (R-G-B)':{
+                                'bands':['R', 'G', 'B'],
+                                'scale':4.77,
+                                'max': [5454, 5454, 5454],
+                                'min': [64, 64, 64],
+                                'suffix':'_rgb'},
+                            'False color (R-NIR-G)':{
+                                'bands':['R', 'N', 'G'],
+                                'scale':4.77,
+                                'max': [5454, 5454, 5454],
+                                'min': [64, 64, 64],
+                                'suffix':'_rng'},
+                            'Color infrared (NIR-R-G)':{
+                                'bands':['N', 'R', 'G'],
+                                'scale':4.77,
+                                'max': [5454, 5454, 5454],
+                                'min': [64, 64, 64],
+                                'suffix':'_nrg'}},
+        'namefield': 'system:index',
+        'availability': ['2015-12-01', None],
+        'extent': GLOBAL_EXTENT
+    },
+#
+    'Planet & NICFI Basemaps - Tropical Americas': {
+        'id': 'projects/planet-nicfi/assets/basemaps/americas',
+        'description': '''PlanetScope Tropical Normalized Analytic Biannual and Monthly series Basemaps.
+You must agree to the NICFI terms at https://planet.com/nicfi. 
+If you are already a NICFI user and would like to access the Basemaps in GEE, 
+you can apply for access at https://www.planet.com/nicfi/?gee=show.''',
+        'bandcombinations': {'Natural color (R-G-B)':{
+                                'bands':['R', 'G', 'B'],
+                                'scale':4.77,
+                                'max': [5454, 5454, 5454],
+                                'min': [64, 64, 64],
+                                'suffix':'_rgb'},
+                            'False color (R-NIR-G)':{
+                                'bands':['R', 'N', 'G'],
+                                'scale':4.77,
+                                'max': [5454, 5454, 5454],
+                                'min': [64, 64, 64],
+                                'suffix':'_rng'},
+                            'Color infrared (NIR-R-G)':{
+                                'bands':['N', 'R', 'G'],
+                                'scale':4.77,
+                                'max': [5454, 5454, 5454],
+                                'min': [64, 64, 64],
+                                'suffix':'_nrg'}},
+        'namefield': 'system:index',
+        'availability': ['2015-12-01', None],
+        'extent': GLOBAL_EXTENT
+    },
+#
     'JAXA/ALOS/PALSAR/YEARLY/FNF': {
         'description': '''Global PALSAR-2/PALSAR Forest/Non-Forest Map
 The global forest/non-forest map (FNF) is generated by classifying the 
@@ -1471,6 +1578,7 @@ larger than 0.5 ha and forest cover over 10%.''',
         'availability': ['2015-01-01', '2018-01-02'],
         'extent': GLOBAL_EXTENT
     },
+    #
     'JAXA/ALOS/AW3D30/V2_2':{
         'description': '''ALOS World 3D - 30m (AW3D30) is a global digital 
 surface model (DSM) dataset with a horizontal resolution of approximately 
