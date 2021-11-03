@@ -19,6 +19,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Security
 
+## [0.4.2] - 2021-09-12
+
+### Added
+
+  - Planet & NICFI Basemaps for Tropical Forest Monitoring datasets.
+  - Hansen Global Forest Change v1.8 (2000-2020) dataset.
+
 ## [0.4.1] - 2020-10-13
 
 ### Fixed
