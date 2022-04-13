@@ -19,6 +19,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Security
 
+## [0.4.3] - 2022-04-12
+
+### Added
+
+  - Landsat 9 OLI-2 datasets.
+
+### Changed
+
+  - Updated Landsat to collection 2.
+
 ## [0.4.2] - 2021-09-12
 
 ### Added
