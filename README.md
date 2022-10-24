@@ -12,8 +12,9 @@ To install on Linux (Ubuntu based):
 $ sudo apt update
 $ sudo apt upgrade
 $ sudo apt install python3-pip
+$ pip3 install earthengine-api --user
 ```
-To authenticate on python prompt(python/python3):
+To authenticate on python prompt (python/python3):
 ```
 >>> import ee
 >>> ee.Authenticate(auth_mode='notebook')
