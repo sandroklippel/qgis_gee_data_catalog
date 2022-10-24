@@ -1,6 +1,7 @@
 # ![icon](icon.svg) Google Earth Engine Data Catalog
 
 Search, view and download satellite imagery and geospatial datasets from Google Earth Engine. EE Python API (earthengine-api) must be installed and it is required a Google Earth Engine account, besides authenticate it.
+
 To install on Windows (OSGeo4W Shell):
 ```
 > python -m pip install --upgrade pip
