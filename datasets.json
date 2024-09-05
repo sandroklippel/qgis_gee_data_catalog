@@ -4278,8 +4278,8 @@
         "extent": "POLYGON((-20037508.34278924390673637 -20037508.34278925508260727,\n                            20037508.34278924390673637 -20037508.34278925508260727, \n                            20037508.34278924390673637 20037508.34278924390673637, \n                            -20037508.34278924390673637 20037508.34278924390673637, \n                            -20037508.34278924390673637 -20037508.34278925508260727))"
     },
     "MAPBIOMAS": {
-        "id": "projects/mapbiomas-workspace/public/collection5/mapbiomas_collection50_integration_v1",
-        "description": "MapBiomas Project - Collection 5.0 of the Annual Land Use Land Cover Maps of Brazil.\nThe MapBiomas project is an initiative of the Climate Observatory co-created and developed by \na multi-institutional network involving universities, NGOs, and technology companies with the \npurpose of annually map Brazil's land-use and land cover and monitor the changes in the territory.",
+        "id": "projects/mapbiomas-public/assets/brazil/lulc/collection9/mapbiomas_collection90_integration_v1",
+        "description": "MapBiomas Project - Collection 9 of the Annual Land Use Land Cover Maps of Brazil.\nThe MapBiomas project is an initiative of the Climate Observatory co-created and developed by \na multi-institutional network involving universities, NGOs, and technology companies with the \npurpose of annually map Brazil's land-use and land cover and monitor the changes in the territory.\nThe complete project description can be found at http://brasil.mapbiomas.org.",
         "bandcombinations": {
             "Classification 1985": {
                 "bands": [
@@ -4287,7 +4287,7 @@
                 ],
                 "scale": 30,
                 "suffix": "_1985",
-                "qml": "mapbiomas-legend-collection50"
+                "qml": "mapbiomas-legend-collection90"
             },
             "Classification 1986": {
                 "bands": [
@@ -4295,7 +4295,7 @@
                 ],
                 "scale": 30,
                 "suffix": "_1986",
-                "qml": "mapbiomas-legend-collection50"
+                "qml": "mapbiomas-legend-collection90"
             },
             "Classification 1987": {
                 "bands": [
@@ -4303,7 +4303,7 @@
                 ],
                 "scale": 30,
                 "suffix": "_1987",
-                "qml": "mapbiomas-legend-collection50"
+                "qml": "mapbiomas-legend-collection90"
             },
             "Classification 1988": {
                 "bands": [
@@ -4311,7 +4311,7 @@
                 ],
                 "scale": 30,
                 "suffix": "_1988",
-                "qml": "mapbiomas-legend-collection50"
+                "qml": "mapbiomas-legend-collection90"
             },
             "Classification 1989": {
                 "bands": [
@@ -4319,7 +4319,7 @@
                 ],
                 "scale": 30,
                 "suffix": "_1989",
-                "qml": "mapbiomas-legend-collection50"
+                "qml": "mapbiomas-legend-collection90"
             },
             "Classification 1990": {
                 "bands": [
@@ -4327,7 +4327,7 @@
                 ],
                 "scale": 30,
                 "suffix": "_1990",
-                "qml": "mapbiomas-legend-collection50"
+                "qml": "mapbiomas-legend-collection90"
             },
             "Classification 1991": {
                 "bands": [
@@ -4335,7 +4335,7 @@
                 ],
                 "scale": 30,
                 "suffix": "_1991",
-                "qml": "mapbiomas-legend-collection50"
+                "qml": "mapbiomas-legend-collection90"
             },
             "Classification 1992": {
                 "bands": [
@@ -4343,7 +4343,7 @@
                 ],
                 "scale": 30,
                 "suffix": "_1992",
-                "qml": "mapbiomas-legend-collection50"
+                "qml": "mapbiomas-legend-collection90"
             },
             "Classification 1993": {
                 "bands": [
@@ -4351,7 +4351,7 @@
                 ],
                 "scale": 30,
                 "suffix": "_1993",
-                "qml": "mapbiomas-legend-collection50"
+                "qml": "mapbiomas-legend-collection90"
             },
             "Classification 1994": {
                 "bands": [
@@ -4359,7 +4359,7 @@
                 ],
                 "scale": 30,
                 "suffix": "_1994",
-                "qml": "mapbiomas-legend-collection50"
+                "qml": "mapbiomas-legend-collection90"
             },
             "Classification 1995": {
                 "bands": [
@@ -4367,7 +4367,7 @@
                 ],
                 "scale": 30,
                 "suffix": "_1995",
-                "qml": "mapbiomas-legend-collection50"
+                "qml": "mapbiomas-legend-collection90"
             },
             "Classification 1996": {
                 "bands": [
@@ -4375,7 +4375,7 @@
                 ],
                 "scale": 30,
                 "suffix": "_1996",
-                "qml": "mapbiomas-legend-collection50"
+                "qml": "mapbiomas-legend-collection90"
             },
             "Classification 1997": {
                 "bands": [
@@ -4383,7 +4383,7 @@
                 ],
                 "scale": 30,
                 "suffix": "_1997",
-                "qml": "mapbiomas-legend-collection50"
+                "qml": "mapbiomas-legend-collection90"
             },
             "Classification 1998": {
                 "bands": [
@@ -4391,7 +4391,7 @@
                 ],
                 "scale": 30,
                 "suffix": "_1998",
-                "qml": "mapbiomas-legend-collection50"
+                "qml": "mapbiomas-legend-collection90"
             },
             "Classification 1999": {
                 "bands": [
@@ -4399,7 +4399,7 @@
                 ],
                 "scale": 30,
                 "suffix": "_1999",
-                "qml": "mapbiomas-legend-collection50"
+                "qml": "mapbiomas-legend-collection90"
             },
             "Classification 2000": {
                 "bands": [
@@ -4407,7 +4407,7 @@
                 ],
                 "scale": 30,
                 "suffix": "_2000",
-                "qml": "mapbiomas-legend-collection50"
+                "qml": "mapbiomas-legend-collection90"
             },
             "Classification 2001": {
                 "bands": [
@@ -4415,7 +4415,7 @@
                 ],
                 "scale": 30,
                 "suffix": "_2001",
-                "qml": "mapbiomas-legend-collection50"
+                "qml": "mapbiomas-legend-collection90"
             },
             "Classification 2002": {
                 "bands": [
@@ -4423,7 +4423,7 @@
                 ],
                 "scale": 30,
                 "suffix": "_2002",
-                "qml": "mapbiomas-legend-collection50"
+                "qml": "mapbiomas-legend-collection90"
             },
             "Classification 2003": {
                 "bands": [
@@ -4431,7 +4431,7 @@
                 ],
                 "scale": 30,
                 "suffix": "_2003",
-                "qml": "mapbiomas-legend-collection50"
+                "qml": "mapbiomas-legend-collection90"
             },
             "Classification 2004": {
                 "bands": [
@@ -4439,7 +4439,7 @@
                 ],
                 "scale": 30,
                 "suffix": "_2004",
-                "qml": "mapbiomas-legend-collection50"
+                "qml": "mapbiomas-legend-collection90"
             },
             "Classification 2005": {
                 "bands": [
@@ -4447,7 +4447,7 @@
                 ],
                 "scale": 30,
                 "suffix": "_2005",
-                "qml": "mapbiomas-legend-collection50"
+                "qml": "mapbiomas-legend-collection90"
             },
             "Classification 2006": {
                 "bands": [
@@ -4455,7 +4455,7 @@
                 ],
                 "scale": 30,
                 "suffix": "_2006",
-                "qml": "mapbiomas-legend-collection50"
+                "qml": "mapbiomas-legend-collection90"
             },
             "Classification 2007": {
                 "bands": [
@@ -4463,7 +4463,7 @@
                 ],
                 "scale": 30,
                 "suffix": "_2007",
-                "qml": "mapbiomas-legend-collection50"
+                "qml": "mapbiomas-legend-collection90"
             },
             "Classification 2008": {
                 "bands": [
@@ -4471,7 +4471,7 @@
                 ],
                 "scale": 30,
                 "suffix": "_2008",
-                "qml": "mapbiomas-legend-collection50"
+                "qml": "mapbiomas-legend-collection90"
             },
             "Classification 2009": {
                 "bands": [
@@ -4479,7 +4479,7 @@
                 ],
                 "scale": 30,
                 "suffix": "_2009",
-                "qml": "mapbiomas-legend-collection50"
+                "qml": "mapbiomas-legend-collection90"
             },
             "Classification 2010": {
                 "bands": [
@@ -4487,7 +4487,7 @@
                 ],
                 "scale": 30,
                 "suffix": "_2010",
-                "qml": "mapbiomas-legend-collection50"
+                "qml": "mapbiomas-legend-collection90"
             },
             "Classification 2011": {
                 "bands": [
@@ -4495,7 +4495,7 @@
                 ],
                 "scale": 30,
                 "suffix": "_2011",
-                "qml": "mapbiomas-legend-collection50"
+                "qml": "mapbiomas-legend-collection90"
             },
             "Classification 2012": {
                 "bands": [
@@ -4503,7 +4503,7 @@
                 ],
                 "scale": 30,
                 "suffix": "_2012",
-                "qml": "mapbiomas-legend-collection50"
+                "qml": "mapbiomas-legend-collection90"
             },
             "Classification 2013": {
                 "bands": [
@@ -4511,7 +4511,7 @@
                 ],
                 "scale": 30,
                 "suffix": "_2013",
-                "qml": "mapbiomas-legend-collection50"
+                "qml": "mapbiomas-legend-collection90"
             },
             "Classification 2014": {
                 "bands": [
@@ -4519,7 +4519,7 @@
                 ],
                 "scale": 30,
                 "suffix": "_2014",
-                "qml": "mapbiomas-legend-collection50"
+                "qml": "mapbiomas-legend-collection90"
             },
             "Classification 2015": {
                 "bands": [
@@ -4527,7 +4527,7 @@
                 ],
                 "scale": 30,
                 "suffix": "_2015",
-                "qml": "mapbiomas-legend-collection50"
+                "qml": "mapbiomas-legend-collection90"
             },
             "Classification 2016": {
                 "bands": [
@@ -4535,7 +4535,7 @@
                 ],
                 "scale": 30,
                 "suffix": "_2016",
-                "qml": "mapbiomas-legend-collection50"
+                "qml": "mapbiomas-legend-collection90"
             },
             "Classification 2017": {
                 "bands": [
@@ -4543,7 +4543,7 @@
                 ],
                 "scale": 30,
                 "suffix": "_2017",
-                "qml": "mapbiomas-legend-collection50"
+                "qml": "mapbiomas-legend-collection90"
             },
             "Classification 2018": {
                 "bands": [
@@ -4551,7 +4551,7 @@
                 ],
                 "scale": 30,
                 "suffix": "_2018",
-                "qml": "mapbiomas-legend-collection50"
+                "qml": "mapbiomas-legend-collection90"
             },
             "Classification 2019": {
                 "bands": [
@@ -4559,7 +4559,39 @@
                 ],
                 "scale": 30,
                 "suffix": "_2019",
-                "qml": "mapbiomas-legend-collection50"
+                "qml": "mapbiomas-legend-collection90"
+            },
+            "Classification 2020": {
+                "bands": [
+                    "classification_2020"
+                ],
+                "scale": 30,
+                "suffix": "_2020",
+                "qml": "mapbiomas-legend-collection90"
+            },
+            "Classification 2021": {
+                "bands": [
+                    "classification_2021"
+                ],
+                "scale": 30,
+                "suffix": "_2021",
+                "qml": "mapbiomas-legend-collection90"
+            },
+            "Classification 2022": {
+                "bands": [
+                    "classification_2022"
+                ],
+                "scale": 30,
+                "suffix": "_2022",
+                "qml": "mapbiomas-legend-collection90"
+            },
+            "Classification 2023": {
+                "bands": [
+                    "classification_2023"
+                ],
+                "scale": 30,
+                "suffix": "_2023",
+                "qml": "mapbiomas-legend-collection90"
             }
         },
         "extent": "POLYGON ((-8298202.37922298 -4375910.03333974,\n-3415897.61903642 -4375910.03333974,\n-3415897.61903642 761195.087234679,\n-8298202.37922298 761195.087234679,\n-8298202.37922298 -4375910.03333974))"
