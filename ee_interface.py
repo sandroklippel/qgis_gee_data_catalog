@@ -10,6 +10,9 @@ from qgis.PyQt.QtCore import QSettings
 from .misc_utils import (geojson_to_wkt, get_gdal_xml, tms_to_gdalurl,
                          write_xmlfile)
 
+def to_YMMdd(t):
+    """format to ISO date style"""
+    return ee.Date(t).format('Y-MM-dd')
 
 def get_ee_image_tms(image):
     try:
@@ -107,31 +110,37 @@ def search_ee_collection(collection: str,
                          bands=None,
                          limit=5):
 
-    def get_info(image, lst):
-        return ee.List(lst).add(ee.List([image.get('system:id'),
-                                         image.get(namefield),
-                                         ee.Date(image.get('system:time_start')).format('Y-MM-dd')]))
+    # def get_info(image, lst):
+    #     return ee.List(lst).add(ee.List([image.get('system:id'),
+    #                                      image.get(namefield),
+    #                                      ee.Date(image.get('system:time_start')).format('Y-MM-dd')]))
 
-    first = ee.List([])
+    # first = ee.List([])
 
     roi = ee.Geometry.Rectangle(extent, ee.Projection(proj), False)
 
     if cloudfield is None:
         images = ee.ImageCollection(collection).filterDate(startdate, enddate).filterBounds(roi) \
-                    .limit(limit, 'system:time_start').iterate(get_info, first)
+                    .limit(limit, 'system:time_start') #.iterate(get_info, first)
     elif collection == 'ASTER/AST_L1T_003':
         images = ee.ImageCollection(collection).filterDate(startdate, enddate).filterBounds(roi) \
                     .filter(ee.Filter.And(ee.Filter.lt(cloudfield, cloudcover),
                             ee.Filter.listContains('ORIGINAL_BANDS_PRESENT', bands[0]),
                             ee.Filter.listContains('ORIGINAL_BANDS_PRESENT', bands[1]),
                             ee.Filter.listContains('ORIGINAL_BANDS_PRESENT', bands[2]))) \
-                    .limit(limit, cloudfield).iterate(get_info, first)
+                    .limit(limit, cloudfield) #.iterate(get_info, first)
     else:
         images = ee.ImageCollection(collection).filterDate(startdate, enddate).filterBounds(roi) \
                     .filter(ee.Filter.lt(cloudfield, cloudcover)) \
-                    .limit(limit, cloudfield).iterate(get_info, first)
+                    .limit(limit, cloudfield) # .iterate(get_info, first)
 
-    return ee.List(images).getInfo() # ComputedObject need to coarse to List
+    idsLst = images.aggregate_array('system:id').getInfo()
+    namesLst = images.aggregate_array(namefield).getInfo()
+    datLst = images.aggregate_array('system:time_start').map(to_YMMdd).getInfo()
+    
+    # return ee.List(images).getInfo() # ComputedObject need to coarse to List
+
+    return list(zip(idsLst, namesLst, datLst))
 
 def download_ee_image_layer(iface, name, imageid, bands, scale, proj, extent=None):
 
