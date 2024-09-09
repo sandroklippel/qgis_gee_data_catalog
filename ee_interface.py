@@ -27,6 +27,23 @@ def get_ee_image_bb(image, proj='EPSG:3857', maxerror=0.001):
 
 def add_ee_image_layer(imageid, name, date, bands, scale, b_min=None, b_max=None, palette=None, qml=None, extent=None,
                        shown=False, destination=None):
+    
+    normalize_sld = """
+                    <RasterSymbolizer>
+                    <ContrastEnhancement><Normalize/></ContrastEnhancement>
+                    <ChannelSelection>
+                        <RedChannel>
+                        <SourceChannelName>1</SourceChannelName>
+                        </RedChannel>
+                        <GreenChannel>
+                        <SourceChannelName>2</SourceChannelName>
+                        </GreenChannel>
+                        <BlueChannel>
+                        <SourceChannelName>3</SourceChannelName>
+                        </BlueChannel>
+                    </ChannelSelection>
+                    </RasterSymbolizer>"""
+    
     nbands = len(bands)
     # if nbands > 3:
     #     rgb = ee.Image(imageid).select(bands[0:3])
@@ -37,12 +54,15 @@ def add_ee_image_layer(imageid, name, date, bands, scale, b_min=None, b_max=None
     # else:
     image = ee.Image(imageid)
     if not any([b_min, b_max, palette, qml]):
-        image_stats = image.select(bands[0:nbands]).reduceRegion(ee.Reducer.minMax(), None, scale, None, None, False, 1.0E13).getInfo()
-        b_min = [image_stats[bands[n] + '_min'] for n in range(nbands)]
-        b_max = [image_stats[bands[n] + '_max'] for n in range(nbands)]
-        # b_min = [image_stats[bands[0] + '_min'], image_stats[bands[1] + '_min'], image_stats[bands[2] + '_min']]
-        # b_max = [image_stats[bands[0] + '_max'], image_stats[bands[1] + '_max'], image_stats[bands[2] + '_max']]
-    rgb = image.visualize(bands=bands[0:nbands], min=b_min, max=b_max, palette=palette)
+        rgb = image.select(bands).sldStyle(normalize_sld)
+        # image_stats = image.select(bands[0:nbands]).reduceRegion(ee.Reducer.minMax(), None, scale, None, None, False, 1.0E13).getInfo()
+        # b_min = [image_stats[bands[n] + '_min'] for n in range(nbands)]
+        # b_max = [image_stats[bands[n] + '_max'] for n in range(nbands)]
+        # # b_min = [image_stats[bands[0] + '_min'], image_stats[bands[1] + '_min'], image_stats[bands[2] + '_min']]
+        # # b_max = [image_stats[bands[0] + '_max'], image_stats[bands[1] + '_max'], image_stats[bands[2] + '_max']]
+    else:
+        rgb = image.visualize(bands=bands, min=b_min, max=b_max, palette=palette)
+
     tms = get_ee_image_tms(rgb)
     if extent is None:
         image_geojson = get_ee_image_bb(rgb)
