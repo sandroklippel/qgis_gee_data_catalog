@@ -545,7 +545,7 @@ class GeeDataCatalog:
             b_max = vis_params.get("max", None)
             palette = vis_params.get("palette", None)
             qml = (
-                os.path.join(self.plugin_dir, "qml", vis_params["qml"])
+                os.path.join(self.plugin_dir, vis_params["qml"])
                 if "qml" in vis_params
                 else None
             )
