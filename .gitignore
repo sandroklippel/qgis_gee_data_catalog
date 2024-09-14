@@ -5,3 +5,4 @@ help/build/
 *.sh
 *.ipynb
 .vscode
+*.zip
