@@ -172,6 +172,50 @@
                 "scale": 20,
                 "suffix": "_SCL",
                 "qml": "sentinel2_scl"
+            },
+            "Normalized Difference Vegetation Index (NDVI)": {
+                "bands": [
+                    "NDVI"
+                ],
+                "scale": 10,
+                "suffix": "_NDVI",
+                "min": -0.5, 
+                "max": 1.0,
+                "expression": "(b(\"B8\") - b(\"B4\")) / (b(\"B8\") + b(\"B4\"))",
+                "palette": ["eaeaea","ccc682","91bf51","70a33f","4f892d","306d1c","0f540a","004400"]
+            },
+            "Enhanced Vegetation Index (EVI)": {
+                "bands": [
+                    "EVI"
+                ],
+                "scale": 10,
+                "suffix": "_EVI",
+                "min": -1.0, 
+                "max": 1.0,
+                "expression": "2.5 * (b(\"B8\") - b(\"B4\")) / ((b(\"B8\") + 6.0 * b(\"B4\") - 7.5 * b(\"B2\")) + 1.0)",
+                "palette": ["0c0c0c","bfbfbf","dbdbdb","eaeaea","ccc682","91bf51","70a33f","4f892d","306d1c","0f540a","004400"]
+            },
+            "Normalized Difference Water Index (NDWI)": {
+                "bands": [
+                    "NDWI"
+                ],
+                "scale": 10,
+                "suffix": "_NDWI",
+                "min": -0.8, 
+                "max": 0.8,
+                "expression": "(b(\"B3\") - b(\"B8\")) / (b(\"B3\") + b(\"B8\"))",
+                "palette": ["008000","ffffff","0000cc"]
+            },
+            "Normalized Burn Ratio Index (NBRI)": {
+                "bands": [
+                    "NBRI"
+                ],
+                "scale": 10,
+                "suffix": "_NBRI",
+                "min": -0.3, 
+                "max": 0.3,
+                "expression": "(b(\"B8\") - b(\"B12\")) / (b(\"B8\") + b(\"B12\"))",
+                "palette": ["b2182b","ffffff","f5f5f5"]
             }
         },
         "availability": [
@@ -455,6 +499,50 @@
                 ],
                 "scale": 30,
                 "suffix": "_r7g5b3"
+            },
+            "Normalized Difference Vegetation Index (NDVI)": {
+                "bands": [
+                    "NDVI"
+                ],
+                "scale": 30,
+                "suffix": "_NDVI",
+                "min": -0.5, 
+                "max": 1.0,
+                "expression": "(b(\"SR_B5\") - b(\"SR_B4\")) / (b(\"SR_B5\") + b(\"SR_B4\"))",
+                "palette": ["eaeaea","ccc682","91bf51","70a33f","4f892d","306d1c","0f540a","004400"]
+            },
+            "Enhanced Vegetation Index (EVI)": {
+                "bands": [
+                    "EVI"
+                ],
+                "scale": 30,
+                "suffix": "_EVI",
+                "min": -1.0, 
+                "max": 1.0,
+                "expression": "2.5 * (b(\"SR_B5\") - b(\"SR_B4\")) / ((b(\"SR_B5\") + 6.0 * b(\"SR_B4\") - 7.5 * b(\"SR_B2\")) + 1.0)",
+                "palette": ["0c0c0c","bfbfbf","dbdbdb","eaeaea","ccc682","91bf51","70a33f","4f892d","306d1c","0f540a","004400"]
+            },
+            "Normalized Difference Water Index (NDWI)": {
+                "bands": [
+                    "NDWI"
+                ],
+                "scale": 30,
+                "suffix": "_NDWI",
+                "min": -0.8, 
+                "max": 0.8,
+                "expression": "(b(\"SR_B3\") - b(\"SR_B5\")) / (b(\"SR_B3\") + b(\"SR_B5\"))",
+                "palette": ["008000","ffffff","0000cc"]
+            },
+            "Normalized Burn Ratio Index (NBRI)": {
+                "bands": [
+                    "NBRI"
+                ],
+                "scale": 30,
+                "suffix": "_NBRI",
+                "min": -0.3, 
+                "max": 0.3,
+                "expression": "(b(\"SR_B5\") - b(\"SR_B7\")) / (b(\"SR_B5\") + b(\"SR_B7\"))",
+                "palette": ["b2182b","ffffff","f5f5f5"]
             }
         },
         "namefield": "LANDSAT_PRODUCT_ID",
@@ -583,6 +671,50 @@
                 ],
                 "scale": 30,
                 "suffix": "_r7g5b3"
+            },
+            "Normalized Difference Vegetation Index (NDVI)": {
+                "bands": [
+                    "NDVI"
+                ],
+                "scale": 30,
+                "suffix": "_NDVI",
+                "min": -0.5, 
+                "max": 1.0,
+                "expression": "(b(\"SR_B5\") - b(\"SR_B4\")) / (b(\"SR_B5\") + b(\"SR_B4\"))",
+                "palette": ["eaeaea","ccc682","91bf51","70a33f","4f892d","306d1c","0f540a","004400"]
+            },
+            "Enhanced Vegetation Index (EVI)": {
+                "bands": [
+                    "EVI"
+                ],
+                "scale": 30,
+                "suffix": "_EVI",
+                "min": -1.0, 
+                "max": 1.0,
+                "expression": "2.5 * (b(\"SR_B5\") - b(\"SR_B4\")) / ((b(\"SR_B5\") + 6.0 * b(\"SR_B4\") - 7.5 * b(\"SR_B2\")) + 1.0)",
+                "palette": ["0c0c0c","bfbfbf","dbdbdb","eaeaea","ccc682","91bf51","70a33f","4f892d","306d1c","0f540a","004400"]
+            },
+            "Normalized Difference Water Index (NDWI)": {
+                "bands": [
+                    "NDWI"
+                ],
+                "scale": 30,
+                "suffix": "_NDWI",
+                "min": -0.8, 
+                "max": 0.8,
+                "expression": "(b(\"SR_B3\") - b(\"SR_B5\")) / (b(\"SR_B3\") + b(\"SR_B5\"))",
+                "palette": ["008000","ffffff","0000cc"]
+            },
+            "Normalized Burn Ratio Index (NBRI)": {
+                "bands": [
+                    "NBRI"
+                ],
+                "scale": 30,
+                "suffix": "_NBRI",
+                "min": -0.3, 
+                "max": 0.3,
+                "expression": "(b(\"SR_B5\") - b(\"SR_B7\")) / (b(\"SR_B5\") + b(\"SR_B7\"))",
+                "palette": ["b2182b","ffffff","f5f5f5"]
             }
         },
         "namefield": "LANDSAT_PRODUCT_ID",
@@ -981,6 +1113,50 @@
                 ],
                 "scale": 30,
                 "suffix": "_r7g5b3"
+            },
+            "Normalized Difference Vegetation Index (NDVI)": {
+                "bands": [
+                    "NDVI"
+                ],
+                "scale": 30,
+                "suffix": "_NDVI",
+                "min": -0.5, 
+                "max": 1.0,
+                "expression": "(b(\"SR_B5\") - b(\"SR_B4\")) / (b(\"SR_B5\") + b(\"SR_B4\"))",
+                "palette": ["eaeaea","ccc682","91bf51","70a33f","4f892d","306d1c","0f540a","004400"]
+            },
+            "Enhanced Vegetation Index (EVI)": {
+                "bands": [
+                    "EVI"
+                ],
+                "scale": 30,
+                "suffix": "_EVI",
+                "min": -1.0, 
+                "max": 1.0,
+                "expression": "2.5 * (b(\"SR_B5\") - b(\"SR_B4\")) / ((b(\"SR_B5\") + 6.0 * b(\"SR_B4\") - 7.5 * b(\"SR_B2\")) + 1.0)",
+                "palette": ["0c0c0c","bfbfbf","dbdbdb","eaeaea","ccc682","91bf51","70a33f","4f892d","306d1c","0f540a","004400"]
+            },
+            "Normalized Difference Water Index (NDWI)": {
+                "bands": [
+                    "NDWI"
+                ],
+                "scale": 30,
+                "suffix": "_NDWI",
+                "min": -0.8, 
+                "max": 0.8,
+                "expression": "(b(\"SR_B3\") - b(\"SR_B5\")) / (b(\"SR_B3\") + b(\"SR_B5\"))",
+                "palette": ["008000","ffffff","0000cc"]
+            },
+            "Normalized Burn Ratio Index (NBRI)": {
+                "bands": [
+                    "NBRI"
+                ],
+                "scale": 30,
+                "suffix": "_NBRI",
+                "min": -0.3, 
+                "max": 0.3,
+                "expression": "(b(\"SR_B5\") - b(\"SR_B7\")) / (b(\"SR_B5\") + b(\"SR_B7\"))",
+                "palette": ["b2182b","ffffff","f5f5f5"]
             }
         },
         "namefield": "LANDSAT_PRODUCT_ID",
@@ -1109,6 +1285,50 @@
                 ],
                 "scale": 30,
                 "suffix": "_r7g5b3"
+            },
+            "Normalized Difference Vegetation Index (NDVI)": {
+                "bands": [
+                    "NDVI"
+                ],
+                "scale": 30,
+                "suffix": "_NDVI",
+                "min": -0.5, 
+                "max": 1.0,
+                "expression": "(b(\"SR_B5\") - b(\"SR_B4\")) / (b(\"SR_B5\") + b(\"SR_B4\"))",
+                "palette": ["eaeaea","ccc682","91bf51","70a33f","4f892d","306d1c","0f540a","004400"]
+            },
+            "Enhanced Vegetation Index (EVI)": {
+                "bands": [
+                    "EVI"
+                ],
+                "scale": 30,
+                "suffix": "_EVI",
+                "min": -1.0, 
+                "max": 1.0,
+                "expression": "2.5 * (b(\"SR_B5\") - b(\"SR_B4\")) / ((b(\"SR_B5\") + 6.0 * b(\"SR_B4\") - 7.5 * b(\"SR_B2\")) + 1.0)",
+                "palette": ["0c0c0c","bfbfbf","dbdbdb","eaeaea","ccc682","91bf51","70a33f","4f892d","306d1c","0f540a","004400"]
+            },
+            "Normalized Difference Water Index (NDWI)": {
+                "bands": [
+                    "NDWI"
+                ],
+                "scale": 30,
+                "suffix": "_NDWI",
+                "min": -0.8, 
+                "max": 0.8,
+                "expression": "(b(\"SR_B3\") - b(\"SR_B5\")) / (b(\"SR_B3\") + b(\"SR_B5\"))",
+                "palette": ["008000","ffffff","0000cc"]
+            },
+            "Normalized Burn Ratio Index (NBRI)": {
+                "bands": [
+                    "NBRI"
+                ],
+                "scale": 30,
+                "suffix": "_NBRI",
+                "min": -0.3, 
+                "max": 0.3,
+                "expression": "(b(\"SR_B5\") - b(\"SR_B7\")) / (b(\"SR_B5\") + b(\"SR_B7\"))",
+                "palette": ["b2182b","ffffff","f5f5f5"]
             }
         },
         "namefield": "LANDSAT_PRODUCT_ID",
@@ -2038,12 +2258,56 @@
                 ],
                 "scale": 30,
                 "suffix": "_r7g4b2"
+            },
+            "Normalized Difference Vegetation Index (NDVI)": {
+                "bands": [
+                    "NDVI"
+                ],
+                "scale": 30,
+                "suffix": "_NDVI",
+                "min": -0.5, 
+                "max": 1.0,
+                "expression": "(b(\"SR_B4\") - b(\"SR_B3\")) / (b(\"SR_B4\") + b(\"SR_B3\"))",
+                "palette": ["eaeaea","ccc682","91bf51","70a33f","4f892d","306d1c","0f540a","004400"]
+            },
+            "Enhanced Vegetation Index (EVI)": {
+                "bands": [
+                    "EVI"
+                ],
+                "scale": 30,
+                "suffix": "_EVI",
+                "min": -1.0, 
+                "max": 1.0,
+                "expression": "2.5 * (b(\"SR_B4\") - b(\"SR_B3\")) / ((b(\"SR_B4\") + 6.0 * b(\"SR_B3\") - 7.5 * b(\"SR_B1\")) + 1.0)",
+                "palette": ["0c0c0c","bfbfbf","dbdbdb","eaeaea","ccc682","91bf51","70a33f","4f892d","306d1c","0f540a","004400"]
+            },
+            "Normalized Difference Water Index (NDWI)": {
+                "bands": [
+                    "NDWI"
+                ],
+                "scale": 30,
+                "suffix": "_NDWI",
+                "min": -0.8, 
+                "max": 0.8,
+                "expression": "(b(\"SR_B2\") - b(\"SR_B4\")) / (b(\"SR_B2\") + b(\"SR_B4\"))",
+                "palette": ["008000","ffffff","0000cc"]
+            },
+            "Normalized Burn Ratio Index (NBRI)": {
+                "bands": [
+                    "NBRI"
+                ],
+                "scale": 30,
+                "suffix": "_NBRI",
+                "min": -0.3, 
+                "max": 0.3,
+                "expression": "(b(\"SR_B4\") - b(\"SR_B7\")) / (b(\"SR_B4\") + b(\"SR_B7\"))",
+                "palette": ["b2182b","ffffff","f5f5f5"]
             }
         },
         "namefield": "LANDSAT_PRODUCT_ID",
         "availability": [
             "1999-05-28",
-            "2022-03-13"
+            "2024-01-19"
         ],
         "cloudfield": "CLOUD_COVER"
     },
@@ -2157,12 +2421,56 @@
                 ],
                 "scale": 30,
                 "suffix": "_r7g4b2"
+            },
+            "Normalized Difference Vegetation Index (NDVI)": {
+                "bands": [
+                    "NDVI"
+                ],
+                "scale": 30,
+                "suffix": "_NDVI",
+                "min": -0.5, 
+                "max": 1.0,
+                "expression": "(b(\"SR_B4\") - b(\"SR_B3\")) / (b(\"SR_B4\") + b(\"SR_B3\"))",
+                "palette": ["eaeaea","ccc682","91bf51","70a33f","4f892d","306d1c","0f540a","004400"]
+            },
+            "Enhanced Vegetation Index (EVI)": {
+                "bands": [
+                    "EVI"
+                ],
+                "scale": 30,
+                "suffix": "_EVI",
+                "min": -1.0, 
+                "max": 1.0,
+                "expression": "2.5 * (b(\"SR_B4\") - b(\"SR_B3\")) / ((b(\"SR_B4\") + 6.0 * b(\"SR_B3\") - 7.5 * b(\"SR_B1\")) + 1.0)",
+                "palette": ["0c0c0c","bfbfbf","dbdbdb","eaeaea","ccc682","91bf51","70a33f","4f892d","306d1c","0f540a","004400"]
+            },
+            "Normalized Difference Water Index (NDWI)": {
+                "bands": [
+                    "NDWI"
+                ],
+                "scale": 30,
+                "suffix": "_NDWI",
+                "min": -0.8, 
+                "max": 0.8,
+                "expression": "(b(\"SR_B2\") - b(\"SR_B4\")) / (b(\"SR_B2\") + b(\"SR_B4\"))",
+                "palette": ["008000","ffffff","0000cc"]
+            },
+            "Normalized Burn Ratio Index (NBRI)": {
+                "bands": [
+                    "NBRI"
+                ],
+                "scale": 30,
+                "suffix": "_NBRI",
+                "min": -0.3, 
+                "max": 0.3,
+                "expression": "(b(\"SR_B4\") - b(\"SR_B7\")) / (b(\"SR_B4\") + b(\"SR_B7\"))",
+                "palette": ["b2182b","ffffff","f5f5f5"]
             }
         },
         "namefield": "LANDSAT_PRODUCT_ID",
         "availability": [
             "1999-05-28",
-            "2022-03-13"
+            "2024-01-19"
         ],
         "cloudfield": "CLOUD_COVER"
     },
@@ -3032,6 +3340,50 @@
                 ],
                 "scale": 30,
                 "suffix": "_r7g4b2"
+            },
+            "Normalized Difference Vegetation Index (NDVI)": {
+                "bands": [
+                    "NDVI"
+                ],
+                "scale": 30,
+                "suffix": "_NDVI",
+                "min": -0.5, 
+                "max": 1.0,
+                "expression": "(b(\"SR_B4\") - b(\"SR_B3\")) / (b(\"SR_B4\") + b(\"SR_B3\"))",
+                "palette": ["eaeaea","ccc682","91bf51","70a33f","4f892d","306d1c","0f540a","004400"]
+            },
+            "Enhanced Vegetation Index (EVI)": {
+                "bands": [
+                    "EVI"
+                ],
+                "scale": 30,
+                "suffix": "_EVI",
+                "min": -1.0, 
+                "max": 1.0,
+                "expression": "2.5 * (b(\"SR_B4\") - b(\"SR_B3\")) / ((b(\"SR_B4\") + 6.0 * b(\"SR_B3\") - 7.5 * b(\"SR_B1\")) + 1.0)",
+                "palette": ["0c0c0c","bfbfbf","dbdbdb","eaeaea","ccc682","91bf51","70a33f","4f892d","306d1c","0f540a","004400"]
+            },
+            "Normalized Difference Water Index (NDWI)": {
+                "bands": [
+                    "NDWI"
+                ],
+                "scale": 30,
+                "suffix": "_NDWI",
+                "min": -0.8, 
+                "max": 0.8,
+                "expression": "(b(\"SR_B2\") - b(\"SR_B4\")) / (b(\"SR_B2\") + b(\"SR_B4\"))",
+                "palette": ["008000","ffffff","0000cc"]
+            },
+            "Normalized Burn Ratio Index (NBRI)": {
+                "bands": [
+                    "NBRI"
+                ],
+                "scale": 30,
+                "suffix": "_NBRI",
+                "min": -0.3, 
+                "max": 0.3,
+                "expression": "(b(\"SR_B4\") - b(\"SR_B7\")) / (b(\"SR_B4\") + b(\"SR_B7\"))",
+                "palette": ["b2182b","ffffff","f5f5f5"]
             }
         },
         "namefield": "LANDSAT_PRODUCT_ID",
@@ -3151,6 +3503,50 @@
                 ],
                 "scale": 30,
                 "suffix": "_r7g4b2"
+            },
+            "Normalized Difference Vegetation Index (NDVI)": {
+                "bands": [
+                    "NDVI"
+                ],
+                "scale": 30,
+                "suffix": "_NDVI",
+                "min": -0.5, 
+                "max": 1.0,
+                "expression": "(b(\"SR_B4\") - b(\"SR_B3\")) / (b(\"SR_B4\") + b(\"SR_B3\"))",
+                "palette": ["eaeaea","ccc682","91bf51","70a33f","4f892d","306d1c","0f540a","004400"]
+            },
+            "Enhanced Vegetation Index (EVI)": {
+                "bands": [
+                    "EVI"
+                ],
+                "scale": 30,
+                "suffix": "_EVI",
+                "min": -1.0, 
+                "max": 1.0,
+                "expression": "2.5 * (b(\"SR_B4\") - b(\"SR_B3\")) / ((b(\"SR_B4\") + 6.0 * b(\"SR_B3\") - 7.5 * b(\"SR_B1\")) + 1.0)",
+                "palette": ["0c0c0c","bfbfbf","dbdbdb","eaeaea","ccc682","91bf51","70a33f","4f892d","306d1c","0f540a","004400"]
+            },
+            "Normalized Difference Water Index (NDWI)": {
+                "bands": [
+                    "NDWI"
+                ],
+                "scale": 30,
+                "suffix": "_NDWI",
+                "min": -0.8, 
+                "max": 0.8,
+                "expression": "(b(\"SR_B2\") - b(\"SR_B4\")) / (b(\"SR_B2\") + b(\"SR_B4\"))",
+                "palette": ["008000","ffffff","0000cc"]
+            },
+            "Normalized Burn Ratio Index (NBRI)": {
+                "bands": [
+                    "NBRI"
+                ],
+                "scale": 30,
+                "suffix": "_NBRI",
+                "min": -0.3, 
+                "max": 0.3,
+                "expression": "(b(\"SR_B4\") - b(\"SR_B7\")) / (b(\"SR_B4\") + b(\"SR_B7\"))",
+                "palette": ["b2182b","ffffff","f5f5f5"]
             }
         },
         "namefield": "LANDSAT_PRODUCT_ID",
@@ -3606,6 +4002,50 @@
                 ],
                 "scale": 30,
                 "suffix": "_r7g4b2"
+            },
+            "Normalized Difference Vegetation Index (NDVI)": {
+                "bands": [
+                    "NDVI"
+                ],
+                "scale": 30,
+                "suffix": "_NDVI",
+                "min": -0.5, 
+                "max": 1.0,
+                "expression": "(b(\"SR_B4\") - b(\"SR_B3\")) / (b(\"SR_B4\") + b(\"SR_B3\"))",
+                "palette": ["eaeaea","ccc682","91bf51","70a33f","4f892d","306d1c","0f540a","004400"]
+            },
+            "Enhanced Vegetation Index (EVI)": {
+                "bands": [
+                    "EVI"
+                ],
+                "scale": 30,
+                "suffix": "_EVI",
+                "min": -1.0, 
+                "max": 1.0,
+                "expression": "2.5 * (b(\"SR_B4\") - b(\"SR_B3\")) / ((b(\"SR_B4\") + 6.0 * b(\"SR_B3\") - 7.5 * b(\"SR_B1\")) + 1.0)",
+                "palette": ["0c0c0c","bfbfbf","dbdbdb","eaeaea","ccc682","91bf51","70a33f","4f892d","306d1c","0f540a","004400"]
+            },
+            "Normalized Difference Water Index (NDWI)": {
+                "bands": [
+                    "NDWI"
+                ],
+                "scale": 30,
+                "suffix": "_NDWI",
+                "min": -0.8, 
+                "max": 0.8,
+                "expression": "(b(\"SR_B2\") - b(\"SR_B4\")) / (b(\"SR_B2\") + b(\"SR_B4\"))",
+                "palette": ["008000","ffffff","0000cc"]
+            },
+            "Normalized Burn Ratio Index (NBRI)": {
+                "bands": [
+                    "NBRI"
+                ],
+                "scale": 30,
+                "suffix": "_NBRI",
+                "min": -0.3, 
+                "max": 0.3,
+                "expression": "(b(\"SR_B4\") - b(\"SR_B7\")) / (b(\"SR_B4\") + b(\"SR_B7\"))",
+                "palette": ["b2182b","ffffff","f5f5f5"]
             }
         },
         "namefield": "LANDSAT_PRODUCT_ID",
@@ -3725,6 +4165,50 @@
                 ],
                 "scale": 30,
                 "suffix": "_r7g4b2"
+            },
+            "Normalized Difference Vegetation Index (NDVI)": {
+                "bands": [
+                    "NDVI"
+                ],
+                "scale": 30,
+                "suffix": "_NDVI",
+                "min": -0.5, 
+                "max": 1.0,
+                "expression": "(b(\"SR_B4\") - b(\"SR_B3\")) / (b(\"SR_B4\") + b(\"SR_B3\"))",
+                "palette": ["eaeaea","ccc682","91bf51","70a33f","4f892d","306d1c","0f540a","004400"]
+            },
+            "Enhanced Vegetation Index (EVI)": {
+                "bands": [
+                    "EVI"
+                ],
+                "scale": 30,
+                "suffix": "_EVI",
+                "min": -1.0, 
+                "max": 1.0,
+                "expression": "2.5 * (b(\"SR_B4\") - b(\"SR_B3\")) / ((b(\"SR_B4\") + 6.0 * b(\"SR_B3\") - 7.5 * b(\"SR_B1\")) + 1.0)",
+                "palette": ["0c0c0c","bfbfbf","dbdbdb","eaeaea","ccc682","91bf51","70a33f","4f892d","306d1c","0f540a","004400"]
+            },
+            "Normalized Difference Water Index (NDWI)": {
+                "bands": [
+                    "NDWI"
+                ],
+                "scale": 30,
+                "suffix": "_NDWI",
+                "min": -0.8, 
+                "max": 0.8,
+                "expression": "(b(\"SR_B2\") - b(\"SR_B4\")) / (b(\"SR_B2\") + b(\"SR_B4\"))",
+                "palette": ["008000","ffffff","0000cc"]
+            },
+            "Normalized Burn Ratio Index (NBRI)": {
+                "bands": [
+                    "NBRI"
+                ],
+                "scale": 30,
+                "suffix": "_NBRI",
+                "min": -0.3, 
+                "max": 0.3,
+                "expression": "(b(\"SR_B4\") - b(\"SR_B7\")) / (b(\"SR_B4\") + b(\"SR_B7\"))",
+                "palette": ["b2182b","ffffff","f5f5f5"]
             }
         },
         "namefield": "LANDSAT_PRODUCT_ID",
