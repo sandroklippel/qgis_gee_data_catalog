@@ -27,16 +27,16 @@ from .ee_interface import (
     add_ee_image_layer,
     download_ee_image_layer,
     search_ee_collection,
-    update_ee_image_xml,
+    update_ee_image,
+    get_ee_image_tms
 )
 from .iface_utils import get_canvas_extent, get_canvas_proj
-from .misc_utils import write_xmlfile
+from .misc_utils import get_gdal_xml, tms_to_gdalurl, write_xmlfile
 from .qgis_gee_data_catalog_dialog import GeeDataCatalogDialog
 from .resources import *
 
 try:
     import ee
-
     MISSINGAPI = False
 except ImportError:
     MISSINGAPI = True
@@ -326,6 +326,7 @@ class GeeDataCatalog:
             if newlayer.isValid():
                 imageid = eelayer.customProperty("ee-image-id")
                 date = eelayer.customProperty("ee-image-date")
+                bands = eelayer.customProperty("ee-image-bands")
                 qml = eelayer.customProperty("ee-image-qml")
                 extent = eelayer.customProperty("ee-image-wkt")
                 # load qml must be first since this clean all custom properties
@@ -341,9 +342,7 @@ class GeeDataCatalog:
                 newlayer.setCustomProperty("ee-image", "XML")
                 newlayer.setCustomProperty("ee-image-id", imageid)
                 newlayer.setCustomProperty("ee-image-date", date)
-                newlayer.setCustomProperty(
-                    "ee-image-bands", eelayer.customProperty("ee-image-bands")
-                )
+                newlayer.setCustomProperty("ee-image-bands", bands)
                 newlayer.setCustomProperty(
                     "ee-image-scale", eelayer.customProperty("ee-image-scale")
                 )
@@ -356,12 +355,18 @@ class GeeDataCatalog:
                 newlayer.setCustomProperty(
                     "ee-image-palette", eelayer.customProperty("ee-image-palette")
                 )
+                newlayer.setCustomProperty(
+                    "ee-image-expression", eelayer.customProperty("ee-image-expression")
+                )
                 newlayer.setCustomProperty("ee-image-qml", qml)
                 newlayer.setCustomProperty("ee-image-wkt", extent)
+
+                fmt_bands = '-'.join(bands)
                 if date is not None:
-                    newlayer.setAbstract(f"ee.Image('{imageid}') \n\nDate: {date}")
+                    newlayer.setAbstract(f"Image: {imageid}\n Bands:{fmt_bands}\nDate: {date}")
                 else:
-                    newlayer.setAbstract(f"ee.Image('{imageid}')")
+                    newlayer.setAbstract(f"Image: {imageid}\n Bands:{fmt_bands}")
+
                 bb = QgsRectangle.fromWkt(extent)
                 newlayer.setExtent(bb)
                 QgsProject.instance().addMapLayer(newlayer)
@@ -375,8 +380,9 @@ class GeeDataCatalog:
         imageid = eelayer.customProperty("ee-image-id")
         bands = eelayer.customProperty("ee-image-bands")
         scale = eelayer.customProperty("ee-image-scale")
+        expression = eelayer.customProperty("ee-image-expression")
         proj = get_canvas_proj(self.iface)
-        download_ee_image_layer(self.iface, name, imageid, bands, scale, proj)
+        download_ee_image_layer(self.iface, name, imageid, bands, scale, proj, None, expression)
 
     def gee_layer_canvas_download(self):
         eelayer = self.iface.activeLayer()
@@ -384,9 +390,10 @@ class GeeDataCatalog:
         imageid = eelayer.customProperty("ee-image-id")
         bands = eelayer.customProperty("ee-image-bands")
         scale = eelayer.customProperty("ee-image-scale")
+        expression = eelayer.customProperty("ee-image-expression")
         extent = get_canvas_extent(self.iface)
         proj = get_canvas_proj(self.iface)
-        download_ee_image_layer(self.iface, name, imageid, bands, scale, proj, extent)
+        download_ee_image_layer(self.iface, name, imageid, bands, scale, proj, extent, expression)
 
     def update_ee_image_layer(self, eelayer):
         extent = eelayer.customProperty("ee-image-wkt")
@@ -397,17 +404,22 @@ class GeeDataCatalog:
         # if ds.ReadAsArray(xsize=1, ysize=1) is None:
         imageid = eelayer.customProperty("ee-image-id")
         bands = eelayer.customProperty("ee-image-bands")
+        b_min = eelayer.customProperty("ee-image-b_min")
+        b_max = eelayer.customProperty("ee-image-b_max")
         qml = eelayer.customProperty("ee-image-qml")
         palette = eelayer.customProperty("ee-image-palette")
-        if not qml:
-            b_min = list(map(int, eelayer.customProperty("ee-image-b_min")))
-            b_max = list(map(int, eelayer.customProperty("ee-image-b_max")))
-        else:
-            b_min = None
-            b_max = None
+        expression = eelayer.customProperty("ee-image-expression")
+        # if b_min is not None:
+        #     b_min = list(map(int, b_min))
+        # if b_max is not None:
+        #     b_max = list(map(int, b_max))
+        nbands = len(bands) if palette is None else 3
         if self.ee_uninitialized:
             ee.Initialize()
-        new_xml = update_ee_image_xml(imageid, bands, b_min, b_max, palette)
+        rgb = update_ee_image(imageid, bands, b_min, b_max, palette, expression, qml)
+        tms = get_ee_image_tms(rgb)
+        url = tms_to_gdalurl(tms)
+        new_xml = get_gdal_xml(url, nbands+1)
         write_xmlfile(new_xml, name=None, dest=xml_file)
         eelayer.dataProvider().reloadData()
         eelayer.triggerRepaint()
@@ -544,11 +556,13 @@ class GeeDataCatalog:
             b_min = vis_params.get("min", None)
             b_max = vis_params.get("max", None)
             palette = vis_params.get("palette", None)
+            expression = vis_params.get("expression", None)
             qml = (
                 os.path.join(self.plugin_dir, vis_params["qml"])
                 if "qml" in vis_params
                 else None
             )
+
 
             # need to test if it is a valid epsg proj
             # if someone else, set to 4326
@@ -583,6 +597,7 @@ class GeeDataCatalog:
                         b_min=b_min,
                         b_max=b_max,
                         palette=palette,
+                        expression=expression,
                         qml=qml,
                         extent=GEE_DATASETS[collection].get("extent", None),
                         destination=destination_folder,
