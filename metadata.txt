@@ -32,7 +32,7 @@ about=Search, view and download satellite imagery and geospatial datasets from G
   >>> ee.Authenticate()
 
   The Cloud Project name must be assigned to EEPROJECT environment variable. 
-  That can be done in QGIS (Settings -> Options -> System -> Environment).
+  This can be done in QGIS (Settings -> Options -> System -> Environment).
 
 
 tracker=https://github.com/sandroklippel/qgis_gee_data_catalog/issues

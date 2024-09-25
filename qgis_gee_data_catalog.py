@@ -429,6 +429,8 @@ class GeeDataCatalog:
             try:
                 if self.ee_project is None:
                     QgsMessageLog.logMessage('About to initialize the earthengine API without a cloud project. Please assign it to the EEPROJECT environment variable and restart QGIS.', 'EE Python API', level=Qgis.Critical)
+                else:
+                    QgsMessageLog.logMessage(f'About to initialize the earthengine API with the {self.ee_project} cloud project.', 'EE Python API', level=Qgis.Info)
                 ee.Initialize(project=self.ee_project)
                 self.ee_uninitialized = False
             except ee.ee_exception.EEException as e:
@@ -540,6 +542,8 @@ class GeeDataCatalog:
                 try:
                     if self.ee_project is None:
                         QgsMessageLog.logMessage('About to initialize the earthengine API without a cloud project. Please assign it to the EEPROJECT environment variable and restart QGIS.', 'EE Python API', level=Qgis.Critical)
+                    else:
+                        QgsMessageLog.logMessage(f'About to initialize the earthengine API with the {self.ee_project} cloud project.', 'EE Python API', level=Qgis.Info)
                     ee.Initialize(project=self.ee_project)
                     self.ee_uninitialized = False
                 except ee.ee_exception.EEException as e:

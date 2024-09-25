@@ -21,7 +21,7 @@ pip3 install earthengine-api --user
 To authenticate on QGIS Terminal Python (Ctrl+Alt+P):
 ```
 import ee
-ee.Authenticate(auth_mode='localhost')
+ee.Authenticate()
 ```
 
 The output credentials file will be located in:
@@ -30,4 +30,4 @@ Windows: %USERPROFILE%\.config\earthengine
 Linux: $HOME/.config/earthengine 
 
 The Cloud Project name must be assigned to EEPROJECT environment variable. 
-That can be done in QGIS (Settings -> Options -> System -> Environment).
+This can be done in QGIS (Settings -> Options -> System -> Environment).
