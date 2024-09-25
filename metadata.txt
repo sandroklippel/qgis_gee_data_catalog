@@ -44,7 +44,7 @@ repository=https://github.com/sandroklippel/qgis_gee_data_catalog
 hasProcessingProvider=no
 # Uncomment the following line and add your changelog:
 changelog=[0.5.0] - 2024-09-25
-  - Change the defaults to 99% cloud cover and limit to 1 image.
+  - Change the defaults to cloud cover and limits.
   - Initializes the earthengine-api with a Cloud Project.
   - The lack of the earthengine-api will trigger a user friendly message instead of an error.
   - Added remote sensing indices (NDVI, EVI, NDWI, NBRI).
