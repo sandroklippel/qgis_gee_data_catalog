@@ -17,7 +17,7 @@ import shutil
 from os.path import isfile
 
 from osgeo import gdal
-from qgis.core import QgsMapLayerType, QgsProject, QgsRasterLayer, QgsRectangle
+from qgis.core import Qgis, QgsMessageLog, QgsMapLayerType, QgsProject, QgsRasterLayer, QgsRectangle
 from qgis.PyQt.QtCore import QCoreApplication, QDate, QSettings, QTranslator
 from qgis.PyQt.QtGui import QIcon
 from qgis.PyQt.QtWidgets import QAction, QFileDialog, QMenu
@@ -82,7 +82,9 @@ class GeeDataCatalog:
         # Check if plugin was started the first time in current QGIS session
         # Must be set in initGui() to survive plugin reloads
         self.first_start = None
-
+        
+        # Earth Engine Cloud Project
+        self.ee_project = os.getenv('EEPROJECT')
         # set if ee.Initialize was run
         self.ee_uninitialized = True
 
@@ -377,6 +379,9 @@ class GeeDataCatalog:
     def gee_layer_full_download(self):
         eelayer = self.iface.activeLayer()
         name = eelayer.name()
+        if MISSINGAPI:
+            QgsMessageLog.logMessage('Error to download the layer {}: The EE Python API (earthengine-api) must be installed and authenticated.'.format(name), 'GEE Data Catalog', level=Qgis.Critical)
+            return
         imageid = eelayer.customProperty("ee-image-id")
         bands = eelayer.customProperty("ee-image-bands")
         scale = eelayer.customProperty("ee-image-scale")
@@ -387,6 +392,9 @@ class GeeDataCatalog:
     def gee_layer_canvas_download(self):
         eelayer = self.iface.activeLayer()
         name = eelayer.name()
+        if MISSINGAPI:
+            QgsMessageLog.logMessage('Error to download the layer {}: The EE Python API (earthengine-api) must be installed and authenticated.'.format(name), 'GEE Data Catalog', level=Qgis.Critical)
+            return
         imageid = eelayer.customProperty("ee-image-id")
         bands = eelayer.customProperty("ee-image-bands")
         scale = eelayer.customProperty("ee-image-scale")
@@ -396,6 +404,9 @@ class GeeDataCatalog:
         download_ee_image_layer(self.iface, name, imageid, bands, scale, proj, extent, expression)
 
     def update_ee_image_layer(self, eelayer):
+        if MISSINGAPI:
+            QgsMessageLog.logMessage('Error updating the {} layer: The EE Python API (earthengine-api) must be installed and authenticated.'.format(eelayer.name()), 'GEE Data Catalog', level=Qgis.Critical)
+            return
         extent = eelayer.customProperty("ee-image-wkt")
         bb = QgsRectangle.fromWkt(extent)
         eelayer.setExtent(bb)
@@ -415,7 +426,14 @@ class GeeDataCatalog:
         #     b_max = list(map(int, b_max))
         nbands = len(bands) if palette is None else 3
         if self.ee_uninitialized:
-            ee.Initialize()
+            try:
+                if self.ee_project is None:
+                    QgsMessageLog.logMessage('About to initialize the earthengine API without a cloud project. Please assign it to the EEPROJECT environment variable and restart QGIS.', 'EE Python API', level=Qgis.Critical)
+                ee.Initialize(project=self.ee_project)
+                self.ee_uninitialized = False
+            except ee.ee_exception.EEException as e:
+                QgsMessageLog.logMessage('Error updating the {} layer: {}'.format(eelayer.name(), e), 'EE Python API', level=Qgis.Critical)
+                return
         rgb = update_ee_image(imageid, bands, b_min, b_max, palette, expression, qml)
         tms = get_ee_image_tms(rgb)
         url = tms_to_gdalurl(tms)
@@ -511,20 +529,25 @@ class GeeDataCatalog:
         self.dlg.open()
 
     def result(self, result):
+        
         # See if OK was pressed
         if result:
 
             if MISSINGAPI:
-                raise ImportError("Dependency error: earthengine-api must be installed")
-
+                self.iface.messageBar().pushMessage("The EE Python API (earthengine-api) must be installed and authenticated. Please see the instructions in https://github.com/sandroklippel/qgis_gee_data_catalog.", Qgis.Critical, 0)
+                return
             elif self.ee_uninitialized:
                 try:
-                    ee.Initialize()
+                    if self.ee_project is None:
+                        QgsMessageLog.logMessage('About to initialize the earthengine API without a cloud project. Please assign it to the EEPROJECT environment variable and restart QGIS.', 'EE Python API', level=Qgis.Critical)
+                    ee.Initialize(project=self.ee_project)
                     self.ee_uninitialized = False
+                except ee.ee_exception.EEException as e:
+                    self.iface.messageBar().pushMessage(title="EE Python API Error", text=str(e), level=Qgis.Critical, duration=0)
+                    return
                 except OSError:
-                    raise OSError(
-                        "Fail to establish connection with the earthengine server"
-                    )
+                    self.iface.messageBar().pushMessage(text="Fail to establish connection with the earthengine server", level=Qgis.Critical, duration=-1)
+                    return
 
             # search ee images
             collection = self.dlg.collection.currentText()
