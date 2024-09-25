@@ -4,16 +4,36 @@
 
 [general]
 name=Google Earth Engine Data Catalog
-qgisMinimumVersion=3.10
-description=Search, view and download satellite imagery and geospatial datasets from Google Earth Engine.
-version=0.4.3
+qgisMinimumVersion=3.18
+description=This QGIS plug-in lets you explore satellite images and geospatial datasets from Google Earth Engine.
+version=0.5.0
 author=Sandro Klippel
 email=sandroklippel@gmail.com
 
-about=Search, view and download satellite imagery and geospatial datasets from Google Earth Engine.
-  EE Python API (earthengine-api>=v0.1.232) must be installed and it is required a Google Earth Engine account.
-  See the plug-in home page for detailed installation instructions.
-#  If you don’t have one, sign-up here: https://earthengine.google.com/signup/.
+about=Search, view and download satellite imagery and geospatial datasets from Google Earth Engine. 
+
+  A Google Earth Engine account linked to a Cloud Project is required. Additionally, the EE Python API (earthengine-api) must be installed and authenticated. 
+
+  To install on Windows (OSGeo4W Shell):
+  
+  > python -m pip install --upgrade pip
+  > python -m pip install earthengine-api --user
+  
+  To install on Linux (Ubuntu based):
+  
+  $ sudo apt update
+  $ sudo apt upgrade
+  $ sudo apt install python3-pip
+  $ pip3 install earthengine-api --user
+  
+  To authenticate on QGIS Terminal Python (Ctrl+Alt+P):
+  
+  >>> import ee
+  >>> ee.Authenticate()
+
+  The Cloud Project name must be assigned to EEPROJECT environment variable. 
+  That can be done in QGIS (Settings -> Options -> System -> Environment).
+
 
 tracker=https://github.com/sandroklippel/qgis_gee_data_catalog/issues
 repository=https://github.com/sandroklippel/qgis_gee_data_catalog
@@ -23,7 +43,9 @@ repository=https://github.com/sandroklippel/qgis_gee_data_catalog
 
 hasProcessingProvider=no
 # Uncomment the following line and add your changelog:
-changelog=[0.4.3] - 2022-04-12
+changelog=[0.4.4] - 2024-09-05
+  - Updated to Mapbiomas collection 9.0
+  [0.4.3] - 2022-04-12
   - Landsat datasets changed for collection 2 and added the Landsat 9 OLI-2..
   [0.4.2] - 2021-09-12
   - Planet & NICFI Basemaps for Tropical Forest Monitoring datasets.
