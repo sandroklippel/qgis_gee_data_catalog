@@ -26,8 +26,9 @@ ee.Authenticate()
 
 The output credentials file will be located in:
 
-Windows: %USERPROFILE%\.config\earthengine 
-Linux: $HOME/.config/earthengine 
+Windows: `%USERPROFILE%\.config\earthengine` 
 
-The Cloud Project name must be assigned to EEPROJECT environment variable. 
+Linux: `$HOME/.config/earthengine` 
+
+The Cloud Project name must be assigned to `GOOGLE_CLOUD_PROJECT` environment variable. 
 This can be done in QGIS (Settings -> Options -> System -> Environment).

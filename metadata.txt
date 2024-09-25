@@ -31,7 +31,7 @@ about=Search, view and download satellite imagery and geospatial datasets from G
   >>> import ee
   >>> ee.Authenticate()
 
-  The Cloud Project name must be assigned to EEPROJECT environment variable. 
+  The Cloud Project name must be assigned to GOOGLE_CLOUD_PROJECT environment variable. 
   This can be done in QGIS (Settings -> Options -> System -> Environment).
 
 
